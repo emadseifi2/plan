@@ -1,0 +1,116 @@
+<style>
+    .header-solar-renewable .main-box {
+        top: 0;
+    }
+
+    .main-header .main-box .nav-outer {
+        margin-top: -100px;
+    }
+
+    .banner-section-classic {
+        margin-top: -175px;
+        height: 50vh;
+    }
+
+    #econetbannerwrapper {
+        position: relative;
+        height: 50vh;
+        width: 100%;
+        overflow: hidden;
+        /* اگر محتوای اضافی هست */
+    }
+
+    .logo-lg-3 {
+        border: 1px solid #ffffff;
+        border-radius: 20px;
+        text-align: center;
+        padding: 30px 10px 10px;
+        background-color: rgb(255 255 255 / 20%);
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .banner-section-classic .banner-content-wrap .banner-info-box .banner-btn a::before {
+        right: auto;
+        top: 15px;
+        left: 25px;
+    }
+
+    .banner-section-classic .banner-content-wrap {
+        margin-top: 110px;
+    }
+</style>
+
+<div id="econetbannerwrapper">
+    <div class="auto-container">
+        <div class="row">
+            <div class="col-xl-6 col-12">
+                <div class="banner-content-wrap">
+                    <div class="banner-title">
+                        <h1 class="text-anime-3 t-x24 t-success">
+                            مسابقه کتابخانی
+                        </h1>
+                        <h1 class="text-anime-3">داستان شهر</h1>
+                        <h1 class="text-anime-3 t-x20 mt-3">
+                            <span>ویژه کارکنان شهرداری تهران</span> روایت اول
+                        </h1>
+                        <hr class="my-2" />
+                        <h1 class="text-anime-3 t-dark t-x16 t-right mt-5">جهت دانلود کتاب ها روی لینک های زیر کلیلک کنید</h1>
+                    </div>
+                    <div class="banner-info-box mt-0">
+                        <div class="banner-btn">
+                            <a class="py-2" href="/Portals/2/Econet/Document/BookFilePdf/کتاب من شهردارم.pdf">
+                                من شهردارم
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                            <a class="py-2" href="/Portals/2/Econet/Document/BookFilePdf/کتاب شهر ابرتریلیونر.pdf"
+                                class="mr-4">
+                                شهر ابر تریلیونر
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 mt-5 pt-5 t-center">
+                <div class="banner-content-wrap mt-0">
+                    <img class="rounded z-depth-1 border border-success mb-3 p-1" style="height: 220px;"
+                        src="/Portals/2/Econet/Document/Qrcode/linkmosabeghe.png" />
+                    <div class="banner-info-box t-center mx-auto mt-0">
+                        <div class="banner-btn w-100">
+                            <a class="py-2" href="https://survey.porsline.ir/s/z3RSeGKG">
+                                لینک شرکت در مسابقه
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-shape2">
+        <img alt="banner shape" src="/Portals/2/Econet/Image/Skin/environment-classic/banner-shape2.png" />
+    </div>
+</div>
+
+<!-- Initialize Swiper -->
+<script type="module">
+    $(document).ready(function () { //********************************************************body
+        $("#econetbannerwrapper").vegas({
+            delay: 10000, // 10 ثانیه نمایش هر اسلاید
+            transitionDuration: 10000, // 3 ثانیه طول افکت انتقال
+            animationDuration: 10000, // 30 ثانیه برای انیمیشن‌های subtle (مثل zoom)
+            cover: true,          // اطمینان از کشیدن تا لبه‌ها (پیش‌فرض true است)
+            align: 'center',      // مرکز تصویر را نگه دار تا برش لبه‌ها کم شود
+            valign: 'center',
+            slides: [
+                { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+                { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+                { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+                { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" }
+            ],
+            transition: ['fade', 'slideLeft2', 'slideRight2', 'slideDown2', 'zoomOut'],
+            animation: 'random'
+        });
+    });  
+</script>

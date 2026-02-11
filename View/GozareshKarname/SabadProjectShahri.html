@@ -1,0 +1,1020 @@
+<div class="row">
+    <ul class="col-lg-12" id="SubPortfolio">
+
+        <li style="display: none;" id="[CATEGORYNAME]">
+            <span>[TITLE]</span>
+            <em>[VALUE]</em>
+        </li>
+
+    </ul>
+</div>
+
+
+
+
+<style>
+    .skin_header,
+    .skin_footer {
+        display: none;
+    }
+
+    #charttree,
+    #leftchart {
+        width: 100%;
+        max-width: 100%;
+        direction: ltr;
+        height: 41vh;
+    }
+
+    #rowcenter1,
+    #rowcenter2,
+    #rowcenter3,
+    #rowcenter4,
+    #rowcenter5,
+    #rowcenter6,
+    #rowcenter7,
+    #rowcenter8 {
+        width: 100%;
+        max-width: 100%;
+        direction: ltr;
+        height: 25vh;
+    }
+
+    #rightA,
+    #rightB,
+    #rightC,
+    #rightD,
+    #row2centertop,
+    #row2centerdown,
+    #row2right {
+        width: 100%;
+        max-width: 100%;
+        direction: ltr;
+    }
+
+    #rightA,
+    #rightB,
+    #rightC,
+    #rightD {
+        height: 17vh;
+    }
+
+
+    #row2centertop,
+    #row2centerdown {
+        height: 34vh;
+    }
+
+    #row2right {
+        height: 34vh;
+    }
+
+    body.rtl {
+        overflow-y: hidden !important;
+    }
+
+    .titletop {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: 0 auto;
+        text-align: center;
+        background-color: rgb(255 255 255);
+        width: 25vw !important;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        padding: 5px 0;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .legend {
+        position: absolute;
+        background-color: #18a5e7;
+        padding: 5px 10px;
+        border-radius: 50px;
+        border-bottom: 1px solid #dfdfdf;
+        color: #fff;
+    }
+
+    .legend-top-left {
+        top: 10px;
+        left: 70px;
+    }
+
+    .legend-top-right {
+        top: 10px;
+        left: 70px;
+    }
+
+    .legend-bottom-right {
+        bottom: 50px;
+        right: 25px;
+    }
+
+    .legend-bottom-left {
+        bottom: 50px;
+        left: 25px;
+    }
+
+    .bg-50-white {
+        background-color: #ffffff80;
+    }
+
+    .titleimage {
+        position: absolute;
+        left: -40px;
+        background-color: #ffffff;
+        padding: 5px 5px;
+        border-radius: 200px;
+        width: 90px;
+        height: 90px;
+        border-bottom: 1px solid #e1e1e1;
+        top: -10px;
+    }
+
+    #dnn_ContentPane {
+        display: none;
+    }
+
+    #bodyChart {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        background: url(/Portals/2/Econet/Image/Patern/paternrasm2.png), #ffffff !important;
+        overflow-y: hidden !important;
+    }
+
+    /* //loader css */
+    .bodyloader {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        background: url(/Portals/2/Econet/Image/Patern/paternrasm2.png), #b7b7b7 !important;
+        overflow-y: hidden !important;
+    }
+
+    .loader {
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        background: #076fb4;
+        transform: rotateX(65deg) rotate(45deg);
+        transform: perspective(200px) rotateX(65deg) rotate(45deg);
+        color: #fff;
+        animation: layers1 1s linear infinite alternate;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 30vh;
+    }
+
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        padding: 0.5vh 0px !important;
+    }
+
+    .loader:after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.7);
+        animation: layerTr 1s linear infinite alternate;
+    }
+
+    @keyframes layers1 {
+        0% {
+            box-shadow: 0px 0px 0 0px
+        }
+
+        90%,
+        100% {
+            box-shadow: 20px 20px 0 -4px
+        }
+    }
+
+    @keyframes layerTr {
+        0% {
+            transform: translate(0, 0) scale(1)
+        }
+
+        100% {
+            transform: translate(-25px, -25px) scale(1)
+        }
+    }
+</style>
+
+<div class="row bodyloader" id="loader">
+    <span class="loader"></span>
+    <p class="t-medium t-x12 t-fw-200"
+        style="position: fixed;left: 0;right: 0;margin: 0 auto;top: 38vh;width: 100%;text-align: center;">لطفا چند لحظه
+        صبر نمایید...</p>
+</div>
+
+<section id="bodyChart" style="display: none;">
+    <div class="t-center titletop">
+        <div class="titleimage">
+            <img src="/Portals/2/Econet/Logo/edarekol.png" alt="">
+        </div>
+        <span class="t-bold t-x7 t-info">
+            کارنامه عملکرد سبد پروژه های شهری
+        </span>
+        <span class="t-bold t-x7 t-success">
+            7
+        </span>
+        <span class="t-bold t-x7 t-info">
+            ماه سال
+        </span>
+        <span class="t-bold t-x7 t-success">
+            1404
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div id="leftchart"></div>
+            <p class="t-x5 legend legend-top-left t-center">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+        </div>
+        <div class="col-lg-6">
+            <div id="charttree"></div>
+        </div>
+        <div class="col-lg-3">
+            <table class="table table-striped rounded bg-50-white;mb-0" style="margin-top: 3vh;">
+                <thead>
+                    <tr>
+                        <th scope="col" class="t-center t-x12 t-fw-200">موضوع</th>
+                        <th scope="col" class="t-center t-x12 t-fw-200">تعداد سبد طرح</th>
+                        <th scope="col" class="t-center t-x12 t-fw-200">تعداد سبد پروژه</th>
+                        <th scope="col" class="t-center t-x12 t-fw-200">تعداد پروژه</th>
+                        <th scope="col" class="t-center t-x12 t-fw-200">میزان تحقق کل</th>
+                        <th scope="col" class="t-center t-x12 t-fw-200">میزان تحقق ازسهم سال جاری</th>
+                        <th scope="col" class="t-center t-x12 t-fw-200">اعتبار</th>
+                        <td style="display: none;" class="t-center t-x12 t-fw-200">PORTFOLIOID</td>
+                    </tr>
+                </thead>
+                <tbody id="Portfolio">
+
+
+                    <tr id="[CATEGORYNAME]" data-DESIRABLE="[DESIRABLE]" data-ACCEPTABLE="[ACCEPTABLE]"
+                        data-WARNING="[WARNING]" data-CRITICAL="[CRITICAL]">
+                        <td class="t-center t-x12 t-fw-200" style="width:40%"><span class="data-TITLE">[TITLE]</span></td>
+                        <td class="t-center t-x12 t-fw-200"><span class="data-NUMBERDESIGNBASKETS">[NUMBERDESIGNBASKETS]</span>
+                        </td>
+                        <td class="t-center t-x12 t-fw-200"><span
+                                class="data-NUMBERPROJECTPROTFOLIOS">[NUMBERPROJECTPROTFOLIOS]</span></td>
+                        <td class="t-center t-x12 t-fw-200"><span class="data-NUMBERPROJECT">[NUMBERPROJECT]</span></td>
+                        <td class="t-center t-x12 t-fw-200"><span class="data-TOTALREALIZATIONRATE">[TOTALREALIZATIONRATE]</span>
+                        </td>
+                        <td class="t-center t-x12 t-fw-200"><span
+                                class="data-AMOUNTREALIZATIONRATEYEARS">[AMOUNTREALIZATIONRATEYEARS]</span></td>
+                        <td class="t-center t-x12 t-fw-200"><span class="data-CREDIT">[CREDIT]</span></td>
+                        <td style="display: none;" class="PORTFOLIOID"><em>[PORTFOLIOID]</em></td>
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="display: inline-block;width: 25%">
+                <div id="rowcenter1"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق‌از‌سهم‌سال‌جاری‌سبدطرح‌کاهش‌آلودگی‌هوا</p>
+            </div>
+            <div style="display: inline-block;width: 11%">
+                <div id="rowcenter2"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+            <div style="display: inline-block;width: 11%">
+                <div id="rowcenter3"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+            <div style="display: inline-block;width: 11%">
+                <div id="rowcenter4"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+            <div style="display: inline-block;width: 14%">
+                <div id="rowcenter5"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+            <div style="display: inline-block;width: 6%">
+                <div id="rowcenter6"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+            <div style="display: inline-block;width: 11%">
+                <div id="rowcenter7"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+            <div style="display: inline-block;width: 8%">
+                <div id="rowcenter8"></div>
+                <p class="t-x5 legend t-center" style="top: -10px;">درصد‌تحقق از‌سهم سال ‌جاری اهداف</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div id="row2centerdown"></div>
+        </div>
+        <div class="col-lg-2">
+            <div id="row2centertop"></div>
+        </div>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="rightA"></div>
+                    <p class="t-x5 legend legend-bottom-right t-center">تعداد سبد پروژه ها</p>
+                </div>
+                <div class="col-lg-6">
+                    <div id="rightB"></div>
+                    <p class="t-x5 legend legend-bottom-right t-center">تعداد پروژه</p>
+                </div>
+                <div class="col-lg-6">
+                    <div id="rightC"></div>
+                    <p class="t-x5 legend legend-bottom-right t-center">تعداد سبد طرح</p>
+                </div>
+                <div class="col-lg-6">
+                    <div id="rightD"></div>
+                    <p class="t-x5 legend legend-bottom-right t-center">میزان اعتبار</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    "use strict"
+   let SunburstChart = (chartdiv) => {
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        // create chart
+        var chart = am4core.create(chartdiv, am4plugins_sunburst.Sunburst);
+        chart.padding(0, 0, 0, 0);
+        chart.radius = am4core.percent(98);
+        chart.padding(0, 0, 0, 0);
+        chart.margin(0, 0, 0, 0);
+
+        chart.data = [{
+            name: "First",
+            children: [
+                { name: "A1", value: 100 },
+                { name: "A2", value: 60 }
+            ]
+        },
+        {
+            name: "Second",
+            children: [
+                { name: "B1", value: 135 },
+                { name: "B2", value: 98 }
+            ]
+        },
+        {
+            name: "Third",
+            children: [
+                {
+                    name: "C1",
+                    children: [
+                        { name: "EE1", value: 130 },
+                        { name: "EE2", value: 87 },
+                        { name: "EE3", value: 55 }
+                    ]
+                },
+                { name: "C2", value: 148 },
+                {
+                    name: "C3", children: [
+                        { name: "CC1", value: 53 },
+                        { name: "CC2", value: 30 }
+                    ]
+                },
+                { name: "C4", value: 26 }
+            ]
+        },
+        {
+            name: "Fourth",
+            children: [
+                { name: "D1", value: 415 },
+                { name: "D2", value: 148 },
+                { name: "D3", value: 89 }
+            ]
+        },
+        {
+            name: "Fifth",
+            children: [
+                {
+                    name: "E1",
+                    children: [
+                        { name: "EE1", value: 33 },
+                        { name: "EE2", value: 40 },
+                        { name: "EE3", value: 89 }
+                    ]
+                },
+                {
+                    name: "E2",
+                    value: 148
+                }
+            ]
+        }];
+
+        chart.colors.step = 2;
+        chart.fontSize = 11;
+        chart.innerRadius = am4core.percent(10);
+
+        // define data fields
+        chart.dataFields.value = "value";
+        chart.dataFields.name = "name";
+        chart.dataFields.children = "children";
+
+
+        var level0SeriesTemplate = new am4plugins_sunburst.SunburstSeries();
+        level0SeriesTemplate.hiddenInLegend = false;
+        chart.seriesTemplates.setKey("0", level0SeriesTemplate)
+
+        // this makes labels to be hidden if they don't fit
+        level0SeriesTemplate.labels.template.truncate = true;
+        level0SeriesTemplate.labels.template.hideOversized = true;
+
+        level0SeriesTemplate.labels.template.adapter.add("rotation", function (rotation, target) {
+            target.maxWidth = target.dataItem.slice.radius - target.dataItem.slice.innerRadius - 10;
+            target.maxHeight = Math.abs(target.dataItem.slice.arc * (target.dataItem.slice.innerRadius + target.dataItem.slice.radius) / 2 * am4core.math.RADIANS);
+
+            return rotation;
+        })
+
+
+        var level1SeriesTemplate = level0SeriesTemplate.clone();
+        chart.seriesTemplates.setKey("1", level1SeriesTemplate)
+        level1SeriesTemplate.fillOpacity = 0.75;
+        level1SeriesTemplate.hiddenInLegend = true;
+
+        var level2SeriesTemplate = level0SeriesTemplate.clone();
+        chart.seriesTemplates.setKey("2", level2SeriesTemplate)
+        level2SeriesTemplate.fillOpacity = 0.5;
+        level2SeriesTemplate.hiddenInLegend = true;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.position = "right"; // 📍 لجند سمت راست نمودار
+        chart.legend.valign = "middle"; // 📏 عمودی در وسط تراز می‌شود
+        chart.legend.margin(0, 20, 0, 0); // فاصله 20 پیکسل بین چارت و لجند
+        chart.legend.labels.template.truncate = false; // اگر طول لِیبِل زیاد بود، قطع نشه
+        chart.legend.labels.template.wrap = true; // لِیبِل‌های چند خطی مجاز باشن
+    }
+
+    let ColumnWithRotatedSeries = (_data, chartdiv, Desirable, Acceptable, Warning, Critical) => {
+        am4core.useTheme(am4themes_animated);
+        var chart = am4core.create(chartdiv, am4charts.XYChart);
+        chart.padding(0, 0, 0, 0);
+        chart.margin(0, 0, 0, 0);
+        chart.data = _data;
+
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "title";
+        categoryAxis.renderer.grid.template.location = 0.5; // برچسب‌ها در مرکز ستون
+        categoryAxis.renderer.minGridDistance = 30;
+        categoryAxis.renderer.labels.template.rotation = 90;
+        categoryAxis.renderer.labels.template.fontSize = 10;
+        categoryAxis.renderer.labels.template.horizontalCenter = "middle";
+        categoryAxis.renderer.labels.template.verticalCenter = "middle";
+        categoryAxis.renderer.labels.template.wrap = true;
+        categoryAxis.renderer.labels.template.truncate = false;
+        categoryAxis.renderer.labels.template.maxWidth = 90;
+        categoryAxis.renderer.labels.template.dy = 2;
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.minWidth = 50;
+        valueAxis.min = 0;
+        valueAxis.max = Math.max(Desirable, Acceptable, Warning, Critical) * 1.1; // محدوده محور
+
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "value";
+        series.dataFields.categoryX = "title";
+        series.columns.template.strokeWidth = 0;
+        series.columns.template.column.cornerRadiusTopLeft = 10;
+        series.columns.template.column.cornerRadiusTopRight = 10;
+        series.columns.template.column.fillOpacity = 0.8;
+        series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+        series.columns.template.adapter.add("fill", function (fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+        });
+
+        chart.cursor = new am4charts.XYCursor();
+
+        function addThresholdLine(value, label, color) {
+            let range = valueAxis.axisRanges.create();
+            range.value = value;
+            range.grid.stroke = am4core.color(color);
+            range.grid.strokeWidth = 1;
+            range.grid.strokeDasharray = "3,3";
+            range.grid.strokeOpacity = 1;
+            range.grid.toFront();
+
+            range.label.text = label + " (" + value + ")";
+            range.label.fill = am4core.color(color);
+            range.label.fontSize = 10;
+            range.label.verticalCenter = "bottom";
+            range.label.align = "right";
+            range.label.inside = true;
+            range.label.toFront();
+        }
+
+        chart.events.on("ready", function () {
+            addThresholdLine(Desirable, "حد مطلوب", "#4CAF50");
+            addThresholdLine(Acceptable, "حد قابل‌قبول", "#2196F3");
+            addThresholdLine(Warning, "حد هشدار", "#FFC107");
+            addThresholdLine(Critical, "حد بحرانی", "#F44336");
+        });
+    };
+
+    let LollipopChart = (data, chartdiv, Desirable, Acceptable, Warning, Critical) => {
+        am4core.useTheme(am4themes_animated);
+
+        // 📦 ایجاد چارت
+        var chart = am4core.create(chartdiv, am4charts.XYChart);
+        chart.data = data;
+
+        // 📏 ارتفاع container در CSS ثابت (مثلاً height: 30vh)
+        // ➕ تنظیم دینامیک plot container برای حفظ ناحیه‌ی نمودار واقعی
+        chart.events.on("ready", function () {
+            // وقتی چارت آماده شد، ارتفاع plot را تنظیم می‌کنیم
+            const totalHeight = chart.svgContainer.htmlElement.clientHeight; // 30vh معادل پیکسل
+            const axisLabelSpace = totalHeight * 0.17; // حدود 5vh (تقریباً 17%)
+            const plotHeight = totalHeight - axisLabelSpace; // 25vh باقی بماند
+            chart.plotContainer.pixelHeight = plotHeight;
+        });
+
+        // جلوگیری از تغییر خودکار responsive
+        chart.responsive.enabled = false;
+
+        // --- محور افقی ---
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "category";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+
+        // 9️⃣۰ درجه ماندن برچسب‌ها
+        categoryAxis.renderer.labels.template.rotation = 90;
+        categoryAxis.renderer.labels.template.horizontalCenter = "middle";
+        categoryAxis.renderer.labels.template.verticalCenter = "middle";
+        categoryAxis.renderer.labels.template.fontSize = 9;
+        categoryAxis.renderer.labels.template.wrap = true;
+        categoryAxis.renderer.labels.template.truncate = false;
+        categoryAxis.renderer.labels.template.maxWidth = 80;
+        categoryAxis.renderer.labels.template.dy = 2;
+
+        // --- محور عمودی ---
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
+        valueAxis.renderer.ticks.template.disabled = true;
+        valueAxis.renderer.axisFills.template.disabled = true;
+
+        // --- سری ---
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.categoryX = "category";
+        series.dataFields.valueY = "value";
+        series.tooltipText = "{category}: {valueY.value}";
+        series.fillOpacity = 0;
+        series.strokeOpacity = 1;
+        series.strokeDashArray = "1,3";
+        series.columns.template.width = 0.01;
+
+        var bullet = series.bullets.create(am4charts.CircleBullet);
+        chart.cursor = new am4charts.XYCursor();
+
+        // --- خطوط حد ---
+        function addThresholdLine(value, label, color) {
+            let range = valueAxis.axisRanges.create();
+            range.value = value;
+            range.grid.stroke = am4core.color(color);
+            range.grid.strokeWidth = 1;
+            range.grid.strokeOpacity = 1;
+            range.grid.strokeDasharray = "3,3";
+            range.grid.toFront();
+
+            range.label.inside = true;
+            range.label.text = label + " (" + value + ")";
+            range.label.fill = am4core.color(color);
+            range.label.fontSize = 9;
+            range.label.verticalCenter = "center";
+            range.label.align = "center";
+            range.label.toFront();
+        }
+
+        addThresholdLine(Desirable, "حد مطلوب", "#4CAF50");
+        addThresholdLine(Acceptable, "حد قابل‌قبول", "#2196F3");
+        addThresholdLine(Warning, "حد هشدار", "#FFC107");
+        addThresholdLine(Critical, "حد بحرانی", "#F44336");
+    };
+
+    let PieChartWithLegend = (chartdiv) => {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var data = [
+            { "title": "Lithuania", "value": 501.9 },
+            { "title": "Estonia", "value": 301.9 },
+            { "title": "Ireland", "value": 201.1 },
+            { "title": "Germany", "value": 165.8 },
+            { "title": "Australia", "value": 139.9 },
+            { "title": "Austria", "value": 128.3 }
+        ];
+
+        // فقط یک چارت ساده می‌خواهیم
+        var chart = am4core.create(chartdiv, am4charts.PieChart);
+        chart.fontSize = 11;
+        chart.hiddenState.properties.opacity = 0; // fade-in
+        chart.radius = am4core.percent(70);
+        chart.innerRadius = am4core.percent(40);
+
+        // داده‌ها
+        chart.data = data;
+
+        // سری
+        var series = chart.series.push(new am4charts.PieSeries());
+        series.dataFields.value = "value";
+        series.dataFields.category = "title";
+        series.colors.step = 2;
+        series.alignLabels = false;
+        series.labels.template.bent = true;
+        series.labels.template.radius = 3;
+        series.labels.template.padding(0, 0, 0, 0);
+        series.ticks.template.disabled = true;
+
+        // تنظیمات ظاهر برش‌ها (slices)
+        var sliceTemplate = series.slices.template;
+        sliceTemplate.cornerRadius = 5;
+        sliceTemplate.strokeWidth = 1;
+        sliceTemplate.strokeOpacity = 1;
+        sliceTemplate.draggable = false; // چون دیگه drag لازم نداریم
+        sliceTemplate.inert = true;
+        sliceTemplate.cursorOverStyle = [{ property: "cursor", value: "pointer" }];
+
+        // گزینه‌های رنگ اختیاری
+        chart.colors.list = [
+            am4core.color("#4CAF50"),
+            am4core.color("#2196F3"),
+            am4core.color("#FFC107"),
+            am4core.color("#E91E63"),
+            am4core.color("#9C27B0"),
+            am4core.color("#FF5722")
+        ];
+
+        // سایه hover
+        var shadow = sliceTemplate.filters.push(new am4core.DropShadowFilter);
+        shadow.opacity = 0;
+        var hoverState = sliceTemplate.states.getKey("hover");
+        var hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter);
+        hoverShadow.opacity = 0.7;
+        hoverShadow.blur = 5;
+
+    }
+
+    let horizontalChart = (_data, chartdiv) => {
+        am4core.useTheme(am4themes_animated);
+
+        var chart = am4core.create(chartdiv, am4charts.XYChart);
+
+        // حذف حاشیه و فاصله اضافی
+        chart.padding(0, 0, 0, 0);
+        chart.margin(0, 0, 0, 0);
+
+        // 📊 داده‌ها
+        chart.data = _data
+        // 🔹 محور دسته‌ها (عمودی)
+        var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "title";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.inversed = true;
+        categoryAxis.renderer.minGridDistance = 10;
+        categoryAxis.renderer.inside = false;
+
+        // 🔤 تنظیم ظاهر Labelها
+        categoryAxis.renderer.labels.template.truncate = false;
+        categoryAxis.renderer.labels.template.wrap = true;
+        categoryAxis.renderer.labels.template.maxWidth = 200;
+        categoryAxis.renderer.labels.template.fontSize = 9;
+        categoryAxis.renderer.labels.template.horizontalCenter = "middle";
+        categoryAxis.renderer.labels.template.verticalCenter = "middle";
+        categoryAxis.renderer.labels.template.fillOpacity = 1;
+        categoryAxis.renderer.minWidth = 200;
+
+        // 🔹 محور مقادیر (افقی)
+        var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.minGridDistance = 40;
+        valueAxis.renderer.minHeight = 40;
+        valueAxis.renderer.labels.template.fontSize = 11;
+        valueAxis.renderer.labels.template.fillOpacity = 0.8;
+        valueAxis.renderer.grid.template.strokeOpacity = 0.15;
+
+        // 🔹 سری ستون‌ها
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueX = "value";
+        series.dataFields.categoryY = "title";
+        series.sequencedInterpolation = true;
+        series.tooltipText = "{categoryY}: [bold]{valueX}[/]";
+        series.columns.template.strokeWidth = 0;
+        series.columns.template.height = am4core.percent(60);
+        series.columns.template.column.cornerRadiusTopLeft = 10;
+        series.columns.template.column.cornerRadiusBottomLeft = 10;
+
+        // 🔸 حالت Hover
+        var hoverState = series.columns.template.column.states.create("hover");
+        hoverState.properties.cornerRadiusTopLeft = 0;
+        hoverState.properties.cornerRadiusBottomLeft = 0;
+        hoverState.properties.fillOpacity = 1;
+
+        // 🎨 رنگ زدن خودکار
+        series.columns.template.adapter.add("fill", function (fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+        });
+
+        // 🚫 حذف رفتار کشیدن/پان
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "none";
+    };
+
+    let CurvedColumns = (_data, chartdiv, Desirable, Acceptable, Warning, Critical) => {
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+
+        var chart = am4core.create(chartdiv, am4charts.XYChart);
+        chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+        chart.padding(0, 0, 0, 0);
+        chart.margin(0, 0, 0, 0);
+
+        // chart.data = [{
+        // "title": "One",
+        // "value": 3025
+        // }];
+
+        chart.data = _data;
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.dataFields.category = "title";
+        categoryAxis.renderer.minGridDistance = 40;
+        categoryAxis.renderer.labels.template.rotation = 90;
+        categoryAxis.renderer.labels.template.horizontalCenter = "middle";
+        categoryAxis.renderer.labels.template.verticalCenter = "middle";
+        categoryAxis.renderer.labels.template.fontSize = 9;
+        categoryAxis.renderer.labels.template.wrap = true;
+        categoryAxis.renderer.labels.template.truncate = false;
+        categoryAxis.renderer.labels.template.maxWidth = 90;
+        categoryAxis.renderer.labels.template.dy = 2;
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+        var series = chart.series.push(new am4charts.CurvedColumnSeries());
+        series.dataFields.categoryX = "title";
+        series.dataFields.valueY = "value";
+        series.tooltipText = "{valueY.value}"
+        series.columns.template.strokeOpacity = 0;
+
+        series.columns.template.fillOpacity = 0.75;
+
+        var hoverState = series.columns.template.states.create("hover");
+        hoverState.properties.fillOpacity = 1;
+        hoverState.properties.tension = 0.4;
+
+        chart.cursor = new am4charts.XYCursor();
+
+        // Add distinctive colors for each column using adapter
+        series.columns.template.adapter.add("fill", function (fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+        });
+
+        // --- خطوط حد ---
+        function addThresholdLine(value, label, color) {
+            let range = valueAxis.axisRanges.create();
+            range.value = value;
+            range.grid.stroke = am4core.color(color);
+            range.grid.strokeWidth = 1;
+            range.grid.strokeOpacity = 1;
+            range.grid.strokeDasharray = "3,3";
+            range.grid.toFront();
+
+            range.label.inside = true;
+            range.label.text = label + " (" + value + ")";
+            range.label.fill = am4core.color(color);
+            range.label.fontSize = 9;
+            range.label.verticalCenter = "center";
+            range.label.align = "center";
+            range.label.toFront();
+        }
+
+        addThresholdLine(Desirable, "حد مطلوب", "#4CAF50");
+        addThresholdLine(Acceptable, "حد قابل‌قبول", "#2196F3");
+        addThresholdLine(Warning, "حد هشدار", "#FFC107");
+        addThresholdLine(Critical, "حد بحرانی", "#F44336");
+    }
+
+    am4core.ready(function () {
+        PieChartWithLegend('row2centertop');
+        PieChartWithLegend('row2centerdown');
+        document.getElementById('bodyChart').style.display = 'block';
+        document.getElementById('loader').style.display = 'none';
+
+        // تعریف آرایه‌های دسته‌ها
+        var allLimit = [];
+
+        var dataChartAMOUNTREALIZATIONRATEYEARS = []; //میزان تحقق ازسهم سال جاری	
+        var dataChartNUMBERPROJECTPROTFOLIOS = []; //تعداد سبد پروژه	
+        var dataChartNUMBERPROJECT = []; //تعداد پروژه	
+        var dataChartNUMBERDESIGNBASKETS = []; //تعداد سبد طرح	
+        var dataChartCREDIT = []; //اعتبار
+
+        var tarhKaheshAloodegiHava = [];
+        var behbodToseeModiriatSazman = [];
+        var modiriatBohranAfzayeshImeniShahr = [];
+        var behbodFarhangOmoomiTakhasosi = [];
+        var afzayeshRefahMogabeleGarani = [];
+        var taghviyatKhanevadeToseeBanovan = [];
+        var modiriatManabeTabiei = [];
+        var zibasaziSimayeBasariShahr = [];
+        var Desirable = 0;
+        var Acceptable = 0;
+        var Warning = 0;
+        var Critical = 0;
+
+        // گرفتن داده‌ها از HTML
+        const Portfolio = document.querySelectorAll("#Portfolio tr");
+        const SubPortfolio = document.querySelectorAll("#SubPortfolio li");
+        let FirstLevel = [];
+        // پیمایش تمام Portfolioها
+        Portfolio.forEach(port => {
+            const titleElem = port.querySelector(".data-TITLE");
+            const titleText = titleElem ? titleElem.textContent.trim() : "بدون عنوان";
+
+            const emElem = port.querySelector("em");
+            const PORTFOLIOID = emElem ? emElem.textContent.trim() : "";
+
+            // فیلتر زیر شاخه‌ها بر اساس id
+            const matchingSub = Array.from(SubPortfolio).filter(li => li.id === PORTFOLIOID);
+
+            // ساخت سطح سوم (children)
+            let SecondLevel = matchingSub.map(li => {
+                const span = li.querySelector("span");
+                const em = li.querySelector("em");
+                let nameText = span.textContent.trim()
+                var shortName = nameText.length > 10 ? nameText.substring(0, 10) + "…" : nameText;
+
+                return {
+                    name: span ? span.textContent.trim() : "بدون نام",
+                    shortName: shortName,
+                    value: em ? parseFloat(em.textContent.trim()) || 0 : 0
+                };
+            });
+
+            // افزودن سطح دوم
+            FirstLevel.push({
+                name: titleText,
+                children: SecondLevel
+            });
+        });
+        const DataFirstLevel = {
+            name: "سبد پروژه‌ها",
+            children: FirstLevel
+        };
+        DataForceDirectedTree.push(DataFirstLevel);
+        console.log(DataForceDirectedTree);
+
+        for (let p = 0; p < Portfolio.length; p++) {
+            const elmPortfolio = Portfolio[p];
+            const portfolioId = elmPortfolio.id;
+            let em = elmPortfolio.querySelector("em");
+            let PORTFOLIOID = em.textContent.trim();
+
+            const _desirable = parseFloat(elmPortfolio.getAttribute("data-DESIRABLE")) || 0;
+            const _acceptable = parseFloat(elmPortfolio.getAttribute("data-ACCEPTABLE")) || 0;
+            const _warning = parseFloat(elmPortfolio.getAttribute("data-WARNING")) || 0;
+            const _critical = parseFloat(elmPortfolio.getAttribute("data-CRITICAL")) || 0;
+
+            const titles = elmPortfolio.querySelector('.data-TITLE');
+            const NUMBERDESIGNBASKETS = elmPortfolio.querySelector('.data-NUMBERDESIGNBASKETS');
+            const NUMBERPROJECTPROTFOLIOS = elmPortfolio.querySelector('.data-NUMBERPROJECTPROTFOLIOS');
+            const NUMBERPROJECT = elmPortfolio.querySelector('.data-NUMBERPROJECT');
+            const TOTALREALIZATIONRATE = elmPortfolio.querySelector('.data-TOTALREALIZATIONRATE');
+            const AMOUNTREALIZATIONRATEYEARS = elmPortfolio.querySelector('.data-AMOUNTREALIZATIONRATEYEARS');
+            const CREDIT = elmPortfolio.querySelector('.data-CREDIT');
+
+            const limit = {
+                Title: PORTFOLIOID,
+                Desirable: _desirable,
+                Acceptable: _acceptable,
+                Warning: _warning,
+                Critical: _critical
+            };
+
+            const data = {
+                title: titles ? titles.textContent.trim() : "",
+                value: AMOUNTREALIZATIONRATEYEARS ? parseFloat(AMOUNTREALIZATIONRATEYEARS.textContent.trim()) || 0 : 0
+            };
+
+            const dataNUMBERPROJECTPROTFOLIOS = {
+                title: titles ? titles.textContent.trim() : "",
+                value: NUMBERPROJECTPROTFOLIOS ? parseFloat(NUMBERPROJECTPROTFOLIOS.textContent.trim()) || 0 : 0
+            };
+
+            const dataNUMBERPROJECT = {
+                title: titles ? titles.textContent.trim() : "",
+                value: NUMBERPROJECT ? parseFloat(NUMBERPROJECT.textContent.trim()) || 0 : 0
+            };
+
+            const dataNUMBERDESIGNBASKETS = {
+                title: titles ? titles.textContent.trim() : "",
+                value: NUMBERDESIGNBASKETS ? parseFloat(NUMBERDESIGNBASKETS.textContent.trim()) || 0 : 0
+            };
+
+            const dataCREDIT = {
+                title: titles ? titles.textContent.trim() : "",
+                value: CREDIT ? parseFloat(CREDIT.textContent.trim()) || 0 : 0
+            };
+
+            allLimit.push(limit);
+            dataChartAMOUNTREALIZATIONRATEYEARS.push(data);
+            dataChartNUMBERPROJECTPROTFOLIOS.push(dataNUMBERPROJECTPROTFOLIOS); //تعداد سبد پروژه	
+            dataChartNUMBERPROJECT.push(dataNUMBERPROJECT);
+            dataChartNUMBERDESIGNBASKETS.push(dataNUMBERDESIGNBASKETS);
+            dataChartCREDIT.push(dataCREDIT);
+        }
+
+        for (let i = 0; i < SubPortfolio.length; i++) {
+            const element = SubPortfolio[i];
+
+            // گرفتن مقادیر span و em (در صورت وجود)
+            let span = element.querySelector("span");
+            let em = element.querySelector("em");
+            if (!span || !em) continue; // اگر خالی بودن، برو به مورد بعدی
+
+            let title = span.textContent.trim();
+            let value = parseFloat(em.textContent.trim()) || 0;
+
+            const data = {
+                title,
+                value
+            };
+
+            // ✅ مقایسه بر اساس id المان
+            switch (element.id) {
+                case "tarhKaheshAloodegiHava":
+                    tarhKaheshAloodegiHava.push(data);
+                    break;
+                case "behbodToseeModiriatSazman":
+                    behbodToseeModiriatSazman.push(data);
+                    break;
+                case "modiriatBohranAfzayeshImeniShahr":
+                    modiriatBohranAfzayeshImeniShahr.push(data);
+                    break;
+                case "behbodFarhangOmoomiTakhasosi":
+                    behbodFarhangOmoomiTakhasosi.push(data);
+                    break;
+                case "afzayeshRefahMogabeleGarani":
+                    afzayeshRefahMogabeleGarani.push(data);
+                    break;
+                case "taghviyatKhanevadeToseeBanovan":
+                    taghviyatKhanevadeToseeBanovan.push(data);
+                    break;
+                case "modiriatManabeTabiei":
+                    modiriatManabeTabiei.push(data);
+                    break;
+                case "zibasaziSimayeBasariShahr":
+                    zibasaziSimayeBasariShahr.push(data);
+                    break;
+            }
+        }
+
+        for (let t = 0; t < allLimit.length; t++) {
+            const elementLimit = allLimit[t];
+            if (elementLimit.Title === "tarhKaheshAloodegiHava") {
+                CurvedColumns(tarhKaheshAloodegiHava, 'rowcenter1', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "behbodToseeModiriatSazman") {
+                CurvedColumns(behbodToseeModiriatSazman, 'rowcenter2', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "modiriatBohranAfzayeshImeniShahr") {
+                CurvedColumns(modiriatBohranAfzayeshImeniShahr, 'rowcenter3', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "behbodFarhangOmoomiTakhasosi") {
+                CurvedColumns(behbodFarhangOmoomiTakhasosi, 'rowcenter4', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "afzayeshRefahMogabeleGarani") {
+                CurvedColumns(afzayeshRefahMogabeleGarani, 'rowcenter5', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "taghviyatKhanevadeToseeBanovan") {
+                CurvedColumns(taghviyatKhanevadeToseeBanovan, 'rowcenter6', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "modiriatManabeTabiei") {
+                CurvedColumns(modiriatManabeTabiei, 'rowcenter7', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            } else if (elementLimit.Title === "zibasaziSimayeBasariShahr") {
+                CurvedColumns(zibasaziSimayeBasariShahr, 'rowcenter8', elementLimit.Desirable, elementLimit.Acceptable, elementLimit.Warning, elementLimit.Critical);
+            }
+        }
+
+        ColumnWithRotatedSeries(dataChartAMOUNTREALIZATIONRATEYEARS, 'leftchart', 80, 70, 50, 40);
+        horizontalChart(dataChartNUMBERPROJECTPROTFOLIOS, 'rightA');
+        horizontalChart(dataChartNUMBERPROJECT, 'rightB');
+        horizontalChart(dataChartNUMBERDESIGNBASKETS, 'rightC');
+        horizontalChart(dataChartCREDIT, 'rightD');
+    }); // end am4core.ready()
+</script>

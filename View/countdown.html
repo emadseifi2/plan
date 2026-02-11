@@ -1,0 +1,167 @@
+<style>
+    #dnn_Feature,
+    #dnn_About,
+    #dnn_Service,
+    #dnn_WayChoose,
+    #dnn_Project,
+    #dnn_WorkProcess,
+    #dnn_Marquee,
+    #dnn_Contact,
+    #dnn_Testimonial,
+    #dnn_LatestBlog,
+    #dnn_SignUp,
+    #dnn_ContentPane,
+    .main-footer-solar {
+        display: none;
+    }
+
+    body {
+        overflow-y: hidden;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .banner-section-solar {
+        margin: 5vh 30px 5vh !important;
+        height: 90vh;
+        border-radius: 30px !important;
+        padding: 20vh 0 0 !important;
+    }
+
+    .main-header {
+        position: absolute !important;
+    }
+
+    .timline {
+        text-align: center;
+        padding-top: 10%;
+        border-radius: 10px;
+        padding-bottom: 10%;
+    }
+
+    .bg-days {
+        background-color: #0ab526;
+    }
+
+    .bg-hours {
+        background-color: #ff8e00;
+    }
+
+    .bg-minutes {
+        background-color: #10bdc1;
+    }
+
+    .bg-seconds {
+        background-color: #dd2d31;
+    }
+
+    .auto-container {
+        padding: 0px 35px !important;
+    }
+
+    @media (min-width: 1200px) and (max-width: 1399.98px) {
+        .header-solar-renewable .main-box {
+            top: 10px !important;
+            padding: 0 30px 0 40px !important;
+        }
+    }
+</style>
+
+<div class="auto-container">
+    <div class="row">
+        <div class="col-xl-7">
+            <div class="banner-content-wrap">
+                <div class="banner-title">
+                    <h2 class="t-darkgreen">
+                        <i class='bx bxs-right-arrow'></i>
+                        کاربران گرامی
+                    </h2>
+                    <h2 class="t-x24 my-2">وب‌سایت ما در حال بروزرسانی و توسعه می باشد...</h2>
+                    <hr />
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="timline bg-seconds z-depth-1">
+                            <h2 class="t-white" id="seconds"></h2>
+                            <p class="t-x18 my-2 t-white">
+                                ثانیه
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="timline bg-minutes z-depth-1">
+                            <h2 class="t-white" id="minutes"></h2>
+                            <p class="t-x18 my-2 t-white">
+                                دقیقه
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="timline bg-hours z-depth-1">
+                            <h2 class="t-white" id="hours"></h2>
+                            <p class="t-x18 my-2 t-white">
+                                ساعت
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="timline bg-days z-depth-1">
+                            <h2 class="t-white" id="days"></h2>
+                            <p class="t-x18 my-2 t-white">
+                                روز
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="t-x14 my-4 t-darkgreen">
+                    لطفاً تا اتمام فرآیند صبور باشید. به‌زودی با نسخه‌ای جدید و امکانات بهتر در خدمت شما خواهیم بود.شما
+                    می‌توانید با ثبت ایده‌ها و نظرات خود، قدمی مؤثر برای ساختن شهری کارآمدتر، زیباتر و هوشمندتر داشته
+                    باشید.
+                </h2>
+                <div class="banner-btn">
+                    <a class="my-0 py-2" href="#">
+                        ثبت نظر
+                        <i class="fa-solid fa-arrow-left"></i></a>
+                    <span class="t-x14 mr-2">
+                        تمام حقوق این وب سایت برای اداره کل برنامه ریزی ،بودجه و کنترل عملکرد
+                        محفوظ است </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("December 20, 2025 08:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        // If the count down is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("days").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>

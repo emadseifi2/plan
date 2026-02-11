@@ -1,0 +1,453 @@
+<style>
+    .skin_header,
+    .skin_footer {
+        display: none;
+    }
+
+    .crisel {
+        background: #e5e5e5;
+        border-radius: 200px;
+        padding: 10px;
+        box-shadow: 0 0 20px #9b9b9b;
+    }
+
+    .sub-crisel {
+        background: #e9e9e9;
+        border-radius: 200px;
+        padding: 25px;
+        box-shadow: 0 0 10px #979797;
+    }
+
+    .elmTextTop {
+        width: 120px;
+        height: 120px;
+        border-radius: 100px;
+        margin: 0 auto;
+        padding-top: 10px;
+        margin-top: -130px;
+        background-color: #fff;
+    }
+
+    .elmTextSub {
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+        margin: 0 auto;
+    }
+
+    #loader_A {
+        height: 140px;
+        width: 140px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        z-index: 1;
+        margin: 0 auto;
+    }
+
+    .Timer_loader_A {
+        animation: rotate 5s infinite;
+    }
+
+    .Timer_loader_B {
+        animation: rotate 15s infinite;
+    }
+
+    .Timer_loader_C {
+        animation: rotate 10s infinite;
+    }
+
+    .Timer_loader_D {
+        animation: rotate 8s infinite;
+    }
+
+    .Timer_loader_E {
+        animation: rotate 20s infinite;
+    }
+
+    @keyframes rotate {
+        100% {
+            rotate: 360deg;
+        }
+    }
+
+    .img-loader {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 16vh;
+        margin: 0 auto;
+        height: auto;
+        width: auto;
+        z-index: 0;
+    }
+
+    .page-wrapper {
+        position: relative;
+        margin: 0 auto;
+        overflow: hidden;
+        z-index: 99;
+        background-image: url(https://plan.tehran.ir/Portals/2/Econet/Image/Skin/solar/about-bg.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .title-maleka {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+        top: 0;
+        z-index: 99;
+        background-color: #fff;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        width: 20vw;
+    }
+
+
+    /* Sine Wave Animation Effect */
+    .svg-waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 180px;
+    }
+
+    @media (max-width: 767px) {
+        .svg-waves {
+            height: 80px;
+        }
+    }
+
+    .svg-waves__parallax>use {
+        -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
+
+    .svg-waves__parallax>use:nth-child(1) {
+        -webkit-animation-delay: -2s;
+        animation-delay: -2s;
+        -webkit-animation-duration: 7s;
+        animation-duration: 7s;
+        fill: rgb(63 178 222 / 70%);
+    }
+
+    .svg-waves__parallax>use:nth-child(2) {
+        -webkit-animation-delay: -3s;
+        animation-delay: -3s;
+        -webkit-animation-duration: 10s;
+        animation-duration: 10s;
+        fill: rgb(196 223 251 / 50%);
+    }
+
+    .svg-waves__parallax>use:nth-child(3) {
+        -webkit-animation-delay: -4s;
+        animation-delay: -4s;
+        -webkit-animation-duration: 13s;
+        animation-duration: 13s;
+        fill: rgb(149 110 171 / 80%);
+    }
+
+    .svg-waves__parallax>use:nth-child(4) {
+        -webkit-animation-delay: -5s;
+        animation-delay: -5s;
+        -webkit-animation-duration: 20s;
+        animation-duration: 20s;
+        fill: rgb(99 157 206 / 70%);
+    }
+
+    @-webkit-keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
+
+    @keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
+</style>
+<img src="/Portals/2/Econet/Image/Skin/Other/banertop.png"
+    style="position: absolute;top: 0;left: 0;right: 0;margin: 0 auto;text-align: center;z-index: 10;" />
+
+<div class="title-maleka ">
+    <h1 class="t-x20 t-center t-success t-fw-700">
+        داشبورد عملکردی شهرداری تهران
+    </h1>
+</div>
+
+<div class="container-fluid" style="width: 100vw !important;height: 100vh;">
+    <div style="margin-top: 15vh;" class="row justify-content-md-center">
+        <img src="/Portals/2/Econet/Image/Skin/Other/dashborad-center-one.png" class="img-loader">
+        <div class="col-lg-5">
+            <ul class="text-center">
+                <li class="d-inline-block w-60 my-4">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%DA%A9%D9%86%D8%AA%D8%B1%D9%84%20%D9%BE%D8%B1%D9%88%DA%98%D9%87">
+                                <div class="Timer_loader_E" style="border-top-color: #01bcb1 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #01bcb1;">
+                                    <div class="elmTextSub"
+                                        style="background-color: #01bcb1;box-shadow: 0 0 35px #01bcb1;">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-payesh.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%853%20-%20%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%D9%87%D8%A7">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    پروژه های شهری
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-inline-block w-60 my-4" style="margin-left:20vh;">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%85%201">
+                                <div class="Timer_loader_B" style="border-top-color: #f75436 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #f75436;">
+                                    <div class="elmTextSub"
+                                        style="background-color:#f75436;box-shadow: 0 0 35px #f75436">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-sabad.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%85%201">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    سبد پروژه های شهری
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-inline-block w-60 my-4" style="margin-left: 20vh;">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%85%202">
+                                <div class="Timer_loader_A" style="border-top-color: #ffaa01 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #ffaa01;">
+                                    <div class="elmTextSub"
+                                        style="background-color: #ffaa01;box-shadow: 0 0 35px #ffaa01;">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-controlProject.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D8%A7%D8%B1%D8%B2%DB%8C%D8%A7%D8%A8%DB%8C%20%D8%B9%D9%85%D9%84%DA%A9%D8%B1%D8%AF">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    ارزیابی عملکرد
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-inline-block w-60 my-4">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%853%20-%20%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%D9%87%D8%A7">
+
+                                <div class="Timer_loader_C" style="border-top-color: #8f4c81 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #8f4c81;">
+                                    <div class="elmTextSub"
+                                        style="background-color: #8f4c81;box-shadow: 0 0 35px #8f4c81;">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-manshahrdaram.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%DA%A9%D9%86%D8%AA%D8%B1%D9%84%20%D9%BE%D8%B1%D9%88%DA%98%D9%87">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    بودجه ریزی شهروندی(من شهردارم)
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <ul class="text-center">
+                <li class="d-inline-block w-60 my-4" >
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%853%20-%20%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%D9%87%D8%A7">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    بودجه مصوب
+                                </p>
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%853%20-%20%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%D9%87%D8%A7">
+                                <div class="Timer_loader_E" style="border-top-color: #01bcb1 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #01bcb1;">
+                                    <div class="elmTextSub"
+                                        style="background-color: #01bcb1;box-shadow: 0 0 35px #01bcb1;">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-bodje.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-inline-block w-60 my-4" style="margin-right:15vh;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%85%201">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    بودجه شهروندی
+                                </p>
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D9%86%20%D8%B4%D9%87%D8%B1%D8%AF%D8%A7%D8%B1%D9%85%201">
+                                <div class="Timer_loader_B" style="border-top-color: #f75436 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #f75436;">
+                                    <div class="elmTextSub"
+                                        style="background-color:#f75436;box-shadow: 0 0 35px #f75436">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-bodje-shahrvandi.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-inline-block w-60 my-4" style="margin-right: 15vh;">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D8%B5%D8%A7%D8%B1%D9%81%20%D9%88%20%D9%85%D9%86%D8%A7%D8%A8%D8%B9%20%D8%A8%D9%88%D8%AF%D8%AC%D9%87">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    بودجه اجرایی
+                                </p>
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%D9%85%D8%B5%D8%A7%D8%B1%D9%81%20%D9%88%20%D9%85%D9%86%D8%A7%D8%A8%D8%B9%20%D8%A8%D9%88%D8%AF%D8%AC%D9%87">
+                                <div class="Timer_loader_A" style="border-top-color: #ffaa01 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #ffaa01;">
+                                    <div class="elmTextSub"
+                                        style="background-color: #ffaa01;box-shadow: 0 0 35px #ffaa01;">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-bodjeh.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="d-inline-block w-60 my-4">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%DA%A9%D9%86%D8%AA%D8%B1%D9%84%20%D9%BE%D8%B1%D9%88%DA%98%D9%87">
+                                <p style="border-bottom: 1px dashed #bdbdbd;padding-bottom: 5px;font-weight: 700;"
+                                    class="mt-5 pl-2 t-left">
+                                    زنده شهر
+                                </p>
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a
+                                href="https://dashboard.tehran.iri/pbireports/powerbi/%D8%AD%D9%88%D8%B2%D9%87%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%20%D8%B1%DB%8C%D8%B2%DB%8C%D8%8C%20%D8%AA%D9%88%D8%B3%D8%B9%D9%87%20%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%20%D8%A7%D9%86%D8%B3%D8%A7%D9%86%DB%8C%20%D9%88%20%D8%A7%D9%85%D9%88%D8%B1%20%D8%B4%D9%88%D8%B1%D8%A7/%DA%A9%D9%86%D8%AA%D8%B1%D9%84%20%D9%BE%D8%B1%D9%88%DA%98%D9%87">
+
+                                <div class="Timer_loader_C" style="border-top-color: #8f4c81 !important;" id="loader_A">
+                                </div>
+                                <div class="elmTextTop" style="box-shadow: 0 0 35px #8f4c81;">
+                                    <div class="elmTextSub"
+                                        style="background-color: #8f4c81;box-shadow: 0 0 35px #8f4c81;">
+                                        <img class="img-fluid mx-auto"
+                                            src="/Portals/2/Econet/Image/Stand/ThinLine/ThinLine-kalanshahr.png"
+                                            style="height: 65px; margin-top: 17px">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<div class="sine-wave">
+    <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+            </path>
+        </defs>
+        <g class="svg-waves__parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7"></use>
+        </g>
+    </svg>
+</div>

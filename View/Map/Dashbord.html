@@ -1,0 +1,917 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+
+<style>
+    body {
+        overflow: hidden !important;
+    }
+
+    #FullPagePage {
+        background: url(/Portals/2/Econet/Image/Map/patern-8-300.png);
+        background-color: #ffffff !important;
+        background-position: center center;
+        background-repeat: repeat;
+        background-size: 10%;
+        overflow: hidden !important;
+    }
+
+    .accordion-button::after {
+        background-size: 0.8rem;
+    }
+
+    .accordion-button span {
+        color: #363636;
+    }
+
+    .accordion-button span i {
+        color: #0066ff;
+    }
+
+    .bodyloader {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .dnnClear h2 {
+        display: none;
+    }
+
+    .district-popup,
+    .district-tooltip {
+        font-family: sans-serif;
+        text-align: center;
+        min-width: 95px;
+    }
+
+    .district-popup-number {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .district-popup-text {
+        font-size: 0.95rem;
+    }
+
+    .accordion-button py-0 my-0 {
+        background-color: #fff;
+    }
+
+    .accordion-button py-0 my-0::after {
+        margin-left: 10px !important;
+        margin-right: auto;
+    }
+
+    .accordion-button py-0 my-0:not(.collapsed) {
+        color: #ffffff;
+        background-color: #ff9600;
+    }
+
+    .accordion-button:not(.collapsed) span {
+        color: #fff;
+    }
+
+    .accordion-button:not(.collapsed) span i {
+        color: #fff;
+    }
+
+    .accordion-item:first-of-type>.accordion-header .accordion-button py-0 my-0 {
+        border-radius: 0 !important;
+    }
+
+    .accordion-body {
+        background: rgba(159, 239, 192, 0.4);
+    }
+
+    .accordion-item {
+        border-radius: 0 !important;
+        border: 0 !important;
+    }
+
+    .accordion-button py-0 my-0:focus {
+        box-shadow: none !important
+    }
+
+    .accordion {
+        background-color: transparent !important;
+        --bs-accordion-bg: #ffffff00 !important;
+    }
+
+    .accordion-item:last-of-type>.accordion-header .accordion-button py-0 my-0.collapsed {
+        border-radius: 0 !important;
+    }
+
+    .bodychart {
+        position: absolute;
+        left: -100vh;
+        bottom: 10px;
+        z-index: 999;
+        background-color: #fff;
+        border-radius: 10px;
+        width: 40vw;
+        -webkit-transition: all 0.6s ease-in-out;
+        -moz-transition: all 0.6s ease-in-out;
+        -o-transition: all 0.6s ease-in-out;
+        transition: all 0.6s ease-in-out;
+    }
+
+    /* خصوصیات برای حالت موبایل */
+    @media (max-width: 768px) {
+        .bodychart {
+            width: 85vw;
+        }
+    }
+
+    .nav-link {
+        color: #fff;
+    }
+
+    .nav-link:focus,
+    .nav-link:hover {
+        color: #00ff22;
+    }
+
+    #DivChart {
+        width: 100%;
+        height: 300px;
+        direction: ltr !important;
+        display: inline-block;
+    }
+
+    .closebodychart {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 999;
+    }
+
+    #legendcolor li {
+        text-align: right;
+    }
+
+    .legend {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 9999;
+        margin: 0 auto;
+    }
+
+    .legend-panel {
+        z-index: 9999;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 5px #4b4b4b;
+        margin: 0 auto;
+    }
+
+    .legend-title {
+        z-index: 9999;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0 0 4px #a3a3a3;
+        margin: 0 auto;
+    }
+
+    /* //loader css */
+    .SubMaploader {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 25vh;
+        margin: 0 auto;
+        width: 100vw;
+        text-align: center;
+        z-index: 9999;
+    }
+
+    .Maploader {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: block;
+        position: relative;
+        border: 4px solid;
+        border-color: #00ff62 #00ff15 transparent transparent;
+        box-sizing: border-box;
+        text-align: center;
+        margin: 0 auto;
+        animation: rotation 1s linear infinite;
+    }
+
+    .Maploader::after,
+    .Maploader::before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: 4px solid;
+        border-color: transparent transparent #055f0c #025314;
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        animation: rotationBack 1.5s linear infinite;
+        transform-origin: center center;
+    }
+
+    .Maploader::before {
+        width: 76px;
+        height: 76px;
+        border-color: #00ffaa #00ffaa transparent transparent;
+        animation: rotation 2.5s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes rotationBack {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(-360deg);
+        }
+    }
+
+    .titletop {
+        position: fixed;
+        right: 10px;
+        top: 35px;
+        margin: 0 auto;
+        background-color: rgb(255 255 255);
+        width: 17vw !important;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        padding: 5px 0;
+        border-bottom: 1px solid #e1e1e1;
+        z-index: 9999;
+    }
+
+    .titleimage {
+        text-align: center;
+        padding: 10px 5px 10px 2px;
+    }
+
+    .map-switch {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 56px;
+        border-radius: 50px;
+        background-color: #ffffff;
+        border: 1px solid var(--theme-color2);
+        margin: 0 12px 0 25px;
+    }
+
+    .sidebar {
+        transition: transform 1s;
+        z-index: 9;
+        height: 100%;
+        position: absolute;
+    }
+
+    .right.collapsed {
+        transform: translateX(340px);
+    }
+
+    .tabs-line.nav-tabs .nav-link.active,
+    .tabs-line.nav-tabs .nav-link.active:hover,
+    .tabs-line.nav-tabs .nav-link.active:focus,
+    .tabs-line>.nav-tabs .nav-link.active,
+    .tabs-line>.nav-tabs .nav-link.active:hover,
+    .tabs-line>.nav-tabs .nav-link.active:focus {
+        color: #fdac41;
+    }
+
+    .i-search {
+        position: absolute;
+        z-index: 10;
+        right: 45px;
+        top: 65px;
+        width: 160px;
+    }
+
+    /* خصوصیات برای حالت دسکتاپ */
+    .sidebar-content {
+        position: absolute;
+        width: 15vw;
+        height: 97vh;
+        color: #ccc;
+        top: 5px;
+        z-index: 999;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        right: 0;
+        transition: right 1s ease-in-out;
+        background: url(/Portals/2/Econet/Image/Skin/Other/pattern_h.png), #16515a;
+        background-position: center center;
+        background-repeat: repeat;
+    }
+
+    .sidebar-toggle {
+        position: absolute;
+        width: 40px;
+        height: auto;
+        overflow: visible;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        background-color: #16515a;
+        top: 35vh;
+        right: 15vw;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        transition: right 1s ease-in-out;
+        display: block;
+        border-right: 1px solid #fff;
+    }
+
+    .title-page {
+        position: absolute;
+        width: 15vw;
+        height: auto;
+        overflow: visible;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        background-color: #16515a;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        transition: right 1s ease-in-out;
+        display: block;
+        border-right: 1px solid #fff;
+    }
+
+    /* خصوصیات برای حالت موبایل */
+    @media (max-width: 768px) {
+        .sidebar-content {
+            width: 50vw;
+            right: 0;
+        }
+
+        .sidebar-toggle {
+            right: 50vw;
+        }
+
+        body {
+            overflow-y: scroll !important;
+        }
+    }
+
+    .form-check {
+        padding-right: 1.5em;
+    }
+
+    .form-check .form-check-input {
+        float: right;
+        margin-right: -1.5em;
+    }
+
+    .leaflet-control {
+        font-size: 13px;
+    }
+
+    .logo-map {
+        position: absolute;
+        right: 25px;
+        bottom: 25px;
+        z-index: 9999;
+    }
+
+    .logo-map img {
+        max-width: 70% !important;
+    }
+
+    .accordion-button::after {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .accordion {
+        --bs-accordion-btn-focus-box-shadow: none !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: #4f4f4f;
+        background-color: #ff9600;
+    }
+
+    .accordion-button {
+        background-color: #fff;
+    }
+
+    .crisel {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        margin: 0 auto;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 200px;
+        background: #2A7B9B;
+        background: radial-gradient(circle, #12c572fa 0%, #85d7b15e 50%, #ffffff00 100%);
+    }
+
+    .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+        min-width: 120px;
+    }
+
+    .leaflet-popup-content {
+        margin: 13px 24px 13px 20px;
+        font-size: 12px;
+        padding: 5px;
+        width: 100% !important;
+    }
+
+    .leaflet-popup-content-wrapper {
+        text-align: center !important;
+        border-radius: 5px !important;
+    }
+
+    .leaflet-popup-content {
+        margin: 5px !important;
+    }
+</style>
+<div class="row bodyloader" id="loader">
+    <div class="SubMaploader">
+        <img src="/Portals/2/Econet/Image/Skin/solar/footer-shape1.png" style="max-width: 200px !important">
+        <span class="Maploader my-4"></span>
+        <div class="crisel"></div>
+        <p class="t-x14 t-center">
+            لطفا چند لحظه صبر نمایید...
+        </p>
+    </div>
+</div>
+
+<div id="right" class="sidebar right">
+    <div class="sidebar-toggle" id="sidebar-toggle">
+        <a id="custom-zoom-in" class="btn t-center py-1 px-1 my-0 mx-auto w-90 t-white" role="button">
+            <i class="bx bx-plus link_toggle t-x18"></i>
+        </a>
+        <a id="custom-zoom-out" class="btn t-center py-1 px-1 my-0 mx-auto w-90 t-white" role="button">
+            <i class="bx bx-minus link_toggle t-x18"></i>
+        </a>
+        <a id="sidebar-search-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-90 t-white" role="button">
+            <i class="bx bx-search-alt t-x18"></i>
+        </a>
+        <input id="sidebar-search-input" type="text" class="form-control d-none mt-2 i-search"
+            placeholder="جستجوی مکان..." />
+        <a role="button" onclick="_btnSidbare()">
+            <i id="sidebar-toggle-icon" class="bx bx-right-arrow link_toggle t-warning t-x28"
+                style="padding: 6px !important"></i>
+        </a>
+        <a id="sidebar-print-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-100 t-white" role="button">
+            <i class="bx bx-printer link_toggle t-x18"></i>
+        </a>
+        <a id="sidebar-fullscreen-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-100 t-white" role="button">
+            <i class="bx bx-fullscreen link_toggle t-x18"></i>
+        </a>
+        <a id="sidebar-location-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-100 t-white" role="button">
+            <i class="bx bx-map-pin link_toggle t-x18"></i>
+        </a>
+    </div>
+    <div class="sidebar-content" id="sidebar-content">
+        <div class="nav-align-top mb-4">
+            <div class="titleimage">
+                <img src="/Portals/2/Econet/Image/Skin/Other/logo-white.png" alt="" />
+            </div>
+            <div class="t-fw-700 t-x12 t-center t-white">
+                داشبورد اطلاعات مکانی بر اساس شاخص های Iso
+            </div>
+            <hr />
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button py-0 mt-1  t-x14 t-right pl-3 pr-0" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne">
+                            <span class="py-0 px-2 ml-2 border-start border-primary">
+                                <i class='bx bxs-traffic t-x24'></i>
+                            </span>
+                            <span class="t-x12 t-fw-700">
+                                سهم خودروهای کم‌آلاینده ثبت‌شده
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label t-x12 t-warning">
+                                    انتخاب محدوده نمایش
+                                </label>
+                                <select class="form-select form-select-sm t-x10" onchange="handleChangeSelect(this)"
+                                    aria-label="Small select example">
+                                    <option selected>
+                                        یکی از مناطق را انتخاب نمایید ...
+                                    </option>
+                                    <option class="t-x10 t-dark" value="1">منطقه 1</option>
+                                    <option class="t-x10 t-dark" value="2">منطقه 2</option>
+                                    <option class="t-x10 t-dark" value="3">منطقه 3</option>
+                                    <option class="t-x10 t-dark" value="4">منطقه 4</option>
+                                    <option class="t-x10 t-dark" value="5">منطقه 5</option>
+                                    <option class="t-x10 t-dark" value="6">منطقه 6</option>
+                                    <option class="t-x10 t-dark" value="7">منطقه 7</option>
+                                    <option class="t-x10 t-dark" value="8">منطقه 8</option>
+                                    <option class="t-x10 t-dark" value="9">منطقه 9</option>
+                                    <option class="t-x10 t-dark" value="10">منطقه 10</option>
+                                    <option class="t-x10 t-dark" value="11">منطقه 11</option>
+                                    <option class="t-x10 t-dark" value="12">منطقه 12</option>
+                                    <option class="t-x10 t-dark" value="13">منطقه 13</option>
+                                    <option class="t-x10 t-dark" value="14">منطقه 14</option>
+                                    <option class="t-x10 t-dark" value="15">منطقه 15</option>
+                                    <option class="t-x10 t-dark" value="16">منطقه 16</option>
+                                    <option class="t-x10 t-dark" value="17">منطقه 17</option>
+                                    <option class="t-x10 t-dark" value="18">منطقه 18</option>
+                                    <option class="t-x10 t-dark" value="19">منطقه 19</option>
+                                    <option class="t-x10 t-dark" value="20">منطقه 20</option>
+                                    <option class="t-x10 t-dark" value="21">منطقه 21</option>
+                                    <option class="t-x10 t-dark" value="22">منطقه 22</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" onchange="handleCheckboxChange(event)">
+                                <label class="form-check-label" for="exampleCheck1">
+                                    <i class='bx bx-camera-home t-warning t-x20'
+                                        style="position: absolute;right: 35%;margin-top: -5px;"></i>
+                                    دورین ها
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button py-0 mt-1  t-x14 t-right pl-3 pr-0 collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            <span class="py-0 px-2 ml-2 border-start border-primary">
+                                <i class='bx bx-car t-x24'></i>
+                            </span>
+                            <span class="t-x12 t-fw-700">
+                                سهم حمل‌ونقل عمومیِ پرداخت یکپارچه
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until
+                            the collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes control the overall appearance, as well as the showing and hiding via CSS
+                            transitions. You can modify any of this with custom CSS or overriding our default variables.
+                            It's also worth noting that just about any HTML can go within the
+                            <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button py-0 mt-1  t-x14 t-right pl-3 pr-0 collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                            aria-controls="collapseThree">
+                            <span class="py-0 px-2 ml-2 border-start border-primary">
+                                <i class='bx bxs-parking t-x24'></i>
+                            </span>
+                            <span class="t-x12 t-fw-700">
+                                سهم‌پارکینگ‌های‌عمومیِ پرداخت‌الکترونیکی
+                            </span>
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These
+                            classes control the overall appearance, as well as the showing and hiding via CSS
+                            transitions. You can modify any of this with custom CSS or overriding our default variables.
+                            It's also worth noting that just about any HTML can go within the
+                            <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="map" style="height: 100vh !important; z-index: 1; border-radius: 5px" class="z-depth-1">
+    <div class="logo-map">
+        <img src="/Portals/2/Econet/Image/Skin/Other/logo.png" alt="">
+    </div>
+    <div id="bodychart" class="bodychart">
+        <a onclick="closebodychart()" class="closebodychart">
+            <i class="bx bx-x t-x24 t-danger"></i>
+        </a>
+        <div class="divider divider-success divider-dotted text-center mb-0 my-2 w-90">
+            <div class="divider-text t-success t-x14 t-fw-700" id="titilechart"></div>
+        </div>
+        <div id="DivChart"></div>
+    </div>
+</div>
+
+<script>
+    "use strict";
+    var layers = {};
+    var Alllayers = {};
+    var AlllayersNeighborhood = {};
+    var pointLayers = [];
+    let lineLayers = [];
+    let plygonLayers = [];
+
+    const map = L.map("map", {
+        closePopupOnClick: false,
+        zoomControl: false,
+    }).setView([35.701985, 51.391204], 12);
+    const Jawg_Light = L.tileLayer("https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=oSSAwvXxOLWUv5azDzu5UhYho1Ik0bg5HRV28PSrjqSbs6IpNWBFkaLJCRRmTCDI", {
+        attribution: "تمام حقوق این اثر برای اداره کل برنامه ریزی، بودجه و کنترل عملکرد محفوظ است",
+        minZoom: 9,
+        maxZoom: 22,
+    }).addTo(map);
+    document.getElementById("custom-zoom-in").addEventListener("click", function () {
+        map.zoomIn();
+    });
+    document.getElementById("custom-zoom-out").addEventListener("click", function () {
+        map.zoomOut();
+    });
+    document.getElementById("sidebar-print-btn").addEventListener("click", function () {
+        window.print();
+    });
+    document.getElementById("sidebar-fullscreen-btn").addEventListener("click", function () {
+        let elem = document.getElementById("map");
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+    document.getElementById("sidebar-location-btn").addEventListener("click", function () {
+        if (!navigator.geolocation) {
+            alert("مرورگر شما از موقعیت‌یاب پشتیبانی نمی‌کند!");
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                const latlng = [pos.coords.latitude, pos.coords.longitude];
+                map.setView(latlng, 15);
+                L.marker(latlng).addTo(map).bindPopup("شما اینجایید!").openPopup();
+            },
+            function () {
+                alert("امکان دریافت موقعیت شما وجود ندارد.");
+            }
+        );
+    });
+
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+    const sidebarIcon = sidebarToggle?.querySelector("i");
+
+    if (sidebarIcon) {
+        sidebarIcon.classList.remove("bx-right-arrow");
+        sidebarIcon.classList.add("bx-left-arrow");
+    } else {
+        console.log("is not found ....");
+    }
+
+    let isSidebarCollapsed = false;
+
+    function _btnSidbare() {
+        const sidebarContent = document.getElementById("sidebar-content");
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+        const sidebarIcon = document.getElementById("sidebar-toggle-icon");
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        if (!isSidebarCollapsed) {
+            sidebarContent.style.right = isMobile ? "-50vw" : "-15vw";
+            sidebarToggle.style.right = "0px";
+            sidebarToggle.style.display = "inline";
+            isSidebarCollapsed = true;
+
+            if (sidebarIcon) {
+                sidebarIcon.classList.remove("bx-right-arrow");
+                sidebarIcon.classList.add("bx-left-arrow");
+            } else {
+                console.log("is not found ....");
+            }
+        } else {
+            sidebarContent.style.right = "0px";
+            sidebarToggle.style.right = isMobile ? "50vw" : "15vw";
+            sidebarToggle.style.display = "block";
+            isSidebarCollapsed = false;
+
+            if (sidebarIcon) {
+                sidebarIcon.classList.remove("bx-left-arrow");
+                sidebarIcon.classList.add("bx-right-arrow");
+            }
+        }
+
+        const shift = isMobile ? 0.02 : 0.05;
+        const lngDelta = isSidebarCollapsed ? -shift : shift;
+
+        map.flyTo([map.getCenter().lat, map.getCenter().lng + lngDelta], map.getZoom(), {
+            animate: true,
+            duration: 1,
+            easeLinearity: 0.5,
+        });
+    }
+
+    var _removeAllLayersMap = function () {
+        // حذف لایه‌های نقطه از نقشه
+        if (pointLayers.length > 0) {
+            for (let i = 0; i < pointLayers.length; i++) {
+                map.removeLayer(pointLayers[i]); // حذف لایه با ایندکس i
+            }
+            pointLayers = []; // خالی کردن آرایه
+            console.log("تمام لایه ها از نوع نقاط حذف گردیدند");
+        }
+
+        // حذف لایه‌های خط از نقشه
+        if (lineLayers.length > 0) {
+            for (let i = 0; i < lineLayers.length; i++) {
+                map.removeLayer(lineLayers[i]); // حذف لایه با ایندکس i
+            }
+            lineLayers = []; // خالی کردن آرایه
+            console.log("تمام لایه ها از نوع لاین حذف گردیدند");
+        }
+
+        // حذف لایه‌های چندضلعی از نقشه
+        if (plygonLayers.length > 0) {
+            for (let i = 0; i < plygonLayers.length; i++) {
+                map.removeLayer(plygonLayers[i]); // حذف لایه با ایندکس i
+            }
+            plygonLayers = []; // خالی کردن آرایه
+            console.log("تمام لایه ها از نوع پلیگان حذف گردیدند");
+        }
+    };
+
+    // متد برای ایجاد لایه Polygon
+    var _createPolygonLayer = function (_polygon, _weight,_color, _fillOpacity, _saveStatus) {
+        let layer = L.polygon(_polygon, {
+            color: _color,
+            weight: _weight,
+            fillOpacity: _fillOpacity,
+        });
+
+        if (_saveStatus === "Saving") {
+            plygonLayers.push(layer);
+        }
+        layer.addTo(map); // اضافه کردن لایه به نقشه
+        return layer;
+    };
+
+    let _flytoLatLon = (lat, lng) => {
+        // مرحله 1: هم‌زمان زوم‌اوت به 6 و حرکت به مقصد
+        map.flyTo([lat, lng], 12, {
+            animate: true,
+            duration: 1.6,
+            easeLinearity: 0.25
+        });
+
+        // مرحله 2: بعد از رسیدن، زوم‌این به 12
+        map.once('moveend', () => {
+            map.flyTo([lat, lng], 14, {
+                animate: true,
+                duration: 1.0,
+                easeLinearity: 0.25
+            });
+        });
+    };
+
+    let _flyToBounds = () => {
+        const bounds = layer.getBounds();
+
+        // مرحله 1: هم‌زمان زوم‌اوت و حرکت به مرکز پلیگان
+        map.flyTo(bounds.getCenter(), 6, {
+            animate: true,
+            duration: 1.5,
+            easeLinearity: 0.25
+        });
+
+        // مرحله 2: فیت دقیق محدوده پلیگان
+        map.once('moveend', () => {
+            map.flyToBounds(bounds, {
+                padding: [20, 20],
+                duration: 1.2,
+                easeLinearity: 0.25,
+                maxZoom: 12   // جلو‌گیری از زوم خیلی نزدیک
+            });
+        });
+    };
+    // تابع برای چک کردن و افزودن/حذف لایه
+    let _checkStaticLayer = (LayerName) => {
+        //var LayerName = _layer.getAttribute("data-layername");
+        // اگر لایه وجود داشت، آن را از نقشه حذف کنید
+        if (layers[LayerName]) {
+            map.removeLayer(layers[LayerName]);
+            delete layers[LayerName];
+            return;
+        }
+
+        // دریافت مختصات‌ها
+        var _Coordinates = [];
+        var GeometryTehran = cityTehran.features;
+        for (var i = 0; i < GeometryTehran.length; i++) {
+            if (GeometryTehran[i].properties.regionName === LayerName) {
+                _Coordinates = GeometryTehran[i].geometry.coordinates[0];
+            }
+        }
+
+        //let leafletpoint = _reverseAndAddPoints(_Coordinates[0]);
+        var myPolygon = _createPolygonLayer(_Coordinates[0], 1,"#0093ff", 0.1,"Saving");
+
+        // تغییر مرکز نقشه به مرکز پلیگان
+        var T_polygon = turf.polygon(_Coordinates);
+        var centroid = turf.centroid(T_polygon);      
+        _flytoLatLon(centroid.geometry.coordinates[1],centroid.geometry.coordinates[0]);
+
+        // اضافه کردن لایه به نقشه و ذخیره آن در لیست لایه‌ها
+        myPolygon.addTo(map);
+        layers[LayerName] = myPolygon;
+    };
+
+    function handleCheckboxChange(event) {
+        const checkbox = event.target;
+
+        if (checkbox.checked) {
+            console.log('چک‌باکس فعال شد ✅');
+        } else {
+            console.log('چک‌باکس غیرفعال شد ❌');
+        }
+
+        // آیکن PNG
+        const cameraIcon = L.icon({
+            iconUrl: 'https://plan.tehran.ir/Portals/2/Econet/Image/Map/cinema.png',   // مسیر آیکن PNG
+            iconSize: [30, 38],              // اندازه آیکن
+            iconAnchor: [15, 38],
+            popupAnchor: [0, -38]
+        });
+
+        // لایه GeoJSON با آیکن اختصاصی
+        L.geoJSON(CameraGeoJSON, {
+            pointToLayer: (feature, latlng) => {
+                return L.marker(latlng, { icon: cameraIcon });
+            },
+            onEachFeature: (feature, layer) => {
+                const speed = feature.properties.maxspeed || 'نامشخص';
+                layer.bindPopup(`حداکثر سرعت: ${speed}`);
+            }
+        }).addTo(map);
+    }
+
+    function handleChangeSelect(selectEl) {
+        const value = selectEl.value;
+        //const text = selectEl.options[selectEl.selectedIndex].text;
+
+        if (!value) {
+            console.log('هنوز انتخابی انجام نشده');
+            return;
+        }
+
+        let CreatlayerName = 'region_' + value;
+        console.log('value:', value);
+        console.log('CreatlayerName:', CreatlayerName);
+        _checkStaticLayer(CreatlayerName);
+
+        //_flytoLatLon(35.712794, 51.334053);
+    }
+
+    map.whenReady(() => {
+        // یک لایه برای همه مناطق
+        const regionsLayer = L.geoJSON(cityTehran, {
+            style: (feature) => ({
+                color: '#1565c0',      // رنگ خط
+                weight: 1.5,           // ضخامت خط
+                fillColor: '#00ff0a',  // رنگ پر
+                fillOpacity: 0.1       // شفافیت پر
+            }),
+            onEachFeature: (feature, layer) => {
+                const name = feature.properties.name || 'نامشخص';
+                layer.bindPopup(`منطقه: ${name}`);
+            }
+        }).addTo(map);
+
+        document.getElementById("loader").style.display = "none";
+    });
+</script>

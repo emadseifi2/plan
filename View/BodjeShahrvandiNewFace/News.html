@@ -1,0 +1,148 @@
+<style>
+    .PUBLISHDATE {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgb(255 255 255 / 50%);
+        border-radius: 50px;
+        padding: 0px 20px;
+    }
+
+    .service-section-classic {
+        background-image: none;
+        padding: 0;
+    }
+
+    .service-section-classic .service-classic-active .econet-banner-arrow-box .slider-next {
+        left: 0;
+        top: 0;
+    }
+
+    .service-section-classic .service-classic-active .econet-banner-arrow-box .slider-prev {
+        left: 70px;
+        top: 0px;
+    }
+
+    .service-classic-active {
+        padding-top: 70px;
+    }
+
+    .service-section-classic .single-service-box .service-thumb .service-content {
+        width: 100%;
+        border-bottom: 3px solid #243b30;
+    }
+</style>
+<section class="service-section-classic">
+    <div class="auto-container">
+        <div class="row justify-content-center align-items-center my-5">
+            <div class="col-lg-6">
+                <div class="divider divider-success my-1">
+                    <div class="divider-text t-success t-center t-x18 t-fw-700">
+                        <div class="sec-title my-0 mx-auto">
+                            <div class="section-sub-title t-center">
+                                <h5 class="sub-title t-x20 t-success t-fw-700 mb-0">
+                                    <i class="bx bx-book-open t-x20"></i>
+                                    اخبار بودجه شهروندی
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="swiper service-classic-active">
+                <div class="swiper-wrapper">
+
+
+
+                    <div class="swiper-slide">
+                        <!-- Service box -->
+                        <div class="col-xl-12">
+                            <div class="single-service-box">
+                                <div class="service-thumb">
+                                    <img alt="service-thumb" src="[URL]" />
+                                    <div class="service-content">
+                                        <div class="service-icon">
+                                            <i class='bx bx-bookmarks mt-2 t-x34 t-white'></i>
+                                        </div>
+                                        <h2 class="service-title t-x16 t-fw-700 my-1">[TITLE]</h2>
+                                        <div class="econet-button">
+                                            <a href="[VIEWURL]">
+                                                مشاهده خبر
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <span style="top: -3.29688px;"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="PUBLISHDATE">
+                                        <i class='bx bx-time-five t-x20 t-success'></i>
+                                        <span>
+                                            [PUBLISHDATE:yyyy/MM/dd]
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="econet-banner-arrow-box">
+                    <button aria-label="Previous slide" class="slider-prev" tabindex="0">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                    <button aria-label="Next slide" class="slider-next" tabindex="0">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // environment service-classic-active
+    var slider = new Swiper(".service-classic-active", {
+        speed: 5000,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 4,
+        spaceBetween: 30,
+        breakpoints: {
+            1920: {
+                slidesPerView: 4,
+            },
+            1400: {
+                slidesPerView: 4,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
+            992: {
+                slidesPerView: 3,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            576: {
+                slidesPerView: 1,
+            },
+            0: {
+                slidesPerView: 1,
+            },
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: ".slider-next",
+            prevEl: ".slider-prev",
+        },
+    });
+</script>

@@ -1,0 +1,62 @@
+<div id="gallery-data">در حال بارگذاری...</div>
+
+<script>
+    const BIN_ID = "69512fd643b1c97be90a2045";
+    const READ_ONLY_KEY = "$2a$10$2aivX3KfT85u1.BfAur9JuyiZe82/c8gjplQF8BotfdbcxuprvM5e";
+
+    async function loadData() {
+        const url = `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`;
+
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    "Accept": "application/json",
+                    "X-Access-Key": READ_ONLY_KEY
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`JSONBin error: ${response.status} ${response.statusText}`);
+            }
+
+            const { record } = await response.json();
+            renderData(record);
+            console.error(record);
+        } catch (error) {
+            console.error(error);
+            document.getElementById("gallery-data").textContent = "خطا در دریافت داده‌ها";
+        }
+    }
+
+    function renderData(data) {
+        const container = document.getElementById("gallery-data");
+
+        if (!Array.isArray(data)) {
+            container.textContent = "ساختار داده نامعتبر است.";
+            return;
+        }
+
+        container.innerHTML = data.map(item => `
+            <article class="gallery-card">
+                <h3>${item.title ?? "بدون عنوان"}</h3>
+                <p>${item.description ?? ""}</p>
+            </article>
+        `).join("");
+    }
+
+    loadData();
+</script>
+
+<style>
+    #gallery-data {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .gallery-card {
+        border: 1px solid #ccc;
+        padding: 1rem;
+        border-radius: .5rem;
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+</style>

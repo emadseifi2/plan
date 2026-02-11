@@ -1,0 +1,41 @@
+<script>
+  (async () => {
+    const phones = ["09107857178", "09121097983", "09126330406", "09303896295","09900557240"];
+
+    const normalizePhone = (phone) =>
+      phone
+        .toString()
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(/^(\+98|0098)/, "0")
+        .replace(/^98/, "0")
+        .replace(/[^\d]/g, "");
+
+    const sha256 = async (text) => {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      return [...new Uint8Array(hashBuffer)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    };
+
+    const hashedPhones = await Promise.all(phones.map((p) => sha256(normalizePhone(p))));
+
+    console.log("✅ Hashed Phones:");
+    console.log(hashedPhones);
+  })();
+</script>
+
+<script>
+    async function sha256(text) {
+        const msgBuffer = new TextEncoder().encode(text);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        return [...new Uint8Array(hashBuffer)]
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+    }
+
+    await sha256('09121234567');
+    await sha256('09351234567');
+    await sha256('09126330406');
+    await sha256('09900557240');
+</script>

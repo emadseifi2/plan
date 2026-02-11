@@ -1,0 +1,43 @@
+<script>
+    function addFakeFuelPercents(geojson) {
+        geojson.features.forEach((feature) => {
+            // دو درصد اول را رندوم می‌سازیم
+            const clean = Math.floor(Math.random() * 101); // 0..100
+            const hybrid = Math.floor(Math.random() * (101 - clean)); // 0..(100-clean)
+            const petrol = 100 - clean - hybrid;
+
+            feature.properties.fuel_clean_percent = clean;
+            feature.properties.fuel_hybrid_percent = hybrid;
+            feature.properties.fuel_petrol_percent = petrol;
+        });
+
+        return geojson;
+    }
+
+    const dataWithFake = addFakeFuelPercents(CameraGeoJSON);
+    console.log(CameraGeoJSON);
+
+    function addRegionIdToCameras(camerasGeoJson, regionsGeoJson) {
+        camerasGeoJson.features.forEach((camera) => {
+            const point = camera.geometry; // Point
+
+            let foundRegionId = null;
+
+            for (const region of regionsGeoJson.features) {
+                // اگر نقطه داخل پلیگان بود
+                if (turf.booleanPointInPolygon(point, region)) {
+                    foundRegionId = region.properties.regionId;
+                    break;
+                }
+            }
+
+            // اضافه کردن به properties
+            camera.properties.regionId = foundRegionId; // اگر پیدا نشد null می‌ماند
+        });
+
+        return camerasGeoJson;
+    }
+
+    const dataWithRegionId = addRegionIdToCameras(CameraGeoJSON,cityTehran);
+    console.log(dataWithRegionId);
+</script>

@@ -1,0 +1,165 @@
+<style>
+  .dnnClear h2 {
+    margin: 0px;
+  }
+
+  .breadcumb-area {
+    display: none;
+  }
+
+  .main-header {
+    display: none;
+  }
+
+  #econetbannerwrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh !important;
+  }
+
+  .contact-section-solar-classic .contact-form-box .contact-form a {
+    font-family: var(--title-font);
+    font-weight: 500;
+    font-size: 18px;
+    display: inline-block;
+    color: var(--theme-color-white);
+    background: var(--theme-color2);
+    border-radius: 45px;
+    padding: 15px 35px;
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
+  }
+
+  .toast-title h2 {
+    font-size: 14px !important;
+  }
+
+  .toast-title h2 i {
+    position: absolute;
+    right: auto !important;
+    left: 20px;
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .toast-message p {
+    font-size: 12px !important;
+    font-weight: 200;
+  }
+
+  #toast-container > div {
+    padding: 10px !important;
+  }
+
+  /* خصوصیات برای حالت موبایل */
+  @media (max-width: 768px) {
+    #econetbannerwrapper {
+      display: none !important;
+    }
+  }
+</style>
+<section class="contact-section-solar-classic inner">
+  <div class="row g-0">
+    <div class="col-xl-6">
+      <div class="contact-thumb">
+        <div id="econetbannerwrapper"></div>
+        <div class="contact-autor-info">
+          <div class="autor-img-box"><img alt="gif" src="/portals/2/Econet/Image/Skin/Other/logo-white.png" /></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="contact-form-box">
+        <!-- section title -->
+        <div class="sec-title">
+          <div class="section-sub-title">
+            <h5 class="sub-title">
+              <img alt="sub-icon" src="/portals/2/Econet/Image/Skin/environment/sub-title-icon.png" />
+              ورود به سیستم
+            </h5>
+          </div>
+          <div class="section-title my-5">
+            <h1 class="title title-anim t-x18">داشبورد مدیریتی</h1>
+            <h1 class="title title-anim my-2">چهارمین دوره من شهردارم</h1>
+            <h1 class="title title-anim t-x24 t-success">اداره کل برنامه ریزی، بودجه و کنترل عملکرد</h1>
+            <h1 class="title title-anim t-x12 t-dark t-justify">برای شروع ابتدا شماره همراه خود را وارد نمایید ...</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="form-box">
+              <input name="phone" id="phonenumber" placeholder="شماره تلفن" type="text" />
+              <i class="bx bx-mobile-alt t-x24"></i>
+            </div>
+          </div>
+          <div class="contact-form mt-4">
+            <a onclick="checkPhone()">
+              تایید
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+        <div id="status"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Initialize Swiper -->
+
+<script>
+  const allowedPhoneHashes = ["5203eae314e4d0aff3feb757bb3f03db20edb667cdeddc03d91118810c65612a", "11d77f0956bf48cafe4e7681d89b8291f28a9488f14c5b35bed86838f1351e6e", "40a87d7146e924294270364c800da7a4c5af1a2024a7488b31fd0ed0d6db4e76", "a61ecae76743f3820a6d876d4927459fb64adc64f0ca19eac563682aabc377a1", "9154df139fde55ec211a6f4be785743fa946668ede6deca0e67a44291f3e65fa"];
+
+  function normalizePhone(phone) {
+    return phone
+      .toString()
+      .trim()
+      .replace(/\s+/g, "")
+      .replace(/^(\+98|0098)/, "0")
+      .replace(/^98/, "0")
+      .replace(/[^\d]/g, "");
+  }
+
+  async function sha256(text) {
+    const msgBuffer = new TextEncoder().encode(text);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+    return [...new Uint8Array(hashBuffer)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function checkPhone() {
+    const raw = document.getElementById("phonenumber")?.value || "";
+    const phone = normalizePhone(raw);
+
+    if (!phone || phone.length < 10) {
+      return AsyncTask.Constructors.CeartMessage("warningMessage", "کاربر گرامی", "شماره تلفن معتبر وارد کنید");
+    }
+
+    const hash = await sha256(phone);
+
+    if (allowedPhoneHashes.includes(hash)) {
+      window.location.href = "https://plan.tehran.ir/Map/Manategh";
+    } else {
+      AsyncTask.Constructors.CeartMessage("ErrorMessage", "کاربر گرامی", "شما مجاز به مشاهده داشبورد نیستید...");
+    }
+  }
+
+  $(document).ready(function () {
+    //********************************************************body
+    $("#econetbannerwrapper").vegas({
+      delay: 10000, // 10 ثانیه نمایش هر اسلاید
+      transitionDuration: 10000, // 3 ثانیه طول افکت انتقال
+      animationDuration: 10000, // 30 ثانیه برای انیمیشن&zwnj;های subtle (مثل zoom)
+      cover: true, // اطمینان از کشیدن تا لبه&zwnj;ها (پیش&zwnj;فرض true است)
+      align: "center", // مرکز تصویر را نگه دار تا برش لبه&zwnj;ها کم شود
+      valign: "center",
+      slides: [
+        { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+        { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+        { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+        { src: "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/environment-classic/baner-econet.jpg" },
+      ],
+      transition: ["fade", "slideLeft2", "slideRight2", "slideDown2", "zoomOut"],
+      animation: "random",
+    });
+  });
+</script>

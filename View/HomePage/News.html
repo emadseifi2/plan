@@ -1,0 +1,164 @@
+<style>
+    .service-section-solar {
+        padding: 120px 120px 100px;
+        margin: 0 !important;
+    }
+
+    #dnn_About {
+        display: none;
+    }
+
+    .service-section-solar .service-solar-active {
+        padding-top: 65px;
+        margin-top: -70px;
+    }
+
+    .service-section-solar .service-solar-active .econet-service-arrow-box .slider-prev {
+        left: 70px;
+    }
+
+    .service-section-solar .service-solar-active .econet-service-arrow-box .slider-next {
+        left: 0;
+    }
+
+    .service-section-solar .single-service-box .service-thumb::before {
+
+        background-image: url(/Portals/2/Econet/Image/Skin/solar/cover-bg.png);
+        height: 102%;
+        top: -7px;
+    }
+
+    .service-section-solar .single-service-box:hover .service-thumb::before {
+        transform: translateY(35px);
+    }
+
+    .shape-right-center {
+        position: absolute;
+        right: 0;
+        top: 35vh;
+    }
+
+    .shape-left-center {
+        position: absolute;
+        left: 0;
+        top: 35vh;
+    }
+</style>
+
+<div class="auto-container">
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-12 mb-5">
+            <div class="divider divider-success my-1">
+                <div class="divider-text t-success t-center t-x18 t-fw-700">
+                    <div class="sec-title mb-0">
+                        <div class="section-sub-title t-center">
+                            <h5 class="sub-title t-x18 t-fw-700 mb-0">
+                                <i class="bx bx-book-open t-x20"></i>
+                                اخبار اداره کل
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-lg-10 col-12">
+        <div class="swiper service-solar-active">
+            <div class="swiper-wrapper">
+
+
+                <div class="swiper-slide">
+                    <div class="col-xl-12">
+                        <div class="single-service-box p-3">
+                            <div class="service-thumb t-center">
+                                <img alt="service-thumb" class="mx-auto img-fluid" src="[URL]"
+                                    style="border-radius: 20px;" />
+                                <div class="service-icon">
+                                    <i class='bx bx-conversation t-white t-x40 pt-1'></i>
+                                </div>
+                            </div>
+                            <div class="service-content pt-4">
+                                <h3 class="service-title t-justify t-x16 mt-3" style="height: 60px;">
+                                    <a href="service-details.html">[TITLE]</a>
+                                </h3>
+                                <hr class="my-2" />
+                                <div class="t-left t-white t-x14 t-fw-700">
+                                    <i class='bx bx-time-five t-x20 t-success'></i>
+                                    <span>
+                                        [PUBLISHDATE:yyyy/MM/dd]
+                                    </span>
+                                </div>
+                                <p class="t-justify t-fw-100 t-x14" style="height: 70px;">
+                                    [SHORTENDESCRIPTION:180]
+                                </p>
+                                <a class="service-btn" href="[VIEWURL]">بیشتر کاوش کنید<i
+                                        class="fa-solid fa-arrow-left-long"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="econet-service-arrow-box">
+                <button aria-label="Previous slide" class="slider-prev" tabindex="0" style="top: 0px;">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+                <button aria-label="Next slide" class="slider-next" tabindex="0" style="top: 0px;">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shape-right-center">
+    <img alt="testi-shape" src="/Portals/2/Econet/Image/Skin/Other/right-center-300.png" />
+</div>
+<div class="shape-left-center">
+    <img alt="testi-shape" src="/Portals/2/Econet/Image/Skin/Other/left-center-300.png" />
+</div>
+
+<script>
+    // service-solar-active
+    var slider = new Swiper(".service-solar-active", {
+        speed: 1500,
+        slidesPerView: 4,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: true,
+        breakpoints: {
+            1920: {
+                slidesPerView: 4,
+            },
+            1400: {
+                slidesPerView: 4,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
+            992: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 1,
+            },
+            576: {
+                slidesPerView: 1,
+            },
+            0: {
+                slidesPerView: 1,
+            },
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: ".slider-next",
+            prevEl: ".slider-prev",
+        },
+    });
+</script>

@@ -1,0 +1,409 @@
+<style>
+  .blog-details-area .widget-sidber .widget-category ul li a {
+    padding: 5px 26px;
+    margin-bottom: 5px;
+  }
+
+  .blog-details-area .widget-sidber .widget-category ul li a i {
+    margin-top: 3px;
+  }
+
+  .swiper-cube {
+    width: 424px;
+    height: 600px;
+    padding-bottom: 30px;
+  }
+
+  .swiper-slide-cube {
+    background-position: center;
+    background-size: cover;
+  }
+
+  .accordion-button::after {
+    background-size: 0.8rem;
+  }
+
+  .accordion-button span {
+    color: #363636;
+  }
+
+  .accordion-button span i {
+    color: #0066ff;
+  }
+
+  .accordion-button py-0 my-0 {
+    background-color: #fff;
+  }
+
+  .accordion-button py-0 my-0::after {
+    margin-left: 10px !important;
+    margin-right: auto;
+  }
+
+  .accordion-button py-0 my-0:not(.collapsed) {
+    color: #ffffff;
+    background-color: #ff9600;
+  }
+
+  .accordion-button:not(.collapsed) span {
+    color: #fff;
+  }
+
+  .accordion-button:not(.collapsed) span i {
+    color: #fff;
+  }
+
+  .accordion-item:first-of-type > .accordion-header .accordion-button py-0 my-0 {
+    border-radius: 0 !important;
+  }
+
+  .accordion-body {
+    background: rgba(159, 239, 192, 0.4);
+  }
+
+  .accordion-item {
+    border-radius: 0 !important;
+    border: 0 !important;
+  }
+
+  .accordion-button py-0 my-0:focus {
+    box-shadow: none !important;
+  }
+
+  .accordion {
+    background-color: transparent !important;
+    --bs-accordion-bg: #ffffff00 !important;
+  }
+
+  .accordion-item:last-of-type > .accordion-header .accordion-button py-0 my-0.collapsed {
+    border-radius: 0 !important;
+  }
+
+  .accordion-button::after {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .accordion {
+    --bs-accordion-btn-focus-box-shadow: none !important;
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: #4f4f4f;
+    background-color: #ff9600;
+  }
+
+  .accordion-button {
+    background-color: #fff;
+  }
+</style>
+
+<div class="blog-list-area">
+  <div class="container-fluid" style="padding: 0 5vw">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-sidber">
+              <div class="widget-sidber-content">
+                <h4 class="mb-2">دسته</h4>
+              </div>
+              <div class="widget-category">
+                <ul id="myTab" role="tablist" style="max-height: 400px; overflow-y: scroll">
+                  <li role="presentation">
+                    <h1 class="t-x16 t-right t-dark t-fw-700">حوزه ها</h1>
+                    <hr />
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link active" id="h1-tab" data-bs-toggle="tab" data-bs-target="#h1-tab-pane" role="tab" aria-controls="h1-tab-pane" aria-selected="true">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 1
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h2-tab" data-bs-toggle="tab" data-bs-target="#h2-tab-pane" role="tab" aria-controls="h2-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 2
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h3-tab" data-bs-toggle="tab" data-bs-target="#h3-tab-pane" role="tab" aria-controls="h3-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 3
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h4-tab" data-bs-toggle="tab" data-bs-target="#h4-tab-pane" role="tab" aria-controls="h4-tab-pane" aria-selected="true">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 1
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h5-tab" data-bs-toggle="tab" data-bs-target="#h5-tab-pane" role="tab" aria-controls="h5-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 2
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h6-tab" data-bs-toggle="tab" data-bs-target="#h6-tab-pane" role="tab" aria-controls="h6-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 3
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h7-tab" data-bs-toggle="tab" data-bs-target="#h7-tab-pane" role="tab" aria-controls="h7-tab-pane" aria-selected="true">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 1
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <h1 class="t-x16 t-right t-dark t-fw-700">پهنه ها</h1>
+                    <hr />
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h8-tab" data-bs-toggle="tab" data-bs-target="#h8-tab-pane" role="tab" aria-controls="h8-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 2
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h9-tab" data-bs-toggle="tab" data-bs-target="#h9-tab-pane" role="tab" aria-controls="h9-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 3
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h10-tab" data-bs-toggle="tab" data-bs-target="#h10-tab-pane" role="tab" aria-controls="h10-tab-pane" aria-selected="true">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 1
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h11-tab" data-bs-toggle="tab" data-bs-target="#h11-tab-pane" role="tab" aria-controls="h11-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 2
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h12-tab" data-bs-toggle="tab" data-bs-target="#h12-tab-pane" role="tab" aria-controls="h12-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 3
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h13-tab" data-bs-toggle="tab" data-bs-target="#h13-tab-pane" role="tab" aria-controls="h13-tab-pane" aria-selected="true">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 1
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                  <li role="presentation">
+                    <a class="nav-link" id="h14-tab" data-bs-toggle="tab" data-bs-target="#h14-tab-pane" role="tab" aria-controls="h14-tab-pane" aria-selected="false">
+                      <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
+                      حوزه 2
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="h1-tab-pane" role="tabpanel" aria-labelledby="h1-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت
+                    </h5>
+                  </div>
+                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                  <hr />
+                  <p class="t-x14 t-dark t-fw-400 t-justify">
+                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h2-tab-pane" role="tabpanel" aria-labelledby="h2-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت
+                    </h5>
+                  </div>
+                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                  <hr />
+                  <p class="t-x14 t-dark t-fw-400 t-justify">
+                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-2">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h3-tab-pane" role="tabpanel" aria-labelledby="h3-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت
+                    </h5>
+                  </div>
+                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                  <hr />
+                  <p class="t-x14 t-dark t-fw-400 t-justify">
+                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-3">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="p1-tab-pane" role="tabpanel" aria-labelledby="p1-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت
+                    </h5>
+                  </div>
+                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                  <hr />
+                  <p class="t-x14 t-dark t-fw-400 t-justify">
+                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-4">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube" style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Initialize Swiper -->
+<script type="module">
+  const cubeSwiperOptions = {
+    effect: "cube",
+    grabCursor: true,
+    speed: 5000,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94,
+    },
+  };
+
+  function createCubeSwiper(selector, paginationEl) {
+    return new Swiper(selector, {
+      ...cubeSwiperOptions,
+      pagination: {
+        el: paginationEl,
+      },
+    });
+  }
+
+  const cubeSwiper1 = createCubeSwiper(".swiper-cube-1", ".swiper-pagination-cube-1");
+  const cubeSwiper2 = createCubeSwiper(".swiper-cube-2", ".swiper-pagination-cube-2");
+  const cubeSwiper3 = createCubeSwiper(".swiper-cube-3", ".swiper-pagination-cube-3");
+  const cubeSwiper4 = createCubeSwiper(".swiper-cube-4", ".swiper-pagination-cube-4");
+
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => {
+    tab.addEventListener("shown.bs.tab", () => {
+      // کمی تاخیر بده تا تب واقعاً visible بشه
+      setTimeout(() => {
+        document.querySelectorAll(".swiper").forEach((swiperEl) => {
+          if (swiperEl.swiper) {
+            swiperEl.swiper.update();
+          }
+        });
+      }, 150); // ← مقدار 150 تا 300 میلی‌ثانیه عالیه
+    });
+  });
+</script>

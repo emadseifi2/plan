@@ -1,0 +1,187 @@
+<style>
+    .dnnClear h2 {
+        margin: 0px;
+    }
+
+    .contact-section-solar-classic .contact-thumb .contact-autor-info {
+        background: transparent !important;
+        backdrop-filter: none !important;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    thead input {
+        width: 90%;
+        padding: 0.3rem;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        /* کمک می‌کند عرض ستون‌ها ثابت بماند */
+    }
+
+    .table thead,
+    .table tbody {
+        display: block;
+    }
+
+    .table thead tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .table tbody {
+        display: block;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+</style>
+<section class="contact-section-solar-classic inner">
+    <div class="row g-0">
+        <div class="col-xl-6">
+            <div class="contact-thumb">
+                <div>
+                    <img alt="contact thumb" src="/Portals/2/Econet/Image/Skin/solar-classic/contact-thumb.png" />
+                </div>
+                <div class="contact-autor-info">
+                    <div class="autor-img-box">
+                        <img alt="gif" src="/Portals/2/Econet/Image/Skin/Other/logo-white.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="contact-form-box">
+                <!-- section title -->
+                <div class="sec-title">
+                    <div class="section-sub-title">
+                        <h5 class="sub-title">
+                            <img alt="sub-icon" src="/Portals/2/Econet/Image/Skin/environment/sub-title-icon.png" />تماس
+                            با ما
+                        </h5>
+                    </div>
+                    <div class="divider mx-auto">
+                        <div class="divider-text t-fw-600 t-center t-x24 t-success">
+                            دفترچه تلفن
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="t-center t-x14">نام</th>
+                            <th scope="col" class="t-center t-x14">نام خانوادگی</th>
+                            <th scope="col" class="t-center t-x14">حوزه</th>
+                            <th scope="col" class="t-center t-x14">تلفن</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input list="firstNames" class="t-center t-x14" data-col="0" placeholder="جست‌وجوی نام">
+                                <datalist id="firstNames"></datalist>
+                            </th>
+                            <th>
+                                <input list="lastNames" data-col="1" class="t-center t-x14"
+                                    placeholder="جست‌وجوی نام خانوادگی">
+                                <datalist id="lastNames"></datalist>
+                            </th>
+                            <th>
+                                <input list="departments" data-col="2" class="t-center t-x14"
+                                    placeholder="جست‌وجوی حوزه">
+                                <datalist id="departments"></datalist>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+
+
+
+
+                        <tr>
+                            <td class="t-center t-x12 t-fw-200">[USER_NAME]</td>
+                            <td class="t-center t-x12 t-fw-200">[USER_FAMILY]</td>
+                            <td class="t-center t-x12 t-fw-200">[ORGANIZATIONAL_TITLE]</td>
+                            <td class="t-center t-x12 t-fw-200">[CONTACT_NUMBER]</td>
+                        </tr>
+
+
+
+
+                    </tbody>
+                </table>
+
+                <div id="status"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const table = document.querySelector('.table');
+    const tbodyRows = Array.from(table.querySelectorAll('tbody tr'));
+    const inputs = Array.from(table.querySelectorAll('thead input'));
+
+    // تولید دیتالیست‌ها از روی مقادیر جدول
+    inputs.forEach(input => {
+        const colIndex = parseInt(input.dataset.col, 10);
+        const uniqueValues = new Set();
+
+        tbodyRows.forEach(row => {
+            const cellText = row.children[colIndex].textContent.trim();
+            if (cellText) uniqueValues.add(cellText);
+        });
+
+        const datalist = input.nextElementSibling;
+        datalist.innerHTML = '';
+        uniqueValues.forEach(value => {
+            const option = document.createElement('option');
+            option.value = value;
+            datalist.appendChild(option);
+        });
+    });
+
+    // فیلتر ردیف‌ها هنگام تایپ
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            tbodyRows.forEach(row => {
+                const matchesAll = inputs.every(inp => {
+                    const value = inp.value.trim();
+                    if (!value) return true; // ورودی خالی؛ این ستون شرطی اعمال نمی‌کند
+
+                    const idx = Number(inp.dataset.col);
+                    const cell = row.children[idx];
+                    if (!cell) return false;
+
+                    const cellText = cell.textContent
+                        .replace(/\u200c/g, '') // حذف نیم‌فاصله احتمالی
+                        .trim()
+                        .toLowerCase();
+
+                    return cellText.includes(value.toLowerCase());
+                });
+
+                row.style.display = matchesAll ? '' : 'none';
+            });
+        });
+    });
+
+</script>

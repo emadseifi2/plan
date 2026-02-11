@@ -1,0 +1,98 @@
+کد معاونت
+DEPUTY_ID
+
+کد اداره
+OFFICE_PID
+
+نام
+USER_NAME
+
+نام خانوادگی
+USER_FAMILY
+
+عنوان پست سازمانی
+ORGANIZATIONAL_TITLE
+
+شماره تماس
+CONTACT_NUMBER
+
+category{
+BarnameriziVaPayesh
+BodgeriziVaModiriyateEtebarat
+MostanadsaziVaDashbordha
+RahbariProjeVaControlAmalkard
+RahbariVaKontrolBodge
+HozeDaftar
+}
+
+<script>
+    nodes: [
+        //مدیر کل
+        { DEPUTY_ID: 1, OFFICE_PID: 0, USER_NAME: "علی", USER_FAMILY: "علاءالدینی", ORGANIZATIONAL_TITLE: "مدیر کل برنامه ریزی، بودجه و کنترل عملکرد" },
+
+        //معاونین
+        { DEPUTY_ID: 2, OFFICE_PID: 1, USER_NAME: "محسن", USER_FAMILY: "ننجی", ORGANIZATIONAL_TITLE: "معاونت مستندسازی و داشبوردهای مدیریتی" },
+        { DEPUTY_ID: 3, OFFICE_PID: 1, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت برنامه ریزی و پایش" },
+        { DEPUTY_ID: 4, OFFICE_PID: 1, USER_NAME: "علیرضا", USER_FAMILY: "کرمی", ORGANIZATIONAL_TITLE: "معاونت بودجه ریزی و مدیریت اعتبارات" },
+        { DEPUTY_ID: 5, OFFICE_PID: 1, USER_NAME: "کامران", USER_FAMILY: "سلطانی", ORGANIZATIONAL_TITLE: "معاونت راهبری و کنترل بودجه" },
+        { DEPUTY_ID: 6, OFFICE_PID: 1, USER_NAME: "مجید", USER_FAMILY: "پوررمضان", ORGANIZATIONAL_TITLE: "معاونت راهبری پروژه و کنترل عملکرد" },
+        { DEPUTY_ID: 10, OFFICE_PID: 1, USER_NAME: "حوزه", USER_FAMILY: "دفتر", ORGANIZATIONAL_TITLE: "حوزه دفتر" },
+
+        //معاونت مستندسازی و داشبوردهای مدیریتی
+        { DEPUTY_ID: 20, OFFICE_PID: 2, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت مستندسازی و داشبوردهای مدیریتی" },
+
+        //معاونت برنامه ریزی و پایش
+        { DEPUTY_ID: 30, OFFICE_PID: 3, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت برنامه ریزی و پایش" },
+
+        //معاونت بودجه ریزی و مدیریت اعتبارات
+        { DEPUTY_ID: 40, OFFICE_PID: 4, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت مستندسازی و داشبوردهای مدیریتی" },
+
+        //معاونت راهبری و کنترل بودجه
+        { DEPUTY_ID: 50, OFFICE_PID: 5, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت مستندسازی و داشبوردهای مدیریتی" },
+
+        //معاونت راهبری پروژه و کنترل عملکرد
+        { DEPUTY_ID: 60, OFFICE_PID: 6, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت مستندسازی و داشبوردهای مدیریتی" },
+
+        //معاونت راهبری پروژه و کنترل عملکرد
+        { DEPUTY_ID: 100, OFFICE_PID: 10, USER_NAME: "نامشخص", USER_FAMILY: "نامشخص", ORGANIZATIONAL_TITLE: "معاونت مستندسازی و داشبوردهای مدیریتی" },
+    ]
+</script>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="text-center" style="border-bottom: 1px solid #000">
+                <span class="fab fa-jira text-x10 text-blue-grey"></span>
+                <span class="text-bold text-center text-x10 text-dark mx-4">مدیریت کارمندان</span>
+                <span class="fab fa-jira text-x10 text-blue-grey"></span>
+            </div>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;width: 20%">نام</th>
+                        <th style="text-align:center;width: 20%">نام خانوادگی</th>
+                        <th style="text-align:center;width: 20%">عنوان پست سازمانی</th>
+                        <th style="text-align:center;width: 15%">شماره تماس</th>
+                        <th style="text-align:center;width: 5%">ویرایش</th>
+                        <th style="text-align:center;width: 20%">حوزه</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <tr>
+                        <td style="text-align: center;width: 20%">[USER_NAME]</td>
+                        <td style="text-align: center;width: 20%">[USER_FAMILY]</td>
+                        <td style="text-align:center;width: 20%">[ORGANIZATIONAL_TITLE]</td>
+                        <td style="text-align:center;width: 15%">[CONTACT_NUMBER]</td>
+                        <td style="text-align:center;width: 5%">[EDIT]</td>
+                        <td style="text-align:center;width: 20%">[CATEGORIES]</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

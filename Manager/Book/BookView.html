@@ -1,0 +1,844 @@
+<ul id="informationBook" style="display: none;">
+    <li id="addressbook">
+        <!-- آدرس فیزیکی کتاب -->
+        [ADDRESSBOOK]
+    </li>
+    <li id="numberpagebook">
+        <!-- تعداد صفحات کتاب -->
+        [NUMBERPAGEBOOK]
+    </li>
+</ul>
+
+<link rel="stylesheet"
+    href="https://plan.tehran.ir/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/Swiper9/swiper-bundle.min.css" />
+<script
+    src="https://plan.tehran.ir/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/Swiper9/swiper-bundle.min.js"></script>
+
+<style>
+    body {
+        overflow: hidden !important;
+    }
+
+    #FlipbookPage {
+        height: 100vh;
+        width: 101vw;
+        background:
+            url(/Portals/2/Econet/Image/Patern/footerbgtop.png) center top no-repeat,
+            url(/Portals/2/Econet/Image/Patern/footerbgbottom.png) center bottom no-repeat,
+            url(/Portals/2/Econet/Image/Patern/paternbook2.png) center center #fff repeat;
+        background-size: 100%, 100%, 20%;
+    }
+
+    /* بالای 1600px */
+
+    .flipbook {
+        width: 1000px;
+        height: 700px;
+        margin: 0 auto !important;
+    }
+
+    .flipbook .page,
+    .flipbook>div {
+        width: 500px;
+        height: 700px;
+    }
+
+    .arrow-right {
+        position: absolute;
+        right: 10vw;
+        top: 45vh;
+        border-radius: 3px;
+    }
+
+    .arrow-left {
+        position: absolute;
+        left: 10vw;
+        top: 45vh;
+        border-radius: 3px;
+    }
+
+    .arrow-left span {
+        position: absolute;
+        top: 12px;
+        width: 200px;
+        right: -150px;
+    }
+
+    .arrow-right span {
+        position: absolute;
+        top: 12px;
+        width: 200px;
+    }
+
+    .navbar-flipbook {
+        position: absolute;
+        left: 10%;
+        top: 10px;
+    }
+
+    .navbar-flipbook li {
+        display: inline-block;
+    }
+
+    .animetion-container .shape1 {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        animation: upDown 1.5s ease-in-out 1.6s forwards infinite alternate;
+    }
+
+    .animetion-container .shape2 {
+        position: absolute;
+        z-index: 1;
+        bottom: 30px;
+        left: 30px;
+        animation: upDown 2s ease-in-out 2s forwards infinite alternate;
+    }
+
+    .animetion-container .shape1 img {
+        width: 100%;
+    }
+
+    .animetion-container .shape2 img {
+        width: 100%;
+    }
+
+    :root {
+        --color-primary: #00ca1b;
+        --white: #ffffff;
+    }
+
+    .loadercontainer {
+        background-color: var(--white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        z-index: 9999;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+    .loadercontainer {
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .loadercontainer.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    @keyframes pageTurn {
+        0% {
+            transform: rotateY(0deg);
+        }
+
+        40% {
+            transform: rotateY(180deg);
+        }
+
+        100% {
+            transform: rotateY(180deg);
+        }
+    }
+
+    .loaderbook {
+        border: 2.8px solid var(--color-primary);
+        border-radius: 0.25rem;
+        padding: 2rem;
+        perspective: 37.5rem;
+        position: relative;
+        width: 162px;
+        height: 107px;
+        display: flex;
+        transform: translate3d(0, 0, 0);
+        transform-style: preserve-3d;
+    }
+
+    .loaderbook p {
+        position: absolute;
+        top: 110px;
+    }
+
+    .loaderbook .shape3 {
+        position: absolute;
+        z-index: 1;
+        animation: upDown 2s ease-in-out 2s forwards infinite alternate;
+        bottom: 120px;
+    }
+
+    .loaderpage {
+        position: absolute;
+        width: 75px;
+        height: 95px;
+        left: 0.25rem;
+        top: 0.25rem;
+
+        border: 2.8px solid var(--color-primary);
+
+        background-color: var(--white);
+        background-image: repeating-linear-gradient(var(--color-primary) 0 0.125rem,
+                hsla(223, 10%, 10%, 0) 0.125rem 0.5rem);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 2.5rem 4.125rem, 100% 100%;
+
+        transform-origin: 100% 50%;
+        transform-style: preserve-3d;
+        transform: translate3d(0, 0, 0);
+
+        &:not(.backPage) {
+            border-right-width: 1px;
+        }
+    }
+
+    .loaderbackPage {
+        left: 50%;
+        border-left-width: 1px;
+    }
+
+    .pageFlip:nth-of-type(2) {
+        position: absolute;
+        z-index: 30;
+        animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 0 infinite;
+    }
+
+    .pageFlip:nth-of-type(3) {
+        position: absolute;
+        z-index: 20;
+        animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.2s infinite;
+    }
+
+    .pageFlip:nth-of-type(4) {
+        position: absolute;
+        z-index: 10;
+        animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1s infinite;
+    }
+
+    /* 1360–1600 */
+    @media (max-width: 1600px) {
+        .flipbook {
+            width: 700px;
+            height: 500px;
+        }
+
+        .flipbook .page,
+        .flipbook>div {
+            width: 350px;
+            height: 500px;
+        }
+
+        .arrow-right {
+            right: 3vw;
+        }
+
+        .arrow-left {
+            left: 3vw;
+        }
+
+        .navbar-flipbook {
+            left: 3%;
+        }
+
+        .animetion-container .shape1 img,
+        .animetion-container .shape2 img {
+            width: 60%;
+        }
+
+        .animetion-container .shape2 {
+            bottom: 150px;
+            left: 0px;
+        }
+    }
+
+    /* 768–1359 */
+    @media (max-width: 1300px) {
+        .flipbook {
+            width: 700px;
+            height: 500px;
+        }
+
+        .flipbook .page,
+        .flipbook>div {
+            width: 350px;
+            height: 500px;
+        }
+
+        .arrow-right {
+            right: 1vw;
+        }
+
+        .arrow-left {
+            left: 1vw;
+        }
+
+        .navbar-flipbook {
+            left: 1%;
+        }
+
+        .animetion-container .shape1 img,
+        .animetion-container .shape2 img {
+            width: 60%;
+        }
+
+        .animetion-container .shape2 {
+            bottom: 130px;
+            left: 0px;
+        }
+    }
+
+    /* کمتر از 768 (single) */
+    @media (max-width: 700px) {
+        .flipbook {
+            width: 600px;
+            height: 430px;
+        }
+
+        .flipbook .page,
+        .flipbook>div {
+            width: 300px;
+            height: 430px;
+        }
+
+        .flipbook .page,
+        .flipbook>div {
+            width: 350px;
+            height: 500px;
+        }
+
+        .arrow-right {
+            right: 1vw;
+        }
+
+        .arrow-left {
+            left: 1vw;
+        }
+
+        .navbar-flipbook {
+            left: 1%;
+        }
+
+        .animetion-container .shape1 img,
+        .animetion-container .shape2 img {
+            width: 60%;
+        }
+
+        .animetion-container .shape2 {
+            bottom: 220px;
+            left: 0px;
+        }
+    }
+
+    #flipbook .shadow {
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+    }
+
+    .flipbook img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* یا contain بسته به نیاز */
+        display: block;
+    }
+
+    #flipbook::before {
+        content: "";
+        position: absolute;
+        right: 45%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 100%;
+        pointer-events: none;
+        filter: blur(1px);
+        mix-blend-mode: multiply;
+        z-index: 999;
+        background: #2A7B9B;
+        background: linear-gradient(90deg, rgba(42, 123, 155, 0) 0%, rgb(161 161 161 / 30%) 50%, rgba(237, 221, 83, 0) 100%);
+    }
+
+    @media (max-width: 768px) {
+        #flipbook::before {
+            opacity: 0.35;
+            width: 20px;
+        }
+    }
+
+    .flipbook .page {
+        box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.15);
+        background-color: #fffdf7;
+        /* اندکی کرم شبیه کاغذ */
+    }
+
+    .flipbook .page:nth-child(odd) {
+        background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.04), transparent 40%);
+        z-index: 9999;
+    }
+
+    .flipbook .page:nth-child(even) {
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.04), transparent 40%);
+        z-index: 9999;
+    }
+
+    .page-wrapper {
+        background-color: transparent !important;
+    }
+
+    .dnnClear h2 {
+        display: none;
+    }
+
+    .flipbook-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 1000px;
+        margin: 0.5rem auto 0.5rem;
+        font-weight: 600;
+    }
+
+    .progress-wrapper {
+        flex: 1;
+    }
+
+    .progress {
+        width: 100%;
+        height: 6px;
+        background: #ddd;
+        border-radius: 999px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #ffc107, #ff5722);
+        transition: width 0.3s ease;
+    }
+
+    .thumb-strip {
+        max-width: 1000px;
+        margin: 0 auto 0;
+        padding: 0;
+    }
+
+    .thumb-strip .swiper-slide {
+        width: 80px;
+        /* برای slidesPerView:auto */
+        height: 110px;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: border-color 0.2s;
+    }
+
+    .thumb-strip .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .thumb-strip .swiper-slide.active {
+        border-color: #ff9800;
+    }
+
+    .swiper-button-prev {
+        height: 115px;
+        background-color: #ffbf00;
+        top: 20px;
+        width: 50px;
+        right: 0 !important;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .swiper-button-next {
+        height: 115px;
+        background-color: #ffbf00;
+        top: 20px;
+        width: 50px;
+        left: 0 !important;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .thumb-strip .swiper-button-prev,
+    .thumb-strip .swiper-button-next {
+        color: #fff;
+    }
+
+    .btn:hover {
+        color: #fff;
+    }
+
+    a:hover,
+    a:focus {
+        color: #fff;
+    }
+
+    /* Sine Wave Animation Effect */
+    .svg-waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 150px;
+    }
+
+    @media (max-width: 767px) {
+        .svg-waves {
+            height: 80px;
+        }
+    }
+
+    .svg-waves__parallax>use {
+        -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
+
+    .svg-waves__parallax>use:nth-child(1) {
+        -webkit-animation-delay: -2s;
+        animation-delay: -2s;
+        -webkit-animation-duration: 7s;
+        animation-duration: 7s;
+        fill: rgba(136, 194, 241, 0.2);
+    }
+
+    .svg-waves__parallax>use:nth-child(2) {
+        -webkit-animation-delay: -3s;
+        animation-delay: -3s;
+        -webkit-animation-duration: 10s;
+        animation-duration: 10s;
+        fill: rgba(96, 176, 223, 0.2);
+    }
+
+    .svg-waves__parallax>use:nth-child(3) {
+        -webkit-animation-delay: -4s;
+        animation-delay: -4s;
+        -webkit-animation-duration: 13s;
+        animation-duration: 13s;
+        fill: rgba(22, 161, 216, 0.2);
+    }
+
+    .svg-waves__parallax>use:nth-child(4) {
+        -webkit-animation-delay: -5s;
+        animation-delay: -5s;
+        -webkit-animation-duration: 20s;
+        animation-duration: 20s;
+        fill: rgba(137, 206, 238, 0.2);
+    }
+
+    @-webkit-keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
+
+    @keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
+</style>
+
+<ul class="navbar-flipbook">
+    <li>
+        <a href="https://plan.tehran.ir/">
+            <i class="bx bx-home t-x28 t-white"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://plan.tehran.ir/">
+            <i class="bx bx-undo  t-x28 t-white"></i>
+        </a>
+    </li>
+</ul>
+
+<div class="loadercontainer">
+    <div class="loaderbook t-center">
+        <div class="shape3">
+            <img alt="banner shape" src="/Portals/2/Econet/Image/Skin/solar/footer-shape1.png">
+        </div>
+        <div class="loaderpage"></div>
+        <div class="loaderpage backPage"></div>
+        <div class="loaderpage pageFlip"></div>
+        <div class="loaderpage pageFlip"></div>
+        <div class="loaderpage pageFlip"></div>
+        <p class="t-fw-600 t-x12 t-center">
+            لطفا کمی صبر نمایید ...
+        </p>
+    </div>
+</div>
+
+<div class="sine-wave">
+    <svg class="svg-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+            </path>
+        </defs>
+        <g class="svg-waves__parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7"></use>
+        </g>
+    </svg>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col t-center mx-auto">
+            <div class="divider divider-success divider-dotted text-center">
+                <div class="divider-text t-x20 t-white t-bold">
+                    [TITLEBOOK]
+                </div>
+            </div>
+            <div id="flipbook" class="flipbook mb-2"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div style="position: absolute;margin: 0 auto;left: 0;right: 0">
+                <div class="flipbook-toolbar">
+                    <div class="page-status">
+                        صفحه
+                        <span id="page-current">1</span>
+                        از
+                        <span id="page-total">8</span>
+                    </div>
+
+                    <div class="progress-wrapper">
+                        <div class="progress">
+                            <div id="page-progress" class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="thumbSwiper" class="thumb-strip swiper">
+                    <div id="thumbcontainer" class="swiper-wrapper"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a id="next" class="btn btn-warning py-0 arrow-right px-5">
+        <i class='bx bx-right-arrow t-x28'></i>
+        <span class="t-dark">
+            صفحه بعدی
+        </span>
+    </a>
+    <a id="prev" class="btn btn-warning py-0 arrow-left px-5">
+        <i class='bx bx-left-arrow t-x28'></i>
+        <span class="t-dark">
+            صفحه قبلی
+        </span>
+    </a>
+</div>
+
+<div class="animetion-container">
+    <div class="shape1">
+        <img alt="footer shape" src="/portals/2/Econet/Image/Skin/environment-classic/banner-shape1.png">
+    </div>
+    <div class="shape2">
+        <img alt="banner shape" src="/Portals/2/Econet/Image/Skin/solar/footer-shape1.png">
+    </div>
+</div>
+
+<script>
+    let loadflipbook = () => {
+        const flipbookPresets = [
+            { name: 'XL', min: 1601, width: 1000, height: 700, display: 'double' },
+            { name: 'LG', min: 1300, width: 700, height: 500, display: 'double' },
+            { name: 'MD', min: 700, width: 700, height: 500, display: 'double' },
+            { name: 'SM', min: 0, width: 600, height: 430, display: 'single' }
+        ];
+
+        const pickPreset = viewportWidth =>
+            flipbookPresets.find(preset => viewportWidth >= preset.min) ?? flipbookPresets.at(-1);
+
+        const $flipbook = $('#flipbook');
+        const initPreset = pickPreset(window.innerWidth);
+        const pageCount = $flipbook.children('div').length;
+        const totalPages = pageCount;
+
+        $flipbook.turn({
+            width: initPreset.width,
+            height: initPreset.height,
+            display: initPreset.display,
+            autoCenter: true,
+            gradients: true,
+            duration: 3000,
+            pages: pageCount,
+            acceleration: true,
+            elevation: 200
+        });
+
+        function applyResponsiveSize() {
+            const preset = pickPreset(window.innerWidth);
+            $flipbook.turn('display', preset.display);
+            $flipbook.turn('size', preset.width, preset.height);
+            document.body.dataset.flipbookPreset = preset.name;
+        }
+
+        const debouncedResize = (() => {
+            let timer;
+            return () => {
+                clearTimeout(timer);
+                timer = setTimeout(applyResponsiveSize, 150);
+            };
+        })();
+
+        window.addEventListener('resize', debouncedResize);
+
+        const thumbSwiper = new Swiper('#thumbSwiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 8,
+            freeMode: true,
+            mousewheel: true,
+            keyboard: true,
+            centeredSlides: true,
+            centeredSlidesBounds: true,
+            navigation: {
+                nextEl: '#thumbSwiper .swiper-button-next',
+                prevEl: '#thumbSwiper .swiper-button-prev'
+            },
+            scrollbar: {
+                el: '#thumbSwiper .swiper-scrollbar',
+                draggable: true
+            }
+        });
+
+        const getThumbSlides = () => $('#thumbcontainer .swiper-slide');
+
+        function updateProgressUI(page) {
+            $('#page-current').text(page);
+            const percent = totalPages > 1 ? ((page - 1) / (totalPages - 1)) * 100 : 0;
+            $('#page-progress').css('width', `${percent}%`);
+
+            const $slides = getThumbSlides();
+            const $activeSlide = $slides.eq(page - 1);
+            if (!$activeSlide.length) return;
+
+            $slides.removeClass('active');
+            $activeSlide.addClass('active');
+
+            thumbSwiper.slideTo(Math.max(page - 1, 0), 300);
+        }
+
+        updateProgressUI($flipbook.turn('page'));
+
+        $flipbook.on('turned', (event, page) => {
+            updateProgressUI(page);
+        });
+
+        $('#thumbcontainer').on('click', '.swiper-slide', function () {
+            const targetPage = Number(this.dataset.page);
+            if (Number.isInteger(targetPage) && targetPage >= 1 && targetPage <= totalPages) {
+                $flipbook.turn('page', targetPage);
+            }
+        });
+
+        $(window).on('load', () => {
+            $flipbook.turn('update');
+        });
+
+        $('#prev').on('click', e => {
+            e.preventDefault();
+            $flipbook.turn('previous');
+        });
+
+        $('#next').on('click', e => {
+            e.preventDefault();
+            $flipbook.turn('next');
+        });
+    };
+
+
+    let waitForImages = (container, callback) => {
+        const images = container.querySelectorAll('img');
+        let loaded = 0;
+        const total = images.length;
+
+        if (total === 0) {
+            callback();
+            return;
+        }
+
+        images.forEach(img => {
+            if (img.complete) {
+                loaded++;
+                if (loaded === total) callback();
+            } else {
+                img.onload = img.onerror = () => {
+                    loaded++;
+                    if (loaded === total) callback();
+                };
+            }
+        });
+    }
+
+    $(function () {
+        const addressbook = $('#addressbook').text().trim();
+        const innerPages = parseInt($('#numberpagebook').text().trim(), 10); // تعداد واقعی صفحات محتوا
+        const coverPage = '/Portals/2/Econet/Image/Book/' + addressbook + '/page/coverpage.jpg';
+        const lastPage = '/Portals/2/Econet/Image/Book/' + addressbook + '/page/lastpage.jpg';
+        const coverThumb = '/Portals/2/Econet/Image/Book/' + addressbook + '/thumb/thumbcoverpage.jpg';
+        const lastThumb = '/Portals/2/Econet/Image/Book/' + addressbook + '/thumb/thumblastpage.jpg';
+        const loader = document.querySelector('.loadercontainer');
+
+        if (!addressbook || !innerPages || !coverPage || !lastPage) {
+            console.error('Book meta is incomplete.');
+            return;
+        }
+
+        const flipbookHtml = [];
+        const thumbHtml = [];
+
+        // 1) جلد جلو -> صفحه 1
+        flipbookHtml.push(`<div class="hard"><img src="${coverPage}" alt="جلد"></div>`);
+        thumbHtml.push(`<div class="swiper-slide active" data-page="1"><img src="${coverThumb || coverPage}" alt="جلد"></div>`);
+
+        // 2) صفحات داخلی -> صفحه 2 تا innerPages+1
+        for (let i = 1; i <= innerPages; i++) {
+            const pageNumber = i + 1;
+            const pageSrc = `/Portals/2/Econet/Image/Book/${addressbook}/page/Page${i}.jpg`;
+            const thumbSrc = `/Portals/2/Econet/Image/Book/${addressbook}/thumb/Page${i}.jpg`;
+
+            flipbookHtml.push(`<div><img src="${pageSrc}" alt="صفحه ${i}"></div>`);
+            thumbHtml.push(`<div class="swiper-slide" data-page="${pageNumber}"><img src="${thumbSrc}" alt="صفحه ${i}"></div>`);
+        }
+
+        // 3) جلد پشت -> صفحه innerPages+2
+        const backCoverPage = innerPages + 2;
+        flipbookHtml.push(`<div class="hard"><img src="${lastPage}" alt="جلد پشت"></div>`);
+        thumbHtml.push(`<div class="swiper-slide" data-page="${backCoverPage}"><img src="${lastThumb || lastPage}" alt="جلد پشت"></div>`);
+
+        $('#flipbook').html(flipbookHtml.join(''));
+        $('#thumbcontainer').html(thumbHtml.join(''));
+
+        waitForImages(document.getElementById('flipbook'), function () {
+            loadflipbook();
+            setTimeout(() => loader.classList.add('fade-out'), 1200);
+        });
+    });
+</script>

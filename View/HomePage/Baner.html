@@ -1,0 +1,102 @@
+<!-- Demo styles -->
+<style>
+    .swiper-baner {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide-baner {
+        text-align: right;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+
+    .banner-section-solar {
+        margin: -17vh 2vw 2vh 2vw;
+        height: 48vh !important;
+        padding: 20vh 0 0 0;
+        box-shadow: 0 0 30px rgb(0 0 0 / 50%);
+    }
+
+    .main-header .main-box .nav-outer {        
+        margin-top: -100px;
+    }
+
+    .header-solar-renewable .main-box {
+        top: 30px;
+    }
+
+    @media (min-width: 1200px) and (max-width: 1399.98px) {
+        .banner-section-solar {
+            border-radius: 40px;
+            padding: 70px 0;
+            margin: -24vh 2vw 5vh 2vw;
+        }
+
+        .auto-container {
+            width: 90%;
+        }
+    }
+
+    @media (min-width: 1200px) and (max-width: 1399.98px) {
+        .header-solar-renewable .main-box {
+            top: 60px;
+            padding: 0 40px 0 40px;
+        }
+    }
+
+    .choose-shape-image {
+        position: absolute;
+        right: 0;
+        left: 20%;
+        animation: upDown 1.6s ease-in-out 1.6s forwards infinite alternate;
+    }
+</style>
+
+<div class="auto-container" style="max-width: 80%;">
+    <div class="row">
+        <div class="col-xl-12 t-center">
+            <div class="banner-content-wrap">
+                <div class="banner-title">
+                    <h1 class="t-center t-x48 mt-4 t-white">
+                    </h1>
+                    <h1 class="title t-success title-anim t-x34">
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Initialize Swiper -->
+<script type="module">
+    $(document).ready(function () { //********************************************************body
+        $("#dnn_Banner").vegas({
+            delay: 10000, // 10 ثانیه نمایش هر اسلاید
+            transitionDuration: 10000, // 3 ثانیه طول افکت انتقال
+            animationDuration: 10000, // 30 ثانیه برای انیمیشن‌های subtle (مثل zoom)
+            cover: true,          // اطمینان از کشیدن تا لبه‌ها (پیش‌فرض true است)
+            align: 'center',      // مرکز تصویر را نگه دار تا برش لبه‌ها کم شود
+            valign: 'center',
+            slides: [
+                { src: "/Portals/2/Econet/Image/Vegas/vegas-1.jpg" },
+                { src: "/Portals/2/Econet/Image/Vegas/vegas-2.jpg" },
+                { src: "/Portals/2/Econet/Image/Vegas/vegas-3.jpg" },
+                { src: "/Portals/2/Econet/Image/Vegas/vegas-4.jpg" }
+            ],
+            //overlay: '/Portals/2/Econet/Image/Vegas/overlays/09.png',
+            transition: ['fade2', 'zoomOut', 'swirlLeft2', 'swirlRight2', 'blur2'],
+            animation: 'random'
+        });
+    });  
+</script>

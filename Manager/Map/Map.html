@@ -1,0 +1,910 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style>
+  .dnnClear h2 {
+    display: none;
+  }
+
+  .leaflet-popup-content {
+    margin: 0 !important;
+  }
+
+  .district-popup,
+  .district-tooltip {
+    font-family: sans-serif;
+    text-align: center;
+    min-width: 95px;
+  }
+
+  .district-popup-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .district-popup-text {
+    font-size: 0.95rem;
+  }
+
+  .accordion-button {
+    background-color: #fff;
+  }
+
+  .accordion-button::after {
+    margin-left: 10px !important;
+    margin-right: auto;
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: #ffffff;
+    background-color: #1ad566;
+  }
+
+  .accordion-item:first-of-type>.accordion-header .accordion-button {
+    border-radius: 0 !important;
+  }
+
+  .accordion-body {
+    background: rgba(159, 239, 192, 0.4);
+  }
+
+  .accordion-item {
+    border-radius: 0 !important;
+    border: 0 !important;
+  }
+
+  .accordion-button:focus {
+    box-shadow: none !important
+  }
+
+  .accordion {
+    background-color: transparent !important;
+    --bs-accordion-bg: #ffffff00 !important;
+  }
+
+  .accordion-item:last-of-type>.accordion-header .accordion-button.collapsed {
+    border-radius: 0 !important;
+  }
+
+  .bodychart {
+    position: absolute;
+    left: -80vh;
+    bottom: 10px;
+    z-index: 999;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 40vw;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+  }
+
+  /* خصوصیات برای حالت موبایل */
+  @media (max-width: 768px) {
+    .bodychart {
+      width: 85vw;
+    }
+  }
+
+  .nav-link {
+    color: #fff;
+  }
+
+  .nav-link:focus,
+  .nav-link:hover {
+    color: #00ff22;
+  }
+
+  #ColumnSeries {
+    width: 40vw;
+    height: 250px;
+    direction: ltr !important;
+  }
+
+  .closebodychart {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+  }
+
+  #legendcolor li {
+    text-align: right;
+  }
+
+  .legend {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 9999;
+    margin: 0 auto;
+  }
+
+  .legend-panel {
+    z-index: 9999;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #4b4b4b;
+    margin: 0 auto;
+  }
+
+  .legend-title {
+    z-index: 9999;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px #a3a3a3;
+    margin: 0 auto;
+  }
+
+  /* //loader css */
+  .bodyloader {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: url(/Portals/2/Econet/Image/Patern/paternrasm2.png), #b7b7b7 !important;
+    overflow-y: hidden !important;
+  }
+
+  .loader {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: #076fb4;
+    transform: rotateX(65deg) rotate(45deg);
+    transform: perspective(200px) rotateX(65deg) rotate(45deg);
+    color: #fff;
+    animation: layers1 1s linear infinite alternate;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 30vh;
+  }
+
+  .table>thead>tr>th,
+  .table>tbody>tr>th,
+  .table>tfoot>tr>th,
+  .table>thead>tr>td,
+  .table>tbody>tr>td,
+  .table>tfoot>tr>td {
+    padding: 0.5vh 0px !important;
+  }
+
+  .loader:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    animation: layerTr 1s linear infinite alternate;
+  }
+
+  @keyframes layers1 {
+    0% {
+      box-shadow: 0px 0px 0 0px;
+    }
+
+    90%,
+    100% {
+      box-shadow: 20px 20px 0 -4px;
+    }
+  }
+
+  @keyframes layerTr {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+      transform: translate(-25px, -25px) scale(1);
+    }
+  }
+
+  .titletop {
+    position: fixed;
+    right: 10px;
+    top: 35px;
+    margin: 0 auto;
+    background-color: rgb(255 255 255);
+    width: 17vw !important;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 5px 0;
+    border-bottom: 1px solid #e1e1e1;
+    z-index: 9999;
+  }
+
+  .titleimage {
+    text-align: center;
+    padding: 10px 5px 10px 2px;
+  }
+
+  .map-switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 56px;
+    border-radius: 50px;
+    background-color: #ffffff;
+    border: 1px solid var(--theme-color2);
+    margin: 0 12px 0 25px;
+  }
+
+  .leaflet-popup-content-wrapper {
+    text-align: center !important;
+    border-radius: 5px !important;
+  }
+
+  .sidebar {
+    transition: transform 1s;
+    z-index: 9;
+    height: 100%;
+    position: absolute;
+  }
+
+  .right.collapsed {
+    transform: translateX(340px);
+  }
+
+  .tabs-line.nav-tabs .nav-link.active,
+  .tabs-line.nav-tabs .nav-link.active:hover,
+  .tabs-line.nav-tabs .nav-link.active:focus,
+  .tabs-line>.nav-tabs .nav-link.active,
+  .tabs-line>.nav-tabs .nav-link.active:hover,
+  .tabs-line>.nav-tabs .nav-link.active:focus {
+    color: #fdac41;
+  }
+
+  .i-search {
+    position: absolute;
+    z-index: 10;
+    right: 45px;
+    top: 65px;
+    width: 160px;
+  }
+
+  /* خصوصیات برای حالت دسکتاپ */
+  .sidebar-content {
+    position: absolute;
+    width: 15vw;
+    height: 97vh;
+    color: #ccc;
+    top: 5px;
+    z-index: 999;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    right: 0;
+    transition: right 1s ease-in-out;
+    background: url(/Portals/2/Econet/Image/Skin/Other/pattern_h.png), #16515a;
+    background-position: center center;
+    background-repeat: repeat;
+  }
+
+  .sidebar-toggle {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    overflow: visible;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: #16515a;
+    top: 35vh;
+    right: 15vw;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: right 1s ease-in-out;
+    display: block;
+    border-right: 1px solid #fff;
+  }
+
+  .title-page {
+    position: absolute;
+    width: 22vw;
+    height: auto;
+    overflow: visible;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: #16515a;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: right 1s ease-in-out;
+    display: block;
+    border-right: 1px solid #fff;
+  }
+
+  /* خصوصیات برای حالت موبایل */
+  @media (max-width: 768px) {
+    .sidebar-content {
+      width: 50vw;
+      right: 0;
+    }
+
+    .sidebar-toggle {
+      right: 50vw;
+    }
+
+    body {
+      overflow-y: scroll !important;
+    }
+  }
+
+  .form-check {
+    padding-right: 1.5em;
+  }
+
+  .form-check .form-check-input {
+    float: right;
+    margin-right: -1.5em;
+  }
+
+  .leaflet-control {
+    font-size: 13px;
+  }
+</style>
+<div class="row bodyloader" id="loader">
+  <span class="loader"></span>
+  <p class="t-medium t-x6"
+    style="position: fixed; left: 0; right: 0; margin: 0 auto; top: 38vh; width: 100%; text-align: center">لطفا چند لحظه
+    صبر نمایید...</p>
+</div>
+
+<div id="right" class="sidebar right">
+  <div class="sidebar-toggle" id="sidebar-toggle">
+    <a id="custom-zoom-in" class="btn t-center py-1 px-1 my-0 mx-auto w-90 t-white" role="button">
+      <i class="bx bx-plus link_toggle t-x18"></i>
+    </a>
+    <a id="custom-zoom-out" class="btn t-center py-1 px-1 my-0 mx-auto w-90 t-white" role="button">
+      <i class="bx bx-minus link_toggle t-x18"></i>
+    </a>
+    <a id="sidebar-search-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-90 t-white" role="button">
+      <i class="bx bx-search-alt t-x18"></i>
+    </a>
+    <input id="sidebar-search-input" type="text" class="form-control d-none mt-2 i-search"
+      placeholder="جستجوی مکان..." />
+    <a role="button" onclick="_btnSidbare()">
+      <i id="sidebar-toggle-icon" class="bx bx-right-arrow link_toggle t-warning t-x28"
+        style="padding: 6px !important"></i>
+    </a>
+    <a id="sidebar-print-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-100 t-white" role="button">
+      <i class="bx bx-printer link_toggle t-x18"></i>
+    </a>
+    <a id="sidebar-fullscreen-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-100 t-white" role="button">
+      <i class="bx bx-fullscreen link_toggle t-x18"></i>
+    </a>
+    <a id="sidebar-location-btn" class="btn t-center py-1 px-1 my-0 mx-auto w-100 t-white" role="button">
+      <i class="bx bx-map-pin link_toggle t-x18"></i>
+    </a>
+  </div>
+  <div class="sidebar-content" id="sidebar-content">
+    <div class="nav-align-top mb-4">
+      <div class="titleimage">
+        <img src="/Portals/2/Econet/Image/Skin/Other/logo-white.png" alt="" />
+      </div>
+      <div class="t-bold t-x12 t-center t-white">داشبورد مدیریتی چهارمین دوره من شهردارم</div>
+      <hr />
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <button class="accordion-button px-0 py-0" onclick="overloadMap(this)" id="modiran" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <i class='bx bx-group t-x24 ml-2 pl-2 mr-1 pr-1'></i>
+              <span>
+                مشارکت مردمی
+              </span>
+            </button>
+          </div>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="form-check mr-2 pl-0">
+                <input class="form-check-input" onchange="handleDatasetChange(this)" type="radio" name="radioDefault"
+                  id="manategh" date-group="modiran" />
+                <label class="form-check-label t-x12" for="manategh">به تفکیک مناطق</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <button class="accordion-button px-0 py-0 collapsed" onclick="overloadMap(this)" id="safiran" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <i class='bx bx-user-voice t-x24 ml-2 pl-2 mr-1 pr-1'></i>
+              <span>
+                مشارکت سفیران
+              </span>
+            </button>
+          </div>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="form-check mr-2 pl-0">
+                <input class="form-check-input" onchange="handleDatasetChange(this)" type="radio" name="radioDefault"
+                  id="sazmanha" date-group="safiran" />
+                <label class="form-check-label t-x12" for="sazmanha">به تفکیک سازمانها و شرکتها</label>
+              </div>
+              <div class="form-check mr-2 pl-0">
+                <input class="form-check-input" onchange="handleDatasetChange(this)" type="radio" name="radioDefault"
+                  id="manategh" date-group="safiran" />
+                <label class="form-check-label t-x12" for="manategh">به تفکیک مناطق</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="map" style="height: 100vh !important; z-index: 1; border-radius: 5px" class="z-depth-1">
+  <div class="title-page">
+    <p class="mb-0 t-fw-400 t-center t-x20 t-white px-4 py-1 d-none">
+      داشبورد مدیریتی من شهردارم 4
+    </p>
+    <img src="/Portals/2/Econet/Image/Skin/Other/labale.png" class="mx-auto img-fluid px-4 py-1" />
+  </div>
+  <div style="position: absolute;right: 50px;bottom: 50px;z-index: 9999;">
+    <img src="/Portals/2/Econet/Image/Skin/Other/logo.png" alt="">
+  </div>
+  <div class="legend">
+    <div class="legend-panel">
+      <ul id="legendcolor"></ul>
+    </div>
+    <div class="legend-title mt-1 t-center" style="background-color: #5acce0;">
+      <p class="t-right t-white d-inline-block mb-0 t-x12">
+        مشارکت کل :
+      </p>
+      <p class="t-left t-white d-inline-block mb-0 t-x14">
+        1,952,566
+      </p>
+    </div>
+    <div class="legend-title mt-1 t-center" style="background-color: #61d992;">
+      <p class="t-right t-white d-inline-block mb-0 t-x12">
+        مشارکت مستقیم :
+      </p>
+      <p class="t-left t-white d-inline-block mb-0 t-x14">
+        122,081
+      </p>
+    </div>
+    <div class="legend-title mt-1 t-center" style="background-color: #ea9c4c;">
+      <p class="t-right t-white d-inline-block mb-0 t-x12">
+        مشارکت از طریق سفیر :
+      </p>
+      <p class="t-left t-white d-inline-block mb-0 t-x14">
+        1,830,421 </p>
+    </div>
+  </div>
+  <div id="bodychart" class="bodychart">
+    <a onclick="closebodychart()" class="closebodychart">
+      <i class="bx bx-x t-x24 t-danger"></i>
+    </a>
+    <div class="divider divider-success divider-dotted text-center mb-0 my-2 w-90">
+      <div class="divider-text t-success t-x14 t-bold" id="titilechart"></div>
+    </div>
+    <div id="ColumnSeries"></div>
+  </div>
+</div>
+<ul id="cityTehran">
+
+
+  <!-- این قسمت برای الگوی نمایش -->
+  <li data-id="[CATEGORY]" data-safiran="[SAFIRAN]" data-manategh="[MARDOMI]" data-title="[TITLE]" data-nahie="[NAHIE]"
+    data-population="[POPULATION]"></li>
+
+
+
+</ul>
+<script>
+  const map = L.map("map", {
+    closePopupOnClick: false,
+    zoomControl: false,
+  }).setView([35.723675376637644, 51.35599485848079], 12);
+  const Jawg_Light = L.tileLayer("https://tile.jawg.io/jawg-light/{z}/{x}/{y}{r}.png?access-token=oSSAwvXxOLWUv5azDzu5UhYho1Ik0bg5HRV28PSrjqSbs6IpNWBFkaLJCRRmTCDI", {
+    attribution: "تمام حقوق این اثر برای اداره کل برنامه ریزی، بودجه و کنترل عملکرد محفوظ است",
+    minZoom: 9,
+    maxZoom: 22,
+  }).addTo(map);
+  document.getElementById("custom-zoom-in").addEventListener("click", function () {
+    map.zoomIn();
+  });
+  document.getElementById("custom-zoom-out").addEventListener("click", function () {
+    map.zoomOut();
+  });
+  document.getElementById("sidebar-print-btn").addEventListener("click", function () {
+    window.print();
+  });
+  document.getElementById("sidebar-fullscreen-btn").addEventListener("click", function () {
+    let elem = document.getElementById("map");
+    if (!document.fullscreenElement) {
+      elem.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  });
+  document.getElementById("sidebar-location-btn").addEventListener("click", function () {
+    if (!navigator.geolocation) {
+      alert("مرورگر شما از موقعیت‌یاب پشتیبانی نمی‌کند!");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        const latlng = [pos.coords.latitude, pos.coords.longitude];
+        map.setView(latlng, 15);
+        L.marker(latlng).addTo(map).bindPopup("شما اینجایید!").openPopup();
+      },
+      function () {
+        alert("امکان دریافت موقعیت شما وجود ندارد.");
+      }
+    );
+  });
+
+  const sidebarToggle = document.getElementById("sidebar-toggle");
+  const sidebarIcon = sidebarToggle?.querySelector("i");
+  console.log(sidebarIcon);
+
+  if (sidebarIcon) {
+    sidebarIcon.classList.remove("bx-right-arrow");
+    sidebarIcon.classList.add("bx-left-arrow");
+  } else {
+    console.log("is not found ....");
+  }
+
+  let isSidebarCollapsed = false;
+
+  function _btnSidbare() {
+    const sidebarContent = document.getElementById("sidebar-content");
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+    const sidebarIcon = document.getElementById("sidebar-toggle-icon");
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (!isSidebarCollapsed) {
+      sidebarContent.style.right = isMobile ? "-50vw" : "-15vw";
+      sidebarToggle.style.right = "0px";
+      sidebarToggle.style.display = "inline";
+      isSidebarCollapsed = true;
+
+      if (sidebarIcon) {
+        sidebarIcon.classList.remove("bx-right-arrow");
+        sidebarIcon.classList.add("bx-left-arrow");
+      } else {
+        console.log("is not found ....");
+      }
+    } else {
+      sidebarContent.style.right = "0px";
+      sidebarToggle.style.right = isMobile ? "50vw" : "15vw";
+      sidebarToggle.style.display = "block";
+      isSidebarCollapsed = false;
+
+      if (sidebarIcon) {
+        sidebarIcon.classList.remove("bx-left-arrow");
+        sidebarIcon.classList.add("bx-right-arrow");
+      }
+    }
+
+    const shift = isMobile ? 0.02 : 0.05;
+    const lngDelta = isSidebarCollapsed ? -shift : shift;
+
+    map.flyTo([map.getCenter().lat, map.getCenter().lng + lngDelta], map.getZoom(), {
+      animate: true,
+      duration: 1,
+      easeLinearity: 0.5,
+    });
+  }
+
+  let legendColors = [];
+  let manateghMap = {};
+
+  const districtGroup = L.featureGroup().addTo(map);
+
+  function niceNumber(x, roundUp) {
+    const exponent = Math.floor(Math.log10(x));
+    const fraction = x / Math.pow(10, exponent);
+
+    let niceFraction;
+    if (roundUp) {
+      if (fraction <= 1) niceFraction = 1;
+      else if (fraction <= 2) niceFraction = 2;
+      else if (fraction <= 5) niceFraction = 5;
+      else niceFraction = 10;
+    } else {
+      if (fraction < 1) niceFraction = 1;
+      else if (fraction < 2) niceFraction = 2;
+      else if (fraction < 5) niceFraction = 5;
+      else niceFraction = 10;
+    }
+
+    return niceFraction * Math.pow(10, exponent);
+  }
+
+  function buildDynamicLegend(data, steps = 5) {
+    const values = data.map((d) => d.value);
+    const minValue = Math.min(...values);
+    const maxValue = Math.max(...values);
+    const rawRange = maxValue - minValue || 1;
+
+    const niceStep = niceNumber(rawRange / steps, true);
+    const niceMin = Math.floor(minValue / niceStep) * niceStep;
+    const niceMax = Math.ceil(maxValue / niceStep) * niceStep;
+
+    const bucketCount = Math.ceil((niceMax - niceMin) / niceStep);
+    const baseColors = ["#d73027", "#f46d43", "#fee08b", "#a6d96a", "#1a9850"];
+
+    const legend = [];
+    for (let i = 0; i < bucketCount; i++) {
+      legend.push({
+        min: niceMin + i * niceStep,
+        max: niceMin + (i + 1) * niceStep,
+        color: baseColors[i] || baseColors[baseColors.length - 1],
+      });
+    }
+    return legend;
+  }
+
+  function getColorByValue(value) {
+    const item = legendColors.find((r, i) => value >= r.min && (value < r.max || i === legendColors.length - 1));
+    return item ? item.color : "#ccc";
+  }
+
+  function prepareDistrictDataset(valueKey = "safiran") {
+    if (valueKey === "safiran" ) {
+      const itemsKoli = [...document.querySelectorAll("#cityTehran li")]
+        .map((li) => {
+          const title = li.dataset.title?.trim() || "";
+          const match = title.match(/\d+/); // برای مناطق
+          return {
+            id: li.dataset.id,
+            regionId: match ? match[0] : null,
+            title,
+            value: Number(li.dataset[valueKey]),
+          };
+        })
+        .filter((item) => Number.isFinite(item.value));
+
+      legendColors = buildDynamicLegend(itemsKoli);
+
+      const itemsManategh = [...document.querySelectorAll("#cityTehran li")]
+        .map((li) => {
+          const title = li.dataset.title?.trim() || "";
+          const match = title.match(/\d+/);
+
+          return {
+            id: li.dataset.id,
+            regionId: match ? match[0] : null, // ✅ کلید واحد
+            title,
+            value: Number(li.dataset[valueKey]),
+          };
+        })
+        .filter((d) => d.id === "Manategh" && d.regionId);
+
+      manateghMap = itemsManategh.reduce((acc, item) => {
+        acc[item.regionId] = item.value;
+        return acc;
+      }, {});
+    }
+  }
+
+  function loadRegion(features) {
+    districtGroup.clearLayers();
+    map.closePopup();
+
+    for (let i = 0; i < features.length; i++) {
+      const feature = features[i]; // ← همون feature ای که forEach می‌داد
+
+      const districtKey = Number(feature.properties.regionId);
+      console.log(districtKey);
+      const districtValue = manateghMap[districtKey];
+      const fillColor = Number.isFinite(districtValue) ? getColorByValue(districtValue) : "#ccc";
+      console.log(districtValue);
+      console.log(fillColor);
+
+      const popupLatLng = [Number(feature.properties.lat), Number(feature.properties.lon)];
+
+      const formattedValue = Number.isFinite(districtValue)
+        ? districtValue.toLocaleString("en-US") // یا "fa-IR" اگر جداکننده فارسی می‌خواهید
+        : ",";
+
+      const popupContent = `
+ <div class="district-popup">
+ <div class="district-popup-number t-x16 mb-0">
+  %${formattedValue}
+ </div>
+ <div class="district-popup-text t-x12">
+ ${feature.properties.name}
+ </div>
+ </div>
+`;
+
+      const geoLayer = L.geoJSON(feature, {
+        style: {
+          color: "#000",
+          weight: 2,
+          fillColor: fillColor,
+          fillOpacity: 0.35,
+        },
+      });
+
+      geoLayer.eachLayer(function (layer) {
+        const targetLatLng = popupLatLng.every(Number.isFinite) ? popupLatLng : layer.getBounds().getCenter();
+
+        layer.bindPopup(popupContent, {
+          className: "district-popup",
+          autoClose: false,
+          closeOnClick: false,
+          autoPan: false,
+        });
+
+        layer.once("add", function () {
+          layer.openPopup(targetLatLng);
+        });
+      });
+
+      geoLayer.addTo(districtGroup);
+    }
+  }
+
+  function generetLegend() {
+    const legendcolor = document.getElementById("legendcolor");
+    const makelegend = ['<li><p class="t-x12 t-center mb-1 pb-1 border-bottom">میانگین نمرات</p></li>'];
+
+    for (let i = legendColors.length - 1; i >= 0; i--) {
+      const leg = legendColors[i];
+      makelegend.push("<li class='mr-lg-1 ml-md-1'>");
+      makelegend.push(`<i class="bx bxs-circle" style="color:${leg.color}"></i>`);
+      makelegend.push(`<span class="t-x12 mr-2 t-dark">${leg.min} تا ${leg.max}</span>`);
+      makelegend.push("</li>");
+    }
+
+    legendcolor.innerHTML = makelegend.join("");
+  }
+
+  let ColumnSeries = (_data, minrange, maxrange, titilechart, _locationX) => {
+    document.getElementById("titilechart").innerHTML = titilechart;
+    am4core.ready(function () {
+      console.log(_data);
+      // Themes begin
+      am4core.useTheme(am4themes_animated);
+      var chart = am4core.create("ColumnSeries", am4charts.XYChart);
+      const sortedData = [..._data].sort((a, b) => b.value - a.value);
+      chart.data = sortedData;
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "title";
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.renderer.labels.template.horizontalCenter = "right";
+      categoryAxis.renderer.labels.template.verticalCenter = "middle";
+      categoryAxis.tooltip.disabled = true;
+      //categoryAxis.renderer.minHeight = 110;
+      categoryAxis.renderer.minGridDistance = 10;
+      categoryAxis.renderer.labels.template.rotation = -90;
+      categoryAxis.renderer.labels.template.wrap = true;
+      categoryAxis.renderer.labels.template.fontSize = 10;
+      categoryAxis.renderer.labels.template.adapter.add("visible", function () {
+        return true;
+      });
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.renderer.minWidth = 50;
+      valueAxis.min = minrange;
+      valueAxis.max = maxrange;
+      valueAxis.strictMinMax = true;
+
+      // Create series
+      var series = chart.series.push(new am4charts.ColumnSeries());
+      series.sequencedInterpolation = true;
+      series.dataFields.valueY = "value";
+      series.dataFields.categoryX = "title";
+      series.columns.template.tooltipText = "[bold]{categoryX}[/]\n{valueY}";
+      series.columns.template.strokeWidth = 0;
+      series.tooltip.pointerOrientation = "vertical";
+      series.columns.template.column.cornerRadiusTopLeft = 10;
+      series.columns.template.column.cornerRadiusTopRight = 10;
+      series.columns.template.column.fillOpacity = 0.8;
+
+      // on hover, make corner radiuses bigger
+      var hoverState = series.columns.template.column.states.create("hover");
+      hoverState.properties.cornerRadiusTopLeft = 0;
+      hoverState.properties.cornerRadiusTopRight = 0;
+      hoverState.properties.fillOpacity = 1;
+      series.columns.template.adapter.add("fill", function (fill, target) {
+        return am4core.color(target.dataItem.dataContext.color);
+      });
+
+      var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+      labelBullet.label.text = "{valueY.formatNumber('#,###')}";
+      labelBullet.label.fill = am4core.color("#000");
+      labelBullet.label.fontSize = 7;
+      labelBullet.label.truncate = false;
+      labelBullet.label.hideOversized = false;
+      labelBullet.label.verticalCenter = "bottom";
+      labelBullet.label.dy = -10; // فاصله از بالای ستون
+      labelBullet.interactionsEnabled = false;
+      labelBullet.label.rotation = -90;
+      labelBullet.label.horizontalCenter = "middle";
+      labelBullet.locationX = _locationX; // وسط طول ستون
+
+      // Cursor
+      chart.cursor = new am4charts.XYCursor();
+      let bodychart = document.querySelector(".bodychart");
+      let leftValue = getComputedStyle(bodychart).left;
+      if (leftValue.startsWith("-")) {
+        bodychart.style.left = "1vw";
+      }
+    }); // end am4core.ready()
+  };
+
+  let closebodychart = () => {
+    let chart = document.querySelector(".bodychart");
+    let leftValue = getComputedStyle(chart).left;
+
+    // اگر باز بود (left مثبت یا صفر)
+    if (!leftValue.startsWith("-")) {
+      chart.style.left = "-80vw";
+    }
+  };
+
+  function getDatasetById(targetId, valueKey = "safiran") {
+    return [...document.querySelectorAll("#cityTehran li")]
+      .filter((li) => li.dataset.id === targetId)
+      .map((li) => {
+        const title = li.dataset.title?.trim() || "";
+        const value = Number(li.dataset[valueKey]);
+        const color = Number.isFinite(value) ? getColorByValue(value) : "#ccc";
+
+        return { title, value, color };
+      });
+  }
+
+  function floorToMagnitude(num) {
+    const magnitude = num * 0.2;
+    return Math.round(num - magnitude);
+  }
+
+  function ceilToMagnitude(num) {
+    const magnitude = num * 0.2;
+    return Math.round(num + magnitude);
+  }
+
+  function handleDatasetChange(elm) {
+    const elementinput = elm.id;
+    const group = elm.dataset.group;
+
+    if (elementinput === "sazmanha") {
+      const sazmanha = getDatasetById("SazmanhaSherkatha", group);
+      const values = sazmanha.map((item) => item.value);
+      const minValue = Math.min(...values);
+      const maxValue = Math.max(...values);
+      const roundedMin = floorToMagnitude(minValue);
+      const roundedMax = ceilToMagnitude(maxValue);
+      ColumnSeries(sazmanha, roundedMin, roundedMax, "میزان مشارکت سازمانها و شرکت ها", 0.65);
+    } else if (elementinput === "manategh") {
+      const manategh = getDatasetById("Manategh", group);
+      const values = manategh.map((item) => item.value);
+      const minValue = Math.min(...values);
+      const maxValue = Math.max(...values);
+      const roundedMin = floorToMagnitude(minValue);
+      const roundedMax = ceilToMagnitude(maxValue);
+      ColumnSeries(manategh, roundedMin, roundedMax, "درصد مشارکت مناطق 22 گانه نسبت به نواحی", 0.9);
+    }
+  }
+
+  var overloadMap = (elm) => {
+    const elementinput = elm.id;
+    prepareDistrictDataset(elementinput);
+    loadRegion(cityTehran.features);
+    generetLegend();
+  }
+
+  map.whenReady(() => {
+    document.getElementById("loader").style.display = "none";
+    prepareDistrictDataset('safiran');
+    loadRegion(cityTehran.features);
+    generetLegend();
+  });
+</script>

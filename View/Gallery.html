@@ -1,0 +1,308 @@
+<style>
+    .body-gallery {
+        height: 70vh;
+        width: 100vw;
+    }
+
+    .gallerys {
+        height: 100%;
+        width: 100%;
+        display: flex;
+    }
+
+    .gallery {
+        background-size: cover;
+        background-position: 50% center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 1.5s ease;
+        flex: 1;
+        overflow: hidden;
+        padding-block: 50px;
+        box-shadow: 10px 0 10px rgb(0 0 0 / 50%);
+    }
+
+    .gallery1 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w1.jpg);
+    }
+
+    .gallery2 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w2.jpg);
+    }
+
+    .gallery3 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w3.jpg);
+    }
+
+    .gallery4 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w4.jpg);
+    }
+
+    .gallery5 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w5.jpg);
+    }
+
+    .gallery6 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w6.jpg);
+    }
+
+    .gallery7 {
+        background-image: url(/Portals/2/Econet/Image/Gallery/thumb/w7.jpg);
+    }
+
+    .top {
+        transform: translateY(-50vh);
+        transition: all 1s ease;
+    }
+
+    .middle {
+        transition: all 0.5s ease;
+    }
+
+    .bottom {
+        transform: translateY(50vh);
+        transition: all 1.2s ease;
+        white-space: nowrap;
+    }
+
+    .open {
+        flex: 15;
+    }
+
+    @media screen and (max-width: 610px) {
+        body {
+            font-size: 4rem;
+        }
+
+        .gallerys {
+            flex-direction: column;
+        }
+
+        .gallery {
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .top {
+            transform: translateX(-50vw);
+        }
+
+        .bottom {
+            transform: translateX(40vw);
+        }
+
+        .open {
+            flex: 15;
+        }
+    }
+
+    .service-btn {
+        display: flex;
+        justify-content: space-between;
+        color: var(--theme-color-white);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-family: var(--title-font);
+        font-weight: 500;
+        font-size: 16px;
+        padding: 10px 30px;
+        border-radius: 40px;
+        transition: 0.5s;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        text-decoration: none !important;
+        background-color: #0089ff;
+    }
+
+    a:hover {
+        --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+        background-color: #017f3f;
+        color: #fff !important;
+        text-decoration: none !important;
+    }
+</style>
+
+
+<div class="body-gallery ">
+    <div class="gallerys">
+        <div class="gallery gallery1">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w1" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+        <div class="gallery gallery2">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w2" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+        <div class="gallery gallery3">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w3" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+        <div class="gallery gallery4">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w4" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+        <div class="gallery gallery5">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w5" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+        <div class="gallery gallery6">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w6" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+        <div class="gallery gallery7">
+            <p class="top t-x18">شهر تهران</p>
+            <p class="middle t-x14"></p>
+
+            <p class="bottom">
+                <a class="service-btn" onclick="downloadImage(this)" id="w7" href="javascript:void(0)">
+                    دانلود
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const galleries = document.querySelectorAll(".gallery");
+    const galleryWrapper = document.querySelector(".gallerys");
+    const mediaQuery = window.matchMedia("(max-width: 610px)");
+
+    const resetPanels = () => {
+        galleries.forEach((panel) => {
+            panel.classList.remove("open");
+
+            const top = panel.querySelector(".top");
+            const middle = panel.querySelector(".middle");
+            const bottom = panel.querySelector(".bottom");
+
+            if (top) {
+                top.style.transform = mediaQuery.matches
+                    ? "translateX(-50vw)"
+                    : "translateY(-50vh)";
+                top.style.fontSize = "";
+            }
+
+            if (middle) {
+                middle.style.fontSize = "4rem";
+            }
+
+            if (bottom) {
+                bottom.style.transform = mediaQuery.matches
+                    ? "translateX(40vw)"
+                    : "translateY(50vh)";
+                bottom.style.fontSize = "";
+            }
+        });
+    };
+
+    const openPanel = (panel) => {
+        resetPanels();
+
+        panel.classList.add("open");
+
+        const top = panel.querySelector(".top");
+        const middle = panel.querySelector(".middle");
+        const bottom = panel.querySelector(".bottom");
+
+        if (top) {
+            top.style.transform = mediaQuery.matches ? "translateX(0)" : "translateY(0)";
+            top.style.fontSize = "3rem";
+        }
+
+        if (middle) {
+            middle.style.fontSize = mediaQuery.matches ? "4.5rem" : "5.5rem";
+        }
+
+        if (bottom) {
+            bottom.style.transform = mediaQuery.matches ? "translateX(0)" : "translateY(0)";
+            bottom.style.fontSize = "3rem";
+        }
+    };
+
+    galleries.forEach((panel) => {
+        panel.addEventListener("mouseenter", () => openPanel(panel));
+    });
+
+    galleryWrapper.addEventListener("mouseleave", resetPanels);
+
+    function downloadImage(el) {
+        const elementinput = el.id;
+        const url = '/Portals/2/Econet/Image/Gallery/' + elementinput + '.jpg';
+
+        fetch(url)
+            .then(res => res.blob())
+            .then(blob => {
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = elementinput + '.jpg';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(a.href);
+            });
+    }
+
+
+    function downloadImage(el) {
+        const elementinput = el.id;
+        const url = '/Portals/2/Econet/Image/Gallery/' + elementinput + '.jpg';
+
+        fetch(url)
+            .then(res => res.blob())
+            .then(blob => {
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = elementinput + '.jpg';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(a.href);
+            });
+    }
+
+</script>
