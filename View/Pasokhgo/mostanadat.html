@@ -96,6 +96,91 @@
   .accordion-button {
     background-color: #fff;
   }
+
+  .shape-right-center {
+    position: absolute;
+    right: 0;
+    top: 100vh;
+  }
+
+  .shape-left-center {
+    position: absolute;
+    left: 0;
+    top: 100vh;
+  }
+
+  /* پایه دکمه */
+  .bttn-custom {
+    display: inline-block;
+    font-family: var(--title-font);
+    font-weight: 400;
+    border-radius: 45px;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: #1f7a4d;
+    z-index: 1;
+
+    transition:
+      background-color 250ms ease,
+      color 250ms ease,
+      box-shadow 250ms ease;
+  }
+
+  /* افکت شیشه‌ای */
+  .bttn-custom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent,
+        rgba(255, 255, 255, 0.45),
+        transparent);
+    transition: right 450ms ease;
+  }
+
+  /* hover */
+  .bttn-custom:hover::before {
+    right: 120%;
+    color: #ffffff;
+  }
+
+  .bttn-custom:hover {
+    background-color: #cf7105;
+    box-shadow: 0 6px 18px rgba(128, 98, 16, 0.35);
+    color: #ffffff;
+  }
+
+  .bttn-custom-a {
+    background-color: #0ca525;
+  }
+
+  .bttn-custom-b {
+    background-color: #2c8f63;
+  }
+
+  .bttn-custom-c {
+    background-color: #237a57;
+  }
+
+  .bttn-custom-d {
+    background-color: #0ca525;
+  }
+
+  .bttn-custom-e {
+    background-color: #0ca525;
+  }
+
+  .bttn-custom-f {
+    background-color: #2f7d5b;
+  }
+
+  .bttn-custom-g {
+    background-color: #0ca525;
+  }
 </style>
 
 <div class="blog-list-area">
@@ -116,240 +201,300 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <ul id="myTab" role="tablist" class="t-center mb-5">
-          <li role="presentation" class="d-inline-block" >
-            <a class="nav-link bttn bttn-info px-3 py-1 active" id="h1-tab" data-bs-toggle="tab" data-bs-target="#h1-tab-pane" role="tab"
-              aria-controls="h1-tab-pane" aria-selected="true">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 1
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>
-          <li role="presentation" class="d-inline-block">
-            <a class="nav-link bttn bttn-info px-3 py-1" id="h2-tab" data-bs-toggle="tab" data-bs-target="#h2-tab-pane" role="tab"
-              aria-controls="h2-tab-pane" aria-selected="false">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 2
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>
-          <li role="presentation" class="d-inline-block">
-            <a class="nav-link bttn bttn-info px-3 py-1" id="h3-tab" data-bs-toggle="tab" data-bs-target="#h3-tab-pane" role="tab"
-              aria-controls="h3-tab-pane" aria-selected="false">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 3
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>
-          <li role="presentation" class="d-inline-block">
-            <a class="nav-link bttn bttn-info px-3 py-1" id="h4-tab" data-bs-toggle="tab" data-bs-target="#h4-tab-pane" role="tab"
-              aria-controls="h4-tab-pane" aria-selected="true">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 1
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>
-          <li role="presentation" class="d-inline-block">
-            <a class="nav-link bttn bttn-info px-3 py-1" id="h5-tab" data-bs-toggle="tab" data-bs-target="#h5-tab-pane" role="tab"
-              aria-controls="h5-tab-pane" aria-selected="false">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 2
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>
-          <li role="presentation" class="d-inline-block">
-            <a class="nav-link bttn bttn-info px-3 py-1" id="h6-tab" data-bs-toggle="tab" data-bs-target="#h6-tab-pane" role="tab"
-              aria-controls="h6-tab-pane" aria-selected="false">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 3
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>
-          <li role="presentation" class="d-inline-block">
-            <a class="nav-link bttn bttn-info px-3 py-1" id="h7-tab" data-bs-toggle="tab" data-bs-target="#h7-tab-pane" role="tab"
-              aria-controls="h7-tab-pane" aria-selected="true">
-              <img alt="icon" style="height: 30px" src="/Portals/2/Images/doc.png" />
-              حوزه 1
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </a>
-          </li>          
-        </ul>
+    <div class="container">
+      <ul id="myTab" role="tablist" class="row justify-content-md-center t-center mb-5">
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-a t-x14 w-100 px-3 py-1 active"
+            id="h1-tab" data-bs-toggle="tab" data-bs-target="#h1-tab-pane" role="tab" aria-controls="h1-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            سازمان پیشگیری و مدیریت بحران
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-b t-x14 w-100  px-3 py-1"
+            id="h2-tab" data-bs-toggle="tab" data-bs-target="#h2-tab-pane" role="tab" aria-controls="h2-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت اجتماعی و فرهنگی
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-c t-x14 w-100  px-3 py-1"
+            id="h3-tab" data-bs-toggle="tab" data-bs-target="#h3-tab-pane" role="tab" aria-controls="h3-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت حمل و نقل و ترافیک
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-d t-x14 w-100  px-3 py-1"
+            id="h4-tab" data-bs-toggle="tab" data-bs-target="#h4-tab-pane" role="tab" aria-controls="h4-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت خدمات شهری و محیط زیست
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-e t-x14 w-100  px-3 py-1"
+            id="h5-tab" data-bs-toggle="tab" data-bs-target="#h5-tab-pane" role="tab" aria-controls="h5-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت شهرسازی و معماری
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block  col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-f t-x14 w-100  px-3 py-1"
+            id="h6-tab" data-bs-toggle="tab" data-bs-target="#h6-tab-pane" role="tab" aria-controls="h6-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت فنی و عمرانی
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block  col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom t-x14 w-100 bttn-custom-g  px-3 py-1"
+            id="h7-tab" data-bs-toggle="tab" data-bs-target="#h7-tab-pane" role="tab" aria-controls="h7-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت مالی و اقتصاد شهری
+          </a>
+        </li>
+      </ul>
+      <div class="row justify-content-md-center mt-5 pt-5">
+        <div class="col-12">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="h1-tab-pane" role="tabpanel" aria-labelledby="h1-tab"
+              tabindex="0">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7 col-12">
+                  <div class="sec-title">
+                    <div class="w-100 t-left mx-auto">
+                      <img style="height: 250px;" src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                    <div class="section-sub-title">
+                      <h5 class="sub-title">
+                        <i class="bx bx-book-open t-x20"></i>
+                        سازمان پیشگیری و مدیریت بحران
+                      </h5>
+                    </div>
+                    <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    <hr />
+                    <div class="blog-details-list-item mt-3">
+                      <ul>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          نوآوری بازار
+                          تهیه، تنظیم و پایش برنامه‌های جامع بلند مدت و میان مدت راهبردی و عملیاتی شهرداری
+                          تهران
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          مکیدن منابع را
+                          تهیه و تنظیم بودجه‌های سالیانه شهرداری تهران، اصلاحیه‌ها و متمم آن، ابلاغ بودجه مصوب
+                          و
+                          مدیریت تخصیص اعتبارات برای کنترل منابع و مصارف، همچنین کنترل و نظارت بر اجرای برنامه
+                          و بودجه
+                          در راستای پایش چگونگی میزان تحقق اهداف و برنامه‌های پیش‌بینی شده.
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          جامعه های محور
+                          پایش پروژه‌های تملک دارایی سرمایه‌ای (احداثی، اولویت دار، توسعه محلی و مستمر) و
+                          هزینه‌ای
+                          به منظور اطمینان از انجام بموقع و صحیح آن‌ها و تهیه و تدوین شیوه نامه‌ها،
+                          دستورالعمل‌ها و
+                          استانداردهای مربوطه.
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          برنامه‌ریزی و سازماندهی لازم درخصوص مدیریت و راهبری پروژه های خاص.
+
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          جمع‌آوری، پالایش، به‌روزرسانی و صحت سنجی آمار و اطلاعات عملکردی از منابع و
+                          پایگاه‌های
+                          اطلاعات موجود.
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          طراحی، تحلیل، توسعه و راهبری داشبوردهای مدیریتی و تخصصی مورد نیاز شهرداری تهران.
+
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          مستندسازی عملکرد بخش‌های مختلف شهرداری تهران و مدیریت انتشار گزارشات عملکرد.
+
+                        </li>
+                        <li class="t-x14 t-justify t-fw-300">
+                          <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                          توسعه و ارتقا نظام ارزیابی عملکرد (تدوین، بازنگری و تدقیق شاخص های ارزیابی، تحلیل
+                          داده ها
+                          و ...)، تدوین و ارائه گزارش تحلیلی و مدیریتی ارزیابی عملکرد.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5 col-12">
+                  <div class="swiper swiper-cube-1">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="h2-tab-pane" role="tabpanel" aria-labelledby="h2-tab" tabindex="0">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7 col-12">
+                  <div class="sec-title">
+                    <div class="section-sub-title">
+                      <h5 class="sub-title">
+                        <i class="bx bx-book-open t-x20"></i>
+                        معاونت
+                      </h5>
+                    </div>
+                    <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                    <hr />
+                    <p class="t-x14 t-dark t-fw-400 t-justify">
+                      ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
+                      تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
+                      محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
+                      غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                      توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
+                      از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
+                      اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-5 col-12">
+                  <div class="swiper swiper-cube-2">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination-cube-2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="h3-tab-pane" role="tabpanel" aria-labelledby="h3-tab" tabindex="0">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7 col-12">
+                  <div class="sec-title">
+                    <div class="section-sub-title">
+                      <h5 class="sub-title">
+                        <i class="bx bx-book-open t-x20"></i>
+                        معاونت
+                      </h5>
+                    </div>
+                    <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                    <hr />
+                    <p class="t-x14 t-dark t-fw-400 t-justify">
+                      ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
+                      تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
+                      محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
+                      غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                      توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
+                      از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
+                      اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-5 col-12">
+                  <div class="swiper swiper-cube-3">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination-cube-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="p1-tab-pane" role="tabpanel" aria-labelledby="p1-tab" tabindex="0">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7 col-12">
+                  <div class="sec-title">
+                    <div class="section-sub-title">
+                      <h5 class="sub-title">
+                        <i class="bx bx-book-open t-x20"></i>
+                        معاونت
+                      </h5>
+                    </div>
+                    <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
+                    <hr />
+                    <p class="t-x14 t-dark t-fw-400 t-justify">
+                      ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
+                      تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
+                      محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
+                      غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
+                      توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
+                      از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
+                      اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-5 col-12">
+                  <div class="swiper swiper-cube-4">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                      <div class="swiper-slide swiper-slide-cube"
+                        style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination-cube-4"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-12">
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="h1-tab-pane" role="tabpanel" aria-labelledby="h1-tab" tabindex="0">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-7 col-12">
-                <div class="sec-title">
-                  <div class="section-sub-title">
-                    <h5 class="sub-title">
-                      <i class="bx bx-book-open t-x20"></i>
-                      معاونت
-                    </h5>
-                  </div>
-                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
-                  <hr />
-                  <p class="t-x14 t-dark t-fw-400 t-justify">
-                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
-                    تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
-                    محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
-                    غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
-                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
-                    از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
-                    اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
-                  </p>
-                </div>
-              </div>
-              <div class="col-lg-5 col-12">
-                <div class="swiper swiper-cube-1">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                  </div>
-                  <!-- Add Pagination -->
-                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
-                </div>
-              </div>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="shape-right-center">
+            <img alt="testi-shape" src="/Portals/2/Econet/Image/Patern/green-right-center-300.png">
           </div>
-          <div class="tab-pane fade" id="h2-tab-pane" role="tabpanel" aria-labelledby="h2-tab" tabindex="0">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-7 col-12">
-                <div class="sec-title">
-                  <div class="section-sub-title">
-                    <h5 class="sub-title">
-                      <i class="bx bx-book-open t-x20"></i>
-                      معاونت
-                    </h5>
-                  </div>
-                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
-                  <hr />
-                  <p class="t-x14 t-dark t-fw-400 t-justify">
-                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
-                    تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
-                    محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
-                    غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
-                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
-                    از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
-                    اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
-                  </p>
-                </div>
-              </div>
-              <div class="col-lg-5 col-12">
-                <div class="swiper swiper-cube-2">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                  </div>
-                  <!-- Add Pagination -->
-                  <div class="swiper-pagination swiper-pagination-cube-2"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="h3-tab-pane" role="tabpanel" aria-labelledby="h3-tab" tabindex="0">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-7 col-12">
-                <div class="sec-title">
-                  <div class="section-sub-title">
-                    <h5 class="sub-title">
-                      <i class="bx bx-book-open t-x20"></i>
-                      معاونت
-                    </h5>
-                  </div>
-                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
-                  <hr />
-                  <p class="t-x14 t-dark t-fw-400 t-justify">
-                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
-                    تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
-                    محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
-                    غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
-                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
-                    از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
-                    اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
-                  </p>
-                </div>
-              </div>
-              <div class="col-lg-5 col-12">
-                <div class="swiper swiper-cube-3">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                  </div>
-                  <!-- Add Pagination -->
-                  <div class="swiper-pagination swiper-pagination-cube-3"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="p1-tab-pane" role="tabpanel" aria-labelledby="p1-tab" tabindex="0">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-lg-7 col-12">
-                <div class="sec-title">
-                  <div class="section-sub-title">
-                    <h5 class="sub-title">
-                      <i class="bx bx-book-open t-x20"></i>
-                      معاونت
-                    </h5>
-                  </div>
-                  <h1 class="t-x34 t-right t-dark t-fw-700">سیستم اکوسیستم نوآورانه</h1>
-                  <hr />
-                  <p class="t-x14 t-dark t-fw-400 t-justify">
-                    ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و
-                    تجدید پذیر مجری توانمندسازی جامعه.ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به
-                    محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی
-                    غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری
-                    توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و اختصاص داده شده به محافظت از سیاره
-                    از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه. ECONET یک سازمان زیست محیطی غیرانتفاعی است و
-                    اختصاص داده شده به محافظت از سیاره از طریق پایدار و تجدید پذیر مجری توانمندسازی جامعه.
-                  </p>
-                </div>
-              </div>
-              <div class="col-lg-5 col-12">
-                <div class="swiper swiper-cube-4">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                    <div class="swiper-slide swiper-slide-cube"
-                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
-                  </div>
-                  <!-- Add Pagination -->
-                  <div class="swiper-pagination swiper-pagination-cube-4"></div>
-                </div>
-              </div>
-            </div>
+          <div class="shape-left-center">
+            <img alt="testi-shape" src="/Portals/2/Econet/Image/Patern/green-left-center-300.png">
           </div>
         </div>
       </div>
