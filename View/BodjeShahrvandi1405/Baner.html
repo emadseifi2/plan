@@ -1,0 +1,168 @@
+<script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/core.js?cdv=587"
+    type="text/javascript"></script>
+<script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/charts.js?cdv=587"
+    type="text/javascript"></script>
+<script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/themes/animated.js?cdv=587"
+    type="text/javascript"></script>
+
+<style>
+    .breadcumb-area {
+        display: none;
+    }
+
+    .main-menu .navigation>li>a {
+        color: #fff;
+    }
+
+    .main-menu .navigation {
+        margin: 0 auto;
+        position: relative;
+        width: 70vw !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-solar-renewable .main-box .nav-outer {
+        gap: 0 !important;
+    }
+
+    #chartdiv {
+        width: 100%;
+        height: 70vh;
+        direction: ltr;
+    }
+
+    .logo-chart {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 215px;
+        height: 210px;
+        z-index: 9999;
+    }
+
+    .auto-container {
+        max-width: 90vw;       
+    }
+</style>
+
+<div class="container-fluid" style="height: 100vh;background-color: #0c2318;padding-top: 15vh">
+    <div class="auto-container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-8">
+                <div class="divider divider-success my-1">
+                    <div class="divider-text t-success t-center t-x18 t-fw-700">
+                        <div class="sec-title my-0 mx-auto">
+                            <div class="section-sub-title t-center">
+                                <h5 class="sub-title t-x20 t-success t-fw-700 mb-0">
+                                    <i class="bx bx-book-open t-x20"></i>
+                                    بودجه شهروندی 1405
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 t-center">
+                test
+            </div>
+            <div class="col-lg-6 t-center position-relative">
+                <img alt="" src="https://plan.tehran.ir/Portals/2/Econet/Image/Skin/Other/logo-chart.png"
+                    class="logo-chart" title="اچونت">
+                <div id="chartdiv"></div>
+            </div>
+            <div class="col-lg-3 t-center">
+                test
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Initialize Swiper -->
+<script>
+    am4core.ready(function () {
+
+        am4core.useTheme(am4themes_animated);
+
+        var chart = am4core.create("chartdiv", am4charts.PieChart);
+
+        chart.data = [
+            { category: "کاهش آلودگی هوا و رفع ترافیک", value: 1, idx: "۱" },
+            { category: "بهبود و توسعه خدمات مدیریت شهری و گسترش فرهنگ شهروندی", value: 1, idx: "۲" },
+            { category: "زیباسازی، مناسب‌سازی و افزایش رضایت‌مندی", value: 1, idx: "۳" },
+            { category: "توسعه حمل‌ونقل عمومی و بهبود دسترسی شهری", value: 1, idx: "۴" },
+            { category: "حمایت و توسعه سرمایه‌گذاری و مشارکت بخش خصوصی", value: 1, idx: "۵" },
+            { category: "افزایش فضاهای عمومی و بهبود کیفیت زندگی", value: 1, idx: "۶" },
+            { category: "توسعه فضای سبز و محیط زیست پایدار", value: 1, idx: "۷" },
+            { category: "تقویت خدمات ایمنی و مدیریت بحران", value: 1, idx: "۸" },
+            { category: "بهبود و ارتقاء فرهنگ عمومی و تفریح شهری", value: 1, idx: "۹" }
+        ];
+
+        chart.innerRadius = am4core.percent(30);
+
+        var series = chart.series.push(new am4charts.PieSeries());
+        series.dataFields.value = "value";
+        series.dataFields.category = "category";
+
+        // لیبل‌های داخل قطاع
+        series.labels.template.text = "{category}";
+        series.labels.template.inside = true;
+        series.alignLabels = false;
+        series.labels.template.radius = am4core.percent(45); // منفی = داخل
+        series.labels.template.fill = am4core.color("#ffffff");
+        series.labels.template.fontSize = 11; // کوچکتر
+        series.labels.template.wrap = true;
+        series.labels.template.maxWidth = 120;
+        series.labels.template.textAlign = "middle";
+        series.labels.template.horizontalCenter = "middle";
+        series.labels.template.verticalCenter = "middle";
+        series.labels.template.hideOversized = false;
+        series.labels.template.truncate = false;
+
+        // حذف خطوط راهنما
+        series.ticks.template.disabled = true;
+
+        // شماره‌گذاری بیرونی
+        var bullet = series.bullets.push(new am4charts.LabelBullet());
+        bullet.label.text = "{idx}";
+        bullet.label.fontSize = 16;
+        bullet.label.fill = am4core.color("#555");
+        bullet.label.horizontalCenter = "middle";
+        bullet.label.verticalCenter = "middle";
+        bullet.location = 0.5;
+        bullet.radius = am4core.percent(102);
+
+        // var logo = chart.seriesContainer.createChild(am4core.Image);
+        // logo.href = "https://plan.tehran.ir/Portals/2/Econet/Image/Skin/Other/logo.png";
+        // logo.width = 120;
+        // logo.height = 120;
+        // logo.horizontalCenter = "middle";
+        // logo.verticalCenter = "middle";
+        // logo.align = "center";
+        // logo.valign = "middle";
+
+        // زیبایی ظاهری لبه‌ها
+        series.slices.template.stroke = am4core.color("#ffffff");
+        series.slices.template.strokeWidth = 1;
+        series.slices.template.strokeOpacity = 1;
+
+        // رنگ‌ها
+        series.colors.list = [
+            am4core.color("#2E86AB"),
+            am4core.color("#1D4E89"),
+            am4core.color("#6A4C93"),
+            am4core.color("#F2A541"),
+            am4core.color("#E76F51"),
+            am4core.color("#8CB369"),
+            am4core.color("#3D5A80"),
+            am4core.color("#6D597A"),
+            am4core.color("#B56576")
+        ];
+    });
+</script>
