@@ -1,23 +1,17 @@
+<script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/core.js?cdv=587"
+    type="text/javascript"></script>
+<script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/charts.js?cdv=587"
+    type="text/javascript"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/forceDirected.js"></script>
+<script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/themes/animated.js?cdv=587"
+    type="text/javascript"></script>
+
 <style>
-    #dnn_ServiceClassic,
-    #dnn_AboutClassic,
-    #dnn_MarqueeOneTopClassic {
-        display: none;
-    }
-
-    .why-choose-section-one.classic {
-        padding: 0px;
-        margin: 0;
-    }
-
-    .why-choose-section-solar-classic {
-        padding: 0;
-        height: 50vh;
-    }
-
-    .why-choose-section-solar-classic .choose-box {
-        height: 90px !important;
-        margin-bottom: 15px;
+    #ForceDirectedSeriesChartdive {
+        width: 100%;
+        height: 100vh;
+        max-width: 100%;
+        direction: ltr;
     }
 </style>
 <div class="why-choose-section-solar-classic">
@@ -30,7 +24,7 @@
                             <div class="section-sub-title t-center">
                                 <h5 class="sub-title t-x20 t-success t-fw-700 mb-0">
                                     <i class="bx bx-book-open t-x20"></i>
-                                    موضوعات بودجه شهروندی
+                                    اهداف کلان، اهداف عملیاتی و برنامه های 1405
                                 </h5>
                             </div>
                         </div>
@@ -39,102 +33,8 @@
             </div>
         </div>
         <div class="row justify-content-center align-items-center">
-            <div class="col-xl-4">
-                <div class="choose-box-wrapper">
-                    <div class="choose-box fade-in">
-                        <div class="choose-icon">
-                            <span><img alt="icon" src="/Portals/2/Econet/Image/Subject/1.png" /></span>
-                        </div>
-                        <div class="choose-title">
-                            <h4 class="t-x18">
-                                ایمنی و مدیریت بحران
-                            </h4>
-                        </div>
-                        <div class="econet-hover-box hover-bx"></div>
-                        <div class="econet-hover-box hover-bx2"></div>
-                        <div class="econet-hover-box hover-bx3"></div>
-                        <div class="econet-hover-box hover-bx4"></div>
-                    </div>
-                    <div class="choose-box box-2 fade-in">
-                        <div class="choose-icon two">
-                            <span><img alt="icon" src="/Portals/2/Econet/Image/Subject/2.png" /></span>
-                        </div>
-                        <div class="choose-title">
-                            <h4 class="t-x18">
-                                شهرسازی و معماری
-                            </h4>
-                        </div>
-                        <div class="econet-hover-box hover-bx"></div>
-                        <div class="econet-hover-box hover-bx2"></div>
-                        <div class="econet-hover-box hover-bx3"></div>
-                        <div class="econet-hover-box hover-bx4"></div>
-                    </div>
-                    <div class="choose-box box-3 fade-in">
-                        <div class="choose-icon three">
-                            <span><img alt="icon" src="/Portals/2/Econet/Image/Subject/3.png" /></span>
-                        </div>
-                        <div class="choose-title">
-                            <h4 class="t-x18">
-                                توسعه مدیریت و هوشمند سازی
-                            </h4>
-                        </div>
-                        <div class="econet-hover-box hover-bx"></div>
-                        <div class="econet-hover-box hover-bx2"></div>
-                        <div class="econet-hover-box hover-bx3"></div>
-                        <div class="econet-hover-box hover-bx4"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="why-choose-thumb">
-                    <img alt="choose-thumb" src="/Portals/2/Econet/Image/Skin/solar/why-choose-thumb.png" />
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="choose-box-wrapper">
-                    <div class="choose-box fade-in">
-                        <div class="choose-icon">
-                            <span><img alt="icon" src="/Portals/2/Econet/Image/Subject/4.png" /></span>
-                        </div>
-                        <div class="choose-title">
-                            <h4 class="t-x18">
-                                اجتماعی و فرهنگی
-                            </h4>
-                        </div>
-                        <div class="econet-hover-box hover-bx"></div>
-                        <div class="econet-hover-box hover-bx2"></div>
-                        <div class="econet-hover-box hover-bx3"></div>
-                        <div class="econet-hover-box hover-bx4"></div>
-                    </div>
-                    <div class="choose-box box-2 fade-in">
-                        <div class="choose-icon two">
-                            <span><img alt="icon" src="/Portals/2/Econet/Image/Subject/5.png" /></span>
-                        </div>
-                        <div class="choose-title">
-                            <h4 class="t-x18">
-                                حمل و نقل و ترافیک
-                            </h4>
-                        </div>
-                        <div class="econet-hover-box hover-bx"></div>
-                        <div class="econet-hover-box hover-bx2"></div>
-                        <div class="econet-hover-box hover-bx3"></div>
-                        <div class="econet-hover-box hover-bx4"></div>
-                    </div>
-                    <div class="choose-box box-3 fade-in">
-                        <div class="choose-icon three">
-                            <span><img alt="icon" src="/Portals/2/Econet/Image/Subject/6.png" /></span>
-                        </div>
-                        <div class="choose-title">
-                            <h4 class="t-x18">
-                                خدمات شهری و محیط زیست
-                            </h4>
-                        </div>
-                        <div class="econet-hover-box hover-bx"></div>
-                        <div class="econet-hover-box hover-bx2"></div>
-                        <div class="econet-hover-box hover-bx3"></div>
-                        <div class="econet-hover-box hover-bx4"></div>
-                    </div>
-                </div>
+            <div class="col-lg-12">
+                <div id="ForceDirectedSeriesChartdive"></div>
             </div>
         </div>
         <div class="choose-shape4 windmill-img">
@@ -142,3 +42,145 @@
         </div>
     </div>
 </div>
+
+<script>
+    am4core.ready(function () {
+
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+
+        var chart = am4core.create("ForceDirectedSeriesChartdive", am4plugins_forceDirected.ForceDirectedTree);
+        var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
+
+        chart.data = [
+            {
+                name: "شهرداری تهران",
+                children: [
+                    {
+                        name: "کاهش آلودگی هوا، رفع ترافیک و تسهیل عبور و مرور شهری",
+                        collapsed: true,
+                        children: [
+                            { name: "A1", value: 10 },
+                            { name: "A2", value: 10 }
+                        ]
+                    },
+                    {
+                        name: "مدیریت مطلوب پسماند، امحاء زیست پذیر و حفظ محیط زیست",
+                        collapsed: true,
+                        children: [
+                            { name: "B1", value: 10 },
+                            { name: "B2", value: 10 }
+                        ]
+                    }, {
+                        name: "مدیریت بحران، افزایش ایمنی و نوسازی شهر",
+                        collapsed: true,
+                        children: [
+                            { name: "A1", value: 10 },
+                            { name: "A2", value: 10 }
+                        ]
+                    },
+                    {
+                        name: "بهبود و ارتقاء فرهنگ، مدیریت آسیب‌های اجتماعی و راهبری ظرفیت‌های فرهنگی",
+                        collapsed: true,
+                        children: [
+                            { name: "B1", value: 10 },
+                            { name: "B2", value: 10 }
+                        ]
+                    }, {
+                        name: "زیباسازی و مناسب سازی شهر و بازآفرینی معماری ایرانی و اسلامی",
+                        collapsed: true,
+                        children: [
+                            { name: "A1", value: 10 },
+                            { name: "A2", value: 10 }
+                        ]
+                    },
+                    {
+                        name: "توسعه اقتصاد شهر، بسط رفاه و بهبود معیشت شهروندان",
+                        collapsed: true,
+                        children: [
+                            { name: "B1", value: 10 },
+                            { name: "B2", value: 10 }
+                        ]
+                    }, {
+                        name: "توسعه زیست بوم نوآوری در مدیریت شهری و حکمرانی شهری دانش بنیان",
+                        collapsed: true,
+                        children: [
+                            { name: "A1", value: 10 },
+                            { name: "A2", value: 10 }
+                        ]
+                    },
+                    {
+                        name: "تقویت و ارتقاء دیپلماسی شهری و توسعه مدیریت ارتباط با شهروندان",
+                        collapsed: true,
+                        children: [
+                            { name: "B1", value: 10 },
+                            { name: "B2", value: 10 }
+                        ]
+                    },
+                    {
+                        name: "بهبود و توسعه مدیریت سازمان شهرداری تهران",
+                        collapsed: true,
+                        children: [
+                            { name: "B1", value: 10 },
+                            { name: "B2", value: 10 }
+                        ]
+                    },
+                ]
+            }
+        ];
+
+        networkSeries.dataFields.value = "value";
+        networkSeries.dataFields.name = "name";
+        networkSeries.dataFields.children = "children";
+        networkSeries.dataFields.collapsed = "collapsed";
+        networkSeries.nodes.template.propertyFields.collapsed = "collapsed";
+
+        networkSeries.nodes.template.tooltipText = "{name}:{value}";
+        networkSeries.nodes.template.fillOpacity = 1;
+
+        networkSeries.nodes.template.label.text = "{name}";
+        networkSeries.nodes.template.label.wrap = true;
+        networkSeries.nodes.template.label.maxWidth = 140;
+        networkSeries.nodes.template.label.textAlign = "middle";
+        networkSeries.nodes.template.label.hideOversized = false;
+        networkSeries.nodes.template.label.truncate = false;
+        networkSeries.nodes.template.label.oversizedBehavior = "wrap";
+        networkSeries.nodes.template.label.fontSize = 11;
+
+        networkSeries.minRadius = 50;
+        networkSeries.maxRadius = 100;
+        networkSeries.maxLevels = 2;  // اختیاری، برای نمایش اولیه تا سطح ۲
+
+        networkSeries.links.template.strokeWidth = 1;
+
+        var hoverState = networkSeries.links.template.states.create("hover");
+        hoverState.properties.strokeWidth = 3;
+        hoverState.properties.strokeOpacity = 1;
+
+        networkSeries.nodes.template.cursorOverStyle = am4core.MouseCursorStyle.pointer;
+        networkSeries.nodes.template.events.on("hit", function (event) {
+            event.target.dataItem.toggle();
+        });
+
+        networkSeries.nodes.template.events.on("over", function (event) {
+            event.target.dataItem.childLinks.each(function (link) {
+                link.isHover = true;
+            });
+            if (event.target.dataItem.parentLink) {
+                event.target.dataItem.parentLink.isHover = true;
+            }
+        });
+
+        networkSeries.nodes.template.events.on("out", function (event) {
+            event.target.dataItem.childLinks.each(function (link) {
+                link.isHover = false;
+            });
+            if (event.target.dataItem.parentLink) {
+                event.target.dataItem.parentLink.isHover = false;
+            }
+        });
+
+    });// end am4core.ready()
+</script>

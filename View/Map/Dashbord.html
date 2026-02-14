@@ -687,14 +687,12 @@
 
     const sidebarToggle = document.getElementById("sidebar-toggle");
     const sidebarIcon = sidebarToggle?.querySelector("i");
-
     if (sidebarIcon) {
         sidebarIcon.classList.remove("bx-right-arrow");
         sidebarIcon.classList.add("bx-left-arrow");
     } else {
         console.log("is not found ....");
     }
-
     let isSidebarCollapsed = false;
 
     function _btnSidbare() {
@@ -766,18 +764,27 @@
         }
     };
 
-    // متد برای ایجاد لایه Polygon
-    var _createPolygonLayer = function (_polygon, _weight,_color, _fillOpacity, _saveStatus) {
-        let layer = L.polygon(_polygon, {
+    var _createPolygonLayer = function (_polygon, _weight, _color, _fillOpacity) {
+        console.log("_polygon:", _polygon);
+
+        if (!_polygon || _polygon.length === 0) {
+            console.warn("مختصات خالی است");
+            return null;
+        }
+
+        const fixedCoords = _polygon.map(([lng, lat]) => [lat, lng]);
+        console.log("fixedCoords:", fixedCoords);
+
+        let layer = L.polygon(fixedCoords, {   // << اینجا اصلاح شد
             color: _color,
             weight: _weight,
-            fillOpacity: _fillOpacity,
+            opacity: 1,
+            fillColor: _color,
+            fillOpacity: _fillOpacity
         });
 
-        if (_saveStatus === "Saving") {
-            plygonLayers.push(layer);
-        }
-        layer.addTo(map); // اضافه کردن لایه به نقشه
+        plygonLayers.push(layer);
+        layer.addTo(map);
         return layer;
     };
 
@@ -819,35 +826,36 @@
             });
         });
     };
-    // تابع برای چک کردن و افزودن/حذف لایه
-    let _checkStaticLayer = (LayerName) => {
-        //var LayerName = _layer.getAttribute("data-layername");
-        // اگر لایه وجود داشت، آن را از نقشه حذف کنید
+
+    var _checkStaticLayer = function (LayerName) {
         if (layers[LayerName]) {
             map.removeLayer(layers[LayerName]);
             delete layers[LayerName];
             return;
         }
 
-        // دریافت مختصات‌ها
-        var _Coordinates = [];
-        var GeometryTehran = cityTehran.features;
-        for (var i = 0; i < GeometryTehran.length; i++) {
-            if (GeometryTehran[i].properties.regionName === LayerName) {
-                _Coordinates = GeometryTehran[i].geometry.coordinates[0];
-            }
+        const region = cityTehran.features.find(f => f.properties.regionName === LayerName);
+
+        if (!region) {
+            console.warn("منطقه یافت نشد:", LayerName);
+            return;
         }
 
-        //let leafletpoint = _reverseAndAddPoints(_Coordinates[0]);
-        var myPolygon = _createPolygonLayer(_Coordinates[0], 1,"#0093ff", 0.1,"Saving");
+        let coords = region.geometry.coordinates;
 
-        // تغییر مرکز نقشه به مرکز پلیگان
-        var T_polygon = turf.polygon(_Coordinates);
-        var centroid = turf.centroid(T_polygon);      
-        _flytoLatLon(centroid.geometry.coordinates[1],centroid.geometry.coordinates[0]);
+        // اگر MultiPolygon بود، اولین پلیگان را بگیر
+        if (region.geometry.type === "MultiPolygon") {
+            coords = coords[0][0];
+        } else {
+            coords = coords[0];
+        }
 
-        // اضافه کردن لایه به نقشه و ذخیره آن در لیست لایه‌ها
-        myPolygon.addTo(map);
+        _removeAllLayersMap();
+        const myPolygon = _createPolygonLayer(coords, 1, "#0093ff", 0.1);
+        if (!myPolygon) return;
+
+        _flytoLatLon(region.properties.lat, region.properties.lon);
+
         layers[LayerName] = myPolygon;
     };
 
@@ -904,7 +912,7 @@
                 color: '#1565c0',      // رنگ خط
                 weight: 1.5,           // ضخامت خط
                 fillColor: '#00ff0a',  // رنگ پر
-                fillOpacity: 0.1       // شفافیت پر
+                fillOpacity: 0      // شفافیت پر
             }),
             onEachFeature: (feature, layer) => {
                 const name = feature.properties.name || 'نامشخص';

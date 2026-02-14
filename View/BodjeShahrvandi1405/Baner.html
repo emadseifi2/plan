@@ -2,6 +2,7 @@
     type="text/javascript"></script>
 <script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/charts.js?cdv=587"
     type="text/javascript"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/forceDirected.js"></script>
 <script src="/Portals/2/skins/municipality.bodjeh.y1404/assets/Public/amcharts/themes/animated.js?cdv=587"
     type="text/javascript"></script>
 
@@ -30,7 +31,7 @@
 
     #chartdiv {
         width: 100%;
-        height: 70vh;
+        height: 90vh;
         direction: ltr;
     }
 
@@ -39,49 +40,58 @@
         left: 0;
         right: 0;
         margin: 0 auto;
-        top: 215px;
-        height: 210px;
+        top: 33vh;
+        height: 25vh;
         z-index: 9999;
     }
 
     .auto-container {
-        max-width: 90vw;       
+        max-width: 90vw;
     }
 </style>
 
-<div class="container-fluid" style="height: 100vh;background-color: #0c2318;padding-top: 15vh">
-    <div class="auto-container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-8">
-                <div class="divider divider-success my-1">
-                    <div class="divider-text t-success t-center t-x18 t-fw-700">
-                        <div class="sec-title my-0 mx-auto">
-                            <div class="section-sub-title t-center">
-                                <h5 class="sub-title t-x20 t-success t-fw-700 mb-0">
-                                    <i class="bx bx-book-open t-x20"></i>
-                                    بودجه شهروندی 1405
-                                </h5>
+<div style="height: 100vh;background-color: #0c2318;padding-top: 15vh">
+    <div class="container">
+        <div class="auto-container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-8">
+                    <div class="divider divider-success my-1">
+                        <div class="divider-text t-success t-center t-x18 t-fw-700">
+                            <div class="sec-title my-0 mx-auto">
+                                <div class="section-sub-title t-center">
+                                    <h5 class="sub-title t-x20 t-success t-fw-700 mb-0">
+                                        <i class="bx bx-book-open t-x20"></i>
+                                        بودجه شهروندی 1405
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 t-center">
-                test
-            </div>
-            <div class="col-lg-6 t-center position-relative">
-                <img alt="" src="https://plan.tehran.ir/Portals/2/Econet/Image/Skin/Other/logo-chart.png"
-                    class="logo-chart" title="اچونت">
-                <div id="chartdiv"></div>
-            </div>
-            <div class="col-lg-3 t-center">
-                test
+            <div class="row">
+                <div class="col-lg-6 t-right">
+                    <img src="/Portals/2/Econet/Image/Skin/Other/bodjeshahrvandi-white-500.png"
+                        style="margin-top: 20vh;height: 150px;" />
+                    <h1 class="t-x34 t-right t-fw-700 t-success mt-4">
+                        برنامه عملیاتی 1405 شهرداری تهران
+                    </h1>
+                    <hr />
+                    <p class="t-x14 t-right t-fw-400 t-white">
+                        نگاه اجمالی به اهداف کلان، اهداف عملیاتی و برنامه های شهرداری تهران در سال جاری در 9 بخش
+                    </p>
+                </div>
+                <div class="col-lg-6 t-center position-relative">
+                    <img alt="" src="https://plan.tehran.ir/Portals/2/Econet/Image/Skin/Other/logo-chart.png"
+                        class="logo-chart" title="اچونت">
+                    <div id="chartdiv"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <!-- Initialize Swiper -->
 <script>
@@ -92,15 +102,15 @@
         var chart = am4core.create("chartdiv", am4charts.PieChart);
 
         chart.data = [
-            { category: "کاهش آلودگی هوا و رفع ترافیک", value: 1, idx: "۱" },
-            { category: "بهبود و توسعه خدمات مدیریت شهری و گسترش فرهنگ شهروندی", value: 1, idx: "۲" },
-            { category: "زیباسازی، مناسب‌سازی و افزایش رضایت‌مندی", value: 1, idx: "۳" },
-            { category: "توسعه حمل‌ونقل عمومی و بهبود دسترسی شهری", value: 1, idx: "۴" },
-            { category: "حمایت و توسعه سرمایه‌گذاری و مشارکت بخش خصوصی", value: 1, idx: "۵" },
-            { category: "افزایش فضاهای عمومی و بهبود کیفیت زندگی", value: 1, idx: "۶" },
-            { category: "توسعه فضای سبز و محیط زیست پایدار", value: 1, idx: "۷" },
-            { category: "تقویت خدمات ایمنی و مدیریت بحران", value: 1, idx: "۸" },
-            { category: "بهبود و ارتقاء فرهنگ عمومی و تفریح شهری", value: 1, idx: "۹" }
+            { category: "کاهش آلودگی هوا، رفع ترافیک و تسهیل عبور و مرور شهری", value: 1, idx: "۱" },
+            { category: "مدیریت مطلوب پسماند، امحاء زیست پذیر و حفظ محیط زیست", value: 1, idx: "۲" },
+            { category: "مدیریت بحران، افزایش ایمنی و نوسازی شهر", value: 1, idx: "۳" },
+            { category: "بهبود و ارتقاء فرهنگ، مدیریت آسیب‌های اجتماعی و راهبری ظرفیت‌های فرهنگی", value: 1, idx: "۴" },
+            { category: "زیباسازی و مناسب سازی شهر و بازآفرینی معماری ایرانی و اسلامی", value: 1, idx: "۵" },
+            { category: "توسعه اقتصاد شهر، بسط رفاه و بهبود معیشت شهروندان", value: 1, idx: "۶" },
+            { category: "توسعه زیست بوم نوآوری در مدیریت شهری و حکمرانی شهری دانش بنیان", value: 1, idx: "۷" },
+            { category: "تقویت و ارتقاء دیپلماسی شهری و توسعه مدیریت ارتباط با شهروندان", value: 1, idx: "۸" },
+            { category: "بهبود و توسعه مدیریت سازمان شهرداری تهران", value: 1, idx: "۹" }
         ];
 
         chart.innerRadius = am4core.percent(30);
