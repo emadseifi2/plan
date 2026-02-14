@@ -454,7 +454,33 @@
     .leaflet-popup-content {
         margin: 5px !important;
     }
+
+    .toast-title h2 {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+    }
+
+    .toast-title h2 i {
+        right: -50px !important;
+    }
+
+    .toast-message p {
+        font-size: 15px !important;
+        font-weight: 400 !important;
+    }
+
+    .chartdiv {
+        width: 250px;
+        height: 300px;
+        direction: ltr;
+    }
+
+    .chartdivmetro {
+        width: 250px;
+        height: auto;
+    }
 </style>
+
 <div class="row bodyloader" id="loader">
     <div class="SubMaploader">
         <img src="/Portals/2/Econet/Image/Skin/solar/footer-shape1.png" style="max-width: 200px !important">
@@ -523,8 +549,8 @@
                                 <label for="exampleFormControlInput1" class="form-label t-x12 t-warning">
                                     انتخاب محدوده نمایش
                                 </label>
-                                <select class="form-select form-select-sm t-x10" onchange="handleChangeSelect(this)"
-                                    aria-label="Small select example">
+                                <select class="form-select form-select-sm t-x10" id="regionhandleSelect"
+                                    onchange="handleChangeSelect(this)" aria-label="Small select example">
                                     <option selected>
                                         یکی از مناطق را انتخاب نمایید ...
                                     </option>
@@ -553,12 +579,12 @@
                                 </select>
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" onchange="handleCheckboxChange(event)">
-                                <label class="form-check-label" for="exampleCheck1">
-                                    <i class='bx bx-camera-home t-warning t-x20'
-                                        style="position: absolute;right: 35%;margin-top: -5px;"></i>
-                                    دورین ها
-                                </label>
+                                <a onclick="handleCheckboxChange()"
+                                    class="bttn bttn-info my-0 py-1 px-4 position-relative">
+                                    <i class='bx bx-camera-home t-white t-x24'
+                                        style="position: absolute;right: 0;top: 0"></i>
+                                    دوربین ها
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -579,12 +605,10 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until
-                            the collapse plugin adds the appropriate classes that we use to style each element. These
-                            classes control the overall appearance, as well as the showing and hiding via CSS
-                            transitions. You can modify any of this with custom CSS or overriding our default variables.
-                            It's also worth noting that just about any HTML can go within the
-                            <code>.accordion-body</code>, though the transition does limit overflow.
+                            <a onclick="showmetro4()" class="bttn bttn-info my-0 py-1 px-4 position-relative">
+                                <i class='bx bx-train t-white t-x24' style="position: absolute;right: 0;top: 0"></i>
+                                نمایش خط 4 مترو
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -641,6 +665,19 @@
     var pointLayers = [];
     let lineLayers = [];
     let plygonLayers = [];
+    const cameraIcon = L.icon({
+        iconUrl: 'https://plan.tehran.ir/Portals/2/Econet/Image/Map/cinema.png',
+        iconSize: [30, 38],
+        iconAnchor: [15, 38],
+        popupAnchor: [0, -38]
+    });
+
+    const stationIcon = L.icon({
+        iconUrl: 'https://plan.tehran.ir/Portals/2/Econet/Image/Map/POE/train.png',
+        iconSize: [30, 38],
+        iconAnchor: [15, 38],
+        popupAnchor: [0, -38]
+    });
 
     const map = L.map("map", {
         closePopupOnClick: false,
@@ -684,6 +721,7 @@
             }
         );
     });
+    const cameraLayerGroup = L.layerGroup();
 
     const sidebarToggle = document.getElementById("sidebar-toggle");
     const sidebarIcon = sidebarToggle?.querySelector("i");
@@ -763,6 +801,138 @@
             console.log("تمام لایه ها از نوع پلیگان حذف گردیدند");
         }
     };
+
+    const createChart = (chartId, fuel_clean_percent, fuel_hybrid_percent, fuel_petrol_percent) => {
+        // if (am4core.registry.baseSprites.some(sprite => sprite.htmlContainer.id === chartId)) {
+        //     return; // چارت قبلاً ساخته شده است
+        // }
+
+        am4core.ready(() => {
+            am4core.useTheme(am4themes_animated);
+
+            const chart = am4core.create(chartId, am4charts.PieChart);
+
+            const pieSeries = chart.series.push(new am4charts.PieSeries());
+            pieSeries.dataFields.value = "litres";
+            pieSeries.dataFields.category = "NameCamera";
+
+            chart.innerRadius = am4core.percent(30);
+
+            pieSeries.slices.template.stroke = am4core.color("#fff");
+            pieSeries.slices.template.strokeWidth = 2;
+            pieSeries.slices.template.strokeOpacity = 1;
+            pieSeries.slices.template.cursorOverStyle = [{ property: "cursor", value: "pointer" }];
+
+            pieSeries.alignLabels = false;
+            pieSeries.labels.template.bent = true;
+            pieSeries.labels.template.radius = 3;
+            pieSeries.labels.template.padding(0, 0, 0, 0);
+            pieSeries.ticks.template.disabled = true;
+
+            const shadow = pieSeries.slices.template.filters.push(new am4core.DropShadowFilter());
+            shadow.opacity = 0;
+
+            const hoverState = pieSeries.slices.template.states.getKey("hover");
+            const hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter());
+            hoverShadow.opacity = 0.7;
+            hoverShadow.blur = 5;
+
+            chart.legend = new am4charts.Legend();
+
+            // ـــــ خواندن رنگ از داده‌ها ـــــ
+            pieSeries.slices.template.propertyFields.fill = "color";
+            pieSeries.slices.template.propertyFields.stroke = "color";
+            pieSeries.legendSettings.valueText = "{value.percent.formatNumber('#.0')}%";
+
+            // اگر می‌خواهی در حالت hover هم همان رنگ حفظ شود:
+            pieSeries.slices.template.states.getKey("hover").propertyFields.fill = "color";
+            pieSeries.slices.template.states.getKey("hover").propertyFields.stroke = "color";
+
+            chart.data = [
+                {
+                    NameCamera: "سوخت ترکیبی",
+                    litres: fuel_clean_percent,
+                    color: "#ff9600"
+                },
+                {
+                    NameCamera: "سوخت پاک",
+                    litres: fuel_hybrid_percent,
+                    color: "#0dff00"
+                },
+                {
+                    NameCamera: "سوخت بنزینی",
+                    litres: fuel_petrol_percent,
+                    color: "#ff0000"
+                }
+            ];
+        });
+    };
+
+    let _creatPopUp = (_title, regionid) => {
+        const chartId = `chartdiv-${regionid}`;
+
+        const html = [
+            '<p class="t-right t-fw-700 t-dark t-x10 mb-0">',
+            _title,
+            '</p>',
+            `<div id="${chartId}" class="chartdiv"></div>`
+        ].join("");
+
+        // فقط HTML را برگردانید؛ چارت را بعد از باز شدن پاپ‌آپ بسازید
+        return { html, chartId };
+    };
+
+    const _creatPopUpstationMetro = (
+        title,
+        incomingsPercent,
+        outgoingsPercent,
+        abtPercent,
+        directCardPercent
+    ) => {
+        const sanitizePercent = (value) => {
+            const num = Number(value);
+            if (Number.isFinite(num)) {
+                return Math.max(0, Math.min(100, num));
+            }
+            return 0;
+        };
+
+        const Incomings = sanitizePercent(incomingsPercent);
+        const Outgoings = sanitizePercent(outgoingsPercent);
+        const PaymentByAbt = sanitizePercent(abtPercent);
+        const PaymentByDirectCard = sanitizePercent(directCardPercent);
+
+        const html = [
+            '<div class="chartdivmetro">',
+            '<p class="t-center t-fw-700 t-success t-x14 my-0">',
+            title,
+            '</p>',
+            '<hr>',
+            '<h1 class="t-right t-fw-700 t-x14 t-dark mb-1">میزان ورودی و خروجی</h1>',
+            '<div class="d-flex w-100 overflow-hidden rounded">',
+            `<div class="bg-success" style="width:${Incomings}%;">`,
+            '<div class="t-center t-white py-1">ورودی‌ها</div>',
+            '</div>',
+            `<div class="bg-danger" style="width:${Outgoings}%;">`,
+            '<div class="t-center t-white py-1">خروجی‌ها</div>',
+            '</div>',
+            '</div>',
+            '<hr>',
+            '<h1 class="t-right t-fw-700 t-x14 t-dark mb-1">خرید بلیط</h1>',
+            '<div class="d-flex w-100 overflow-hidden rounded">',
+            `<div class="bg-success" style="width:${PaymentByAbt}%;">`,
+            '<div class="t-center t-white py-1">شارژ با ABT</div>',
+            '</div>',
+            `<div class="bg-danger" style="width:${PaymentByDirectCard}%;">`,
+            '<div class="t-center t-white py-1">شارژ مستقیم</div>',
+            '</div>',
+            '</div>',
+            '</div>'
+        ].join("");
+
+        return { html };
+    };
+
 
     var _createPolygonLayer = function (_polygon, _weight, _color, _fillOpacity) {
         console.log("_polygon:", _polygon);
@@ -859,34 +1029,73 @@
         layers[LayerName] = myPolygon;
     };
 
-    function handleCheckboxChange(event) {
-        const checkbox = event.target;
+    const handleCheckboxChange = () => {
+        const select = document.getElementById('regionhandleSelect');
+        const regionValue = Number(select.value);
 
-        if (checkbox.checked) {
-            console.log('چک‌باکس فعال شد ✅');
-        } else {
-            console.log('چک‌باکس غیرفعال شد ❌');
+        if (!regionValue) {
+            AsyncTask.Constructors.CeartMessage('WarningMessage', 'کاربر رگامی', 'در ابتدا یکی از مناطق را انتخاب نمایید...');
+            cameraLayerGroup.clearLayers();
+            if (map.hasLayer(cameraLayerGroup)) {
+                map.removeLayer(cameraLayerGroup);
+            }
+            return;
         }
 
-        // آیکن PNG
-        const cameraIcon = L.icon({
-            iconUrl: 'https://plan.tehran.ir/Portals/2/Econet/Image/Map/cinema.png',   // مسیر آیکن PNG
-            iconSize: [30, 38],              // اندازه آیکن
-            iconAnchor: [15, 38],
-            popupAnchor: [0, -38]
+        // جلوگیری از ذخیرهٔ تکراری
+        if (!pointLayers.includes(cameraLayerGroup)) {
+            pointLayers.push(cameraLayerGroup);
+        }
+
+        cameraLayerGroup.clearLayers();
+
+        const filteredFeatures = CameraGeoJSON.features.filter((feature) => {
+            return Number(feature.properties.regionId) === regionValue;
         });
 
-        // لایه GeoJSON با آیکن اختصاصی
-        L.geoJSON(CameraGeoJSON, {
-            pointToLayer: (feature, latlng) => {
-                return L.marker(latlng, { icon: cameraIcon });
-            },
-            onEachFeature: (feature, layer) => {
-                const speed = feature.properties.maxspeed || 'نامشخص';
-                layer.bindPopup(`حداکثر سرعت: ${speed}`);
+        if (filteredFeatures.length === 0) {
+            console.warn('در این منطقه دوربینی یافت نشد');
+            if (map.hasLayer(cameraLayerGroup)) {
+                map.removeLayer(cameraLayerGroup);
             }
-        }).addTo(map);
-    }
+            return;
+        }
+
+        const FeatureCollectioncamera = {
+            type: "FeatureCollection",
+            features: filteredFeatures
+        };
+
+        if (!map.hasLayer(cameraLayerGroup)) {
+            cameraLayerGroup.addTo(map);
+        }
+
+        L.geoJSON(FeatureCollectioncamera, {
+            pointToLayer: (feature, latlng) => L.marker(latlng, { icon: cameraIcon }),
+            onEachFeature: (feature, layer) => {
+                const fuel_clean_percent = feature.properties.fuel_clean_percent || "نام دوربین نامشخص";
+                const fuel_hybrid_percent = feature.properties.fuel_hybrid_percent || "نام دوربین نامشخص";
+                const fuel_petrol_percent = feature.properties.fuel_petrol_percent || "نام دوربین نامشخص";
+
+                const regionId = feature.properties.regionId || "unknown";
+                const { html, chartId } = _creatPopUp("title", regionId);
+
+                layer.bindPopup(html);
+
+                layer.on("popupopen", () => {
+                    createChart(chartId, fuel_clean_percent, fuel_hybrid_percent, fuel_petrol_percent);
+                });
+
+                layer.on("popupclose", () => {
+                    const chart = am4core.registry.baseSprites.find(sprite => sprite.htmlContainer.id === chartId);
+                    if (chart) {
+                        chart.dispose();
+                    }
+                });
+            }
+        }).addTo(cameraLayerGroup);
+
+    };
 
     function handleChangeSelect(selectEl) {
         const value = selectEl.value;
@@ -905,14 +1114,63 @@
         //_flytoLatLon(35.712794, 51.334053);
     }
 
+    const showmetro4 = () => {
+        const metroLine4Layer = L.geoJSON(railwaymetro4, {
+            style: (feature) => {
+                if (feature.geometry.type === "LineString") {
+                    return {
+                        color: "#f9a825",
+                        weight: 5,
+                        opacity: 0.9,
+                        interactive: false
+                    };
+                }
+            },
+
+            pointToLayer: (feature, latlng) => {
+                if (feature.geometry.type === "Point") {
+                    return L.marker(latlng, { icon: stationIcon });
+                }
+            },
+
+            onEachFeature: (feature, layer) => {
+                if (feature.geometry.type !== "Point") {
+                    return;
+                }
+
+                const props = feature.properties ?? {};
+
+                const name = props.name ?? "ایستگاه بدون نام";
+                const incomings = props.Incomings ?? 0;
+                const outgoings = props.Outgoings ?? 0;
+                const paymentByAbt = props.PaymentByAbt ?? 0;
+                const paymentByDirectCard = props.PaymentByDirectCard ?? 0;
+
+                const { html } = _creatPopUpstationMetro(
+                    name,
+                    incomings,
+                    outgoings,
+                    paymentByAbt,
+                    paymentByDirectCard
+                );
+
+                layer.bindPopup(html);
+            }
+        });
+
+        metroLine4Layer.addTo(map);
+        return metroLine4Layer;
+    };
+
+
     map.whenReady(() => {
         // یک لایه برای همه مناطق
         const regionsLayer = L.geoJSON(cityTehran, {
             style: (feature) => ({
-                color: '#1565c0',      // رنگ خط
-                weight: 1.5,           // ضخامت خط
-                fillColor: '#00ff0a',  // رنگ پر
-                fillOpacity: 0      // شفافیت پر
+                color: '#1565c0', // رنگ خط
+                weight: 1.5, // ضخامت خط
+                fillColor: '#00ff0a', // رنگ پر
+                fillOpacity: 0 // شفافیت پر
             }),
             onEachFeature: (feature, layer) => {
                 const name = feature.properties.name || 'نامشخص';
