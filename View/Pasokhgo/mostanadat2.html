@@ -1,0 +1,1208 @@
+<style>
+  .blog-details-area .widget-sidber .widget-category ul li a {
+    padding: 5px 26px;
+    margin-bottom: 5px;
+  }
+
+  .blog-details-area .widget-sidber .widget-category ul li a i {
+    margin-top: 3px;
+  }
+
+  .swiper-cube {
+    width: 424px;
+    height: 600px;
+    padding-bottom: 30px;
+  }
+
+  .swiper-slide-cube {
+    background-position: center;
+    background-size: cover;
+  }
+
+  .accordion-button::after {
+    background-size: 0.8rem;
+  }
+
+  .accordion-button span {
+    color: #363636;
+  }
+
+  .accordion-button span i {
+    color: #0066ff;
+  }
+
+  .accordion-button py-0 my-0 {
+    background-color: #fff;
+  }
+
+  .accordion-button py-0 my-0::after {
+    margin-left: 10px !important;
+    margin-right: auto;
+  }
+
+  .accordion-button py-0 my-0:not(.collapsed) {
+    color: #ffffff;
+    background-color: #ff9600;
+  }
+
+  .accordion-button:not(.collapsed) span {
+    color: #fff;
+  }
+
+  .accordion-button:not(.collapsed) span i {
+    color: #fff;
+  }
+
+  .accordion-item:first-of-type>.accordion-header .accordion-button py-0 my-0 {
+    border-radius: 0 !important;
+  }
+
+  .accordion-body {
+    background: rgba(159, 239, 192, 0.4);
+  }
+
+  .accordion-item {
+    border-radius: 0 !important;
+    border: 0 !important;
+  }
+
+  .accordion-button py-0 my-0:focus {
+    box-shadow: none !important;
+  }
+
+  .accordion {
+    background-color: transparent !important;
+    --bs-accordion-bg: #ffffff00 !important;
+  }
+
+  .accordion-item:last-of-type>.accordion-header .accordion-button py-0 my-0.collapsed {
+    border-radius: 0 !important;
+  }
+
+  .accordion-button::after {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .accordion {
+    --bs-accordion-btn-focus-box-shadow: none !important;
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: #4f4f4f;
+    background-color: #ff9600;
+  }
+
+  .accordion-button {
+    background-color: #fff;
+  }
+
+  .shape-right-center {
+    position: absolute;
+    right: 0;
+    top: 50vh;
+  }
+
+  .shape-left-center {
+    position: absolute;
+    left: 0;
+    top: 50vh;
+  }
+
+  /* پایه دکمه */
+  .bttn-custom {
+    display: inline-block;
+    font-family: var(--title-font);
+    font-weight: 400;
+    border-radius: 45px;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: #1f7a4d;
+    z-index: 1;
+
+    transition:
+      background-color 250ms ease,
+      color 250ms ease,
+      box-shadow 250ms ease;
+  }
+
+  /* افکت شیشه‌ای */
+  .bttn-custom::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent,
+        rgba(255, 255, 255, 0.45),
+        transparent);
+    transition: right 450ms ease;
+  }
+
+  /* hover */
+  .bttn-custom:hover::before {
+    right: 120%;
+    color: #ffffff;
+  }
+
+  .bttn-custom:hover {
+    background-color: #cf7105;
+    box-shadow: 0 6px 18px rgba(128, 98, 16, 0.35);
+    color: #ffffff;
+  }
+
+  .bttn-custom-a {
+    background-color: #0ca525;
+  }
+
+  .bttn-custom-b {
+    background-color: #2c8f63;
+  }
+
+  .bttn-custom-c {
+    background-color: #237a57;
+  }
+
+  .bttn-custom-d {
+    background-color: #0ca525;
+  }
+
+  .bttn-custom-e {
+    background-color: #0ca525;
+  }
+
+  .bttn-custom-f {
+    background-color: #2f7d5b;
+  }
+
+  .bttn-custom-g {
+    background-color: #0ca525;
+  }
+</style>
+
+<div class="blog-list-area position-relative">
+  <div class="container-fluid" style="padding: 0 5vw">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-8">
+        <div class="divider divider-success my-1">
+          <div class="divider-text t-success t-center t-x18 t-fw-700">
+            <div class="sec-title my-0">
+              <div class="section-sub-title t-center">
+                <h5 class="sub-title t-x18 t-fw-700 mb-0">
+                  <i class="bx bx-book-open t-x20"></i>
+                  عملکرد ۴ ساله
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <ul id="myTab" role="tablist" class="row justify-content-md-center t-center mb-5">
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-a t-x14 w-100 px-3 py-1 active"
+            id="h1-tab" data-bs-toggle="tab" data-bs-target="#h1-tab-pane" role="tab" aria-controls="h1-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            سازمان پیشگیری و مدیریت بحران
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-b t-x14 w-100  px-3 py-1"
+            id="h2-tab" data-bs-toggle="tab" data-bs-target="#h2-tab-pane" role="tab" aria-controls="h2-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت اجتماعی و فرهنگی
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-c t-x14 w-100  px-3 py-1"
+            id="h3-tab" data-bs-toggle="tab" data-bs-target="#h3-tab-pane" role="tab" aria-controls="h3-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت حمل و نقل و ترافیک
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-d t-x14 w-100  px-3 py-1"
+            id="h4-tab" data-bs-toggle="tab" data-bs-target="#h4-tab-pane" role="tab" aria-controls="h4-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت خدمات شهری و محیط زیست
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-e t-x14 w-100  px-3 py-1"
+            id="h5-tab" data-bs-toggle="tab" data-bs-target="#h5-tab-pane" role="tab" aria-controls="h5-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت شهرسازی و معماری
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block  col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-f t-x14 w-100  px-3 py-1"
+            id="h6-tab" data-bs-toggle="tab" data-bs-target="#h6-tab-pane" role="tab" aria-controls="h6-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت فنی و عمرانی
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block  col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom t-x14 w-100 bttn-custom-g  px-3 py-1"
+            id="h7-tab" data-bs-toggle="tab" data-bs-target="#h7-tab-pane" role="tab" aria-controls="h7-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت مالی و اقتصاد شهری
+          </a>
+        </li>
+      </ul>
+      <ul id="myTab" role="tablist" class="row justify-content-md-center t-center mb-5">
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-a t-x14 w-100 px-3 py-1 active"
+            id="h8-tab" data-bs-toggle="tab" data-bs-target="#h8-tab-pane" role="tab" aria-controls="h8-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            سازمان پیشگیری و مدیریت بحران
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-b t-x14 w-100  px-3 py-1"
+            id="h2-tab" data-bs-toggle="tab" data-bs-target="#h2-tab-pane" role="tab" aria-controls="h2-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت اجتماعی و فرهنگی
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-c t-x14 w-100  px-3 py-1"
+            id="h3-tab" data-bs-toggle="tab" data-bs-target="#h3-tab-pane" role="tab" aria-controls="h3-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت حمل و نقل و ترافیک
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-d t-x14 w-100  px-3 py-1"
+            id="h4-tab" data-bs-toggle="tab" data-bs-target="#h4-tab-pane" role="tab" aria-controls="h4-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت خدمات شهری و محیط زیست
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-e t-x14 w-100  px-3 py-1"
+            id="h5-tab" data-bs-toggle="tab" data-bs-target="#h5-tab-pane" role="tab" aria-controls="h5-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت شهرسازی و معماری
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block  col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom bttn-custom-f t-x14 w-100  px-3 py-1"
+            id="h6-tab" data-bs-toggle="tab" data-bs-target="#h6-tab-pane" role="tab" aria-controls="h6-tab-pane"
+            aria-selected="false">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت فنی و عمرانی
+          </a>
+        </li>
+        <li role="presentation" class="d-inline-block  col-lg-3">
+          <a style="border-radius: 50px;" class="nav-link bttn bttn-custom t-x14 w-100 bttn-custom-g  px-3 py-1"
+            id="h7-tab" data-bs-toggle="tab" data-bs-target="#h7-tab-pane" role="tab" aria-controls="h7-tab-pane"
+            aria-selected="true">
+            <img alt="icon" style="height: 50px" src="/Portals/2/Econet/Image/Skin/Other/white-doc.png" />
+            معاونت مالی و اقتصاد شهری
+          </a>
+        </li>
+      </ul>
+      <div class="col-12">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="h1-tab-pane" role="tabpanel" aria-labelledby="h1-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      سازمان پیشگیری و مدیریت بحران
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه و احداث شبکه اصلی بزرگراهی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        احداث و تکمیل تقاطعات غیرهمسطح
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        احداث و تکمیل ابنیه موردنیاز
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه شبکه اصلی آب‌های سطحی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نگهداشت شهر: آسفالت معابر (تولید و اجرا)، جدول و نهر،
+                        مرمت شبکه اصلی آب‌های سطحی، مقاوم‌سازی پل‌های سواره‌رو،
+                        نگهداری پل‌های عابر پیاده، خرید کارخانجات آسفالت
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        برنامه‌ریزی و مطالعات عمرانی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        انجام مطالعات فنی و مهندسی برای پروژه‌های بزرگ شهری
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        تهیه و تدوین ضوابط و استانداردهای فنی اجرایی برای پروژه‌های عمرانی شهرداری
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بررسی و تصویب نقشه‌های ساختمانی و طرح‌های تفصیلی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        برنامه‌ریزی کلان برای توسعه زیرساخت‌های شهری در بلندمدت
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نظارت و کنترل کیفیت
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نظارت فنی بر اجرای تمامی پروژه‌های عمرانی شهرداری برای اطمینان از رعایت استانداردها و مشخصات
+                        فنی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بازرسی از ساختمان‌ها و پروژه‌های در حال احداث به منظور اطمینان از ایمنی سازه‌ها
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/bohran/page/Page100.jpg)"></div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h2-tab-pane" role="tabpanel" aria-labelledby="h2-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت اجتماعی و فرهنگی
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بررسی اوضاع اجتماعی، اقتصادی، فرهنگی و جمعیتی شهر تهران در جهت تعیین خط‌مشی فعالیت‌های شهرداری
+                        در راستای فراهم آوردن زندگی آرام و پربار شهروندان تهرانی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        مطالعه چگونگی فعالیت‌های اجتماعی مردم در شهر تهران و شناسایی عوامل مؤثر در این‌گونه فعالیت‌ها
+                        و در نهایت جمع‌آوری اطلاعات لازم از طریق پژوهش‌های علمی و ارائه راه‌حل‌های عملی به شهرداری
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        همکاری و هماهنگی با انجمن‌ها و سمن‌ها به منظور آموزش امور فرهنگی و اجتماعی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        رفع کاستی‌های شهر در زمینه‌هایی که تأمین آن‌ها در اختیار و صلاحیت شهرداری بوده و منجر به بهبود
+                        وضع اجتماعی شهر می‌شود.
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ارائه راه‌حل‌هایی برای رفع مسائل و مشکلات اجتماعی پیچیده شهری که نیاز به اتخاذ تصمیم در سطوح
+                        بالای اجرایی و یا قانون‌گذاری دارد.
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بالا بردن آگاهی‌های اجتماعی مردم در ایجاد نظم اجتماعی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        برنامه‌ریزی برای گذراندن اوقات فراغت نوجوانان، جوانان و اولیای آنان
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-3.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-4.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-5.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-6.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-7.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-8.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-9.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-10.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-11.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/ejtemaee/daryeknegah/daryeknegah-12.jpg)">
+                    </div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h3-tab-pane" role="tabpanel" aria-labelledby="h3-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت حمل و نقل و ترافیک
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">
+                        ماموریت و اهداف
+                      </h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <p class="t-justify t-x14 t-dark">
+                      معاونت حمل و نقل و ترافیک شهرداری تهران، به‌عنوان بالاترین مرجع در شهرداری تهران که مسئولیت
+                      سیاست‌گذاری، هماهنگی، برنامه‌ریزی و کنترل عملکرد حمل و نقل و ترافیک شهر تهران را بر عهده دارد،
+                      با نگرش و تفکری جامع، یکپارچه و درون‌زا به امور حمل و نقل و ترافیک تهران می‌پردازد.
+                    </p>
+                    <p class="t-justify t-x14 t-dark">
+                      سازمان‌ها و ادارات تابعه‌ مجموعه تحت نظارت و همچنین معاونت‌های مناطق شهرداری تهران با در نظر
+                      گرفتن مأموریت کل شهر در حوزه حمل و نقل و ترافیک، فعالیت‌های مرتبط با بررسی عوامل داخلی و خارجی
+                      تأثیرگذار بر سیستم‌های حمل‌ونقل و پس از آن تدوین، ارزیابی و اجرای استراتژی‌های مناسب جهت رشد سهم
+                      حمل و نقل عمومی، افزایش بهره‌وری شبکه حمل و نقل شهری، کاهش حجم سفر با خودروهای شخصی، بهبود کیفیت
+                      عملکرد ناوگان و کاهش آلودگی‌های زیست‌محیطی شهر فعالیت می‌نمایند.
+                    </p>
+                    <p class="t-justify t-x14 t-dark">
+                      هدف نهایی این معاونت، در کنار ارتقای بهره‌وری سیستم حمل‌ونقل عمومی، افزایش سهولت جابجایی
+                      شهروندان از طریق توسعه و بهبود نظام‌ها و زیرساخت‌های حمل‌ونقل، افزایش سهم حمل‌ونقل عمومی در
+                      جابه‌جایی مسافران شهری، و در نهایت ارتقاء کیفیت زندگی شهروندان از طریق مدیریت علمی حمل و نقل و
+                      ترافیک شهری می‌باشد.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/teraffic/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/teraffic/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/teraffic/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/teraffic/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h4-tab-pane" role="tabpanel" aria-labelledby="h4-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت خدمات شهری و محیط زیست
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        فراهم‌سازی شرایط، بسترها و زمینه‌های تحقق شهر امن، آباد و سالم بر پایه آرمان‌های یک جامعه
+                        اسلامی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        درک عمیق از نیازهای شهروندان و توزیع عادلانه فرصت‌ها و امکانات شهری میان همه گروه‌های شهروند
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        رواج فرهنگ شهروندی و شهرنشینی از طریق ارتقای آگاهی‌های مردم از حقوق و به‌ویژه تکالیف شهروندی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بسترسازی برای مشارکت شهروندان در اداره شهر جهت تحقق شهر شهروندمحور
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        حفاظت از محیط زیست (به‌ویژه آب، هوا و منابع طبیعی) و ایمن‌سازی شهر در مقابل سوانح طبیعی و سایر
+                        مخاطرات و آسیب‌ها
+
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ساده‌سازی دریافت خدمات و تسهیلات شهری توسط همه شهروندان
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بهبود و ارتقای کیفیت محیطی و وضعیت کالبدی شهر
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توجه به پاکیزگی، سرسبزی و زیبایی فضاهای شهر
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ساماندهی وضعیت دفع زباله شهر تهران
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        رفع یا کاهش انواع آلودگی‌های زیست‌محیطی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ارتقای کیفیت زیست‌محیطی شهر تهران و حفاظت از میراث طبیعی و تاریخی شهر و توسعه فضاهای عمومی و
+                        گردشگری با اجرای طرح‌های موضعی و موضوعی برای عمران و توسعه شهری تهران
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ساماندهی سیما و منظر شهری با تأکید بر هویت معماری و شهرسازی ایرانی–اسلامی
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/khadamatshahri/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/khadamatshahri/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/khadamatshahri/daryeknegah/daryeknegah-3.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/khadamatshahri/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h5-tab-pane" role="tabpanel" aria-labelledby="h5-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت شهرسازی و معماری
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بررسی اهداف، سیاست‌ها و خطوط کلی برنامه‌های کوتاه‌مدت و بلندمدت شهرداری تهران در امور مربوط به
+                        شهرسازی و معماری شهر تهران در راستای سیاست‌های کلی نظام جمهوری اسلامی در زمینه طرح‌های تفصیلی
+                        و جامع شهر تهران.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        مطالعه مسائل و تنگناهای اساسی شهرسازی و معماری تهران و تنظیم برنامه‌های توسعه شهری و ایجاد
+                        هماهنگی لازم بین سازمان‌ها، وزارتخانه‌های ذی‌ربط و ارگان‌های مسئول در ارتباط با شهرسازی و
+                        معماری شهر تهران و همکاری با موسسات مذکور به‌منظور ایجاد هماهنگی در برنامه‌ریزی توسعه شهرسازی
+                        و کنترل آن در سطح تهران و ارائه پیشنهادهای لازم به ارگان‌های تصمیم‌گیر در زمینه‌های مذکور.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        تدوین اهداف، سیاست‌ها و برنامه‌های جامع نظام شهرسازی و معماری منطقه تهران بزرگ و تجدید نظر و
+                        بهنگام نمودن مستمر برنامه‌ها و طرح‌های مربوط به شهرسازی و معماری.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بررسی سیاست‌ها و برنامه‌های مربوط به تراکم جمعیتی شهر تهران، نوسازی، فرهنگی، اجتماعی، الگوهای
+                        مهاجرت، مسائل اجتماعی و فرهنگی شهر تهران در ارتباط با پیشبرد اهداف شهرسازی و معماری شهرداری
+                        تهران در رابطه با شهر تهران.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        مشارکت فعال و همکاری با سازمان‌های مسئول در رابطه با برنامه‌ها و طرح‌های زیربنایی و روبنایی
+                        شهر تهران در زمینه‌های ترافیک، فضاهای سبز، آموزش و پرورش، بهداشت و درمان، ورزش و تفریح، فضاهای
+                        سبز در نوعی به مسائل شهرسازی در شهر تهران مربوط می‌شوند.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        تأمین، تهیه و تدوین سیاست‌های شهرداری تهران در ارتباط با نحوه، کیفیت و چگونگی پیشبرد امر
+                        ساخت‌وساز در تهران و انتخاب بهترین راهبرد در زمینه هدایت، کنترل آن.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ابلاغ بخشنامه‌ها، برنامه‌ها و سیاست‌های شهرسازی تهران در امر ساخت‌وساز، همراه با فرم‌ها و
+                        دستورالعمل‌های لازم و مصوب به مناطق ۲۲گانه و واحدهای ذی‌ربط برای اقدام و اجرا.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ایجاد ارتباط مستمر و مداوم با واحدهای مختلف شهرداری تهران در زمینه‌های معماری و شهرسازی
+                        به‌منظور هدایت واحدهای ذی‌ربط در سمت اهداف شهرداری تهران در رابطه با موارد و مسائل ساخت‌وساز
+                        در شهر.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نظارت مستمر بر اجرای نقشه‌های جامع و تفصیلی شهر تهران و ارائه پیشنهادهای ضروری و لازم برای
+                        ایجاد تغییرات تدریجی در آن، به‌طور اصولی و منطقی به مسئولین ذی‌ربط.
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بررسی امور نظارت، برنامه‌ریزی دقیق و حساس در ارتباط با صدور پروانه‌های ساختمانی و روند شهرسازی
+                        و معماری شهر تهران، تأمین امکانات فنی از نظر نیروی انسانی متخصص و سایر ابزارهای مورد نیاز،
+                        ایجاد و تأسیس ستادهای مرکزی و منطقه‌ای ویژه جهت انجام امور فوق.
+
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/shahrsazi/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/shahrsazi/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/shahrsazi/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/shahrsazi/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h6-tab-pane" role="tabpanel" aria-labelledby="h6-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت فنی و عمرانی
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه و احداث شبکه اصلی بزرگراهی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        احداث و تکمیل تقاطعات غیرهمسطح
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        احداث و تکمیل ابنیه موردنیاز
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه شبکه اصلی آب‌های سطحی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نگهداشت شهر: آسفالت معابر (تولید و اجرا)، جدول و نهر،
+                        مرمت شبکه اصلی آب‌های سطحی، مقاوم‌سازی پل‌های سواره‌رو،
+                        نگهداری پل‌های عابر پیاده، خرید کارخانجات آسفالت
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        برنامه‌ریزی و مطالعات عمرانی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        انجام مطالعات فنی و مهندسی برای پروژه‌های بزرگ شهری
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        تهیه و تدوین ضوابط و استانداردهای فنی اجرایی برای پروژه‌های عمرانی شهرداری
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بررسی و تصویب نقشه‌های ساختمانی و طرح‌های تفصیلی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        برنامه‌ریزی کلان برای توسعه زیرساخت‌های شهری در بلندمدت
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نظارت و کنترل کیفیت
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        نظارت فنی بر اجرای تمامی پروژه‌های عمرانی شهرداری برای اطمینان از رعایت استانداردها و مشخصات
+                        فنی
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        بازرسی از ساختمان‌ها و پروژه‌های در حال احداث به منظور اطمینان از ایمنی سازه‌ها
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/omran/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/omran/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/omran/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/omran/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-cube-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h7-tab-pane" role="tabpanel" aria-labelledby="h7-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      معاونت مالی و اقتصاد شهری
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        تأمین منابع مالی و کسب درآمد
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ثبت و ضبط حساب‌ها و گزارشگری مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        مدیریت بر هزینه‌های شهرداری و ارتقای اقتصاد شهر
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه نظام کسب درآمد و رسیدن به خودکفایی درآمدی از طریق پایدارسازی منابع و تنوع‌بخشی به
+                        روش‌های تأمین منابع مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه فرصت‌ها و استفاده بیشتر از ظرفیت‌های داخلی و خارجی برای مشارکت و سرمایه‌گذاری در شهر
+                        تهران
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه سیستم‌های درون‌شهری و حاکم کردن انضباط و شفافیت مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        پایدارسازی منابع درآمدی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه مشارکت و سرمایه‌گذاری، تنوع‌بخشی به روش‌های تأمین منابع مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه نظام کسب درآمد ناشی از اقتصاد شهری
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        حصول اطمینان از اقدامات قانونی، صحت عمل، کاهش تخلفات و ارتقای پاسخگویی در درآمد و مصارف
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        افزایش بهره‌وری و کارایی نیروی انسانی حوزه مالی و اقتصاد شهری، جایگزینی سیستم‌های نوین، توسعه
+                        اشراف اطلاعاتی و تصمیم‌گیری
+
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-3.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-4.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-5.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-6.jpg)">
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-cube-1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="h8-tab-pane" role="tabpanel" aria-labelledby="h8-tab" tabindex="0">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-7 col-12 position-relative">
+                <div class="sec-title">
+                  <div class="section-sub-title">
+                    <h5 class="sub-title">
+                      <i class="bx bx-book-open t-x20"></i>
+                      عماد سیفی
+                    </h5>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h1 class="t-x34 t-right t-dark t-fw-700">اهداف و برنامه ها</h1>
+                    </div>
+                    <div class="col-lg-6 t-left">
+                      <img style="height: 200px;position: absolute;top: -60px;left: 0;"
+                        src="/Portals/2/Econet/Image/Skin/Other/ahdaf.png">
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="blog-details-list-item mt-3">
+                    <ul>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        تأمین منابع مالی و کسب درآمد
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        ثبت و ضبط حساب‌ها و گزارشگری مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        مدیریت بر هزینه‌های شهرداری و ارتقای اقتصاد شهر
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه نظام کسب درآمد و رسیدن به خودکفایی درآمدی از طریق پایدارسازی منابع و تنوع‌بخشی به
+                        روش‌های تأمین منابع مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه فرصت‌ها و استفاده بیشتر از ظرفیت‌های داخلی و خارجی برای مشارکت و سرمایه‌گذاری در شهر
+                        تهران
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه سیستم‌های درون‌شهری و حاکم کردن انضباط و شفافیت مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        پایدارسازی منابع درآمدی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه مشارکت و سرمایه‌گذاری، تنوع‌بخشی به روش‌های تأمین منابع مالی
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        توسعه نظام کسب درآمد ناشی از اقتصاد شهری
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        حصول اطمینان از اقدامات قانونی، صحت عمل، کاهش تخلفات و ارتقای پاسخگویی در درآمد و مصارف
+
+                      </li>
+                      <li class="t-x14 t-justify t-fw-300">
+                        <img src="/Portals/2/Econet/Image/Skin/Other/boolt.png" style="height: 20px;">
+                        افزایش بهره‌وری و کارایی نیروی انسانی حوزه مالی و اقتصاد شهری، جایگزینی سیستم‌های نوین، توسعه
+                        اشراف اطلاعاتی و تصمیم‌گیری
+
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-12">
+                <div class="swiper swiper-cube-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-1.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-2.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-3.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-4.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-5.jpg)">
+                    </div>
+                    <div class="swiper-slide swiper-slide-cube"
+                      style="background-image: url(/Portals/2/Econet/Image/Book/mali/daryeknegah/daryeknegah-6.jpg)">
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-cube-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="shape-right-center">
+          <img alt="testi-shape" src="/Portals/2/Econet/Image/Patern/green-right-center-300.png">
+        </div>
+        <div class="shape-left-center">
+          <img alt="testi-shape" src="/Portals/2/Econet/Image/Patern/green-left-center-300.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Initialize Swiper -->
+<script type="module">
+  const cubeSwiperOptions = {
+    effect: "cube",
+    grabCursor: true,
+    speed: 5000,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94,
+    },
+  };
+
+  function createCubeSwiper(selector, paginationEl) {
+    return new Swiper(selector, {
+      ...cubeSwiperOptions,
+      pagination: {
+        el: paginationEl,
+      },
+    });
+  }
+
+  const cubeSwiper1 = createCubeSwiper(".swiper-cube-1", ".swiper-pagination-cube-1");
+  const cubeSwiper2 = createCubeSwiper(".swiper-cube-2", ".swiper-pagination-cube-2");
+  const cubeSwiper3 = createCubeSwiper(".swiper-cube-3", ".swiper-pagination-cube-3");
+  const cubeSwiper4 = createCubeSwiper(".swiper-cube-4", ".swiper-pagination-cube-4");
+
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => {
+    tab.addEventListener("shown.bs.tab", () => {
+      // کمی تاخیر بده تا تب واقعاً visible بشه
+      setTimeout(() => {
+        document.querySelectorAll(".swiper").forEach((swiperEl) => {
+          if (swiperEl.swiper) {
+            swiperEl.swiper.update();
+          }
+        });
+      }, 150); // ← مقدار 150 تا 300 میلی‌ثانیه عالیه
+    });
+  });
+</script>

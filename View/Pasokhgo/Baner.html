@@ -1,0 +1,151 @@
+<style>
+    .breadcumb-area {
+        display: none;
+    }
+
+    .bannerSwiper {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .bannerSwiper .swiper-slide {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bannerSwiper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* caption */
+    .caption {
+        position: absolute;
+        right: 10%;
+        bottom: 25%;
+        color: #fff;
+        width: 20vw;
+    }
+
+    /* حالت اولیه (مخفی) */
+    .caption h2,
+    .caption p {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    /* فعال شدن اسلاید */
+    .swiper-slide-active .caption h2 {
+        transition: all 0.8s ease;
+        transition-delay: 0.3s;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .swiper-slide-active .caption p {
+        transition: all 0.8s ease;
+        transition-delay: 0.7s;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        color: transparent;
+    }
+
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
+        color: transparent;
+    }
+
+    .main-menu .navigation {
+        visibility: hidden;
+    }
+
+    .title-baner {
+        position: absolute;
+        left: 10%;
+        bottom: 0%;
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding-top: 10px;
+        height: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-top-left-radius:25px;
+        border-top-right-radius: 25px;
+    }
+</style>
+
+<div class="swiper bannerSwiper">
+    <div class="swiper-wrapper position-relative">
+
+        <div class="swiper-slide">
+            <img src="/Portals/2/Econet/Image/Skin/breadcumb/breadcumb-bg1.jpg" alt="">
+            <div class="caption">
+                <h2 class="t-x14 t-justify t-fw-400">امور مرتبط با معاونت فنی و عمرانی در یک ریل گزاری مناسب و با تلاشی
+                    مطلوب تا کنون پیش رفته است</h2>
+                <p class="t-x12 t-left t-fw-400 mb-0">علیرضا ذاکانی</p>
+                <p class="t-x12 t-left t-fw-400">شهردار تهران</p>
+            </div>
+            <div class="title-baner">
+                <h2 class="t-x18 mb-0">جهش تولید با مشارکت مردم</h2>
+            </div>
+        </div>
+
+        <div class="swiper-slide">
+            <img src="/Portals/2/Econet/Image/Skin/breadcumb/breadcumb-bg2.jpg" alt="">
+            <div class="caption">
+                <h2 class="t-x14 t-justify t-fw-400">امور مرتبط با معاونت فنی و عمرانی در یک ریل گزاری مناسب و با تلاشی
+                    مطلوب تا کنون پیش رفته است</h2>
+                <p class="t-x12 t-left t-fw-400 mb-0">علیرضا ذاکانی</p>
+                <p class="t-x12 t-left t-fw-400">شهردار تهران</p>
+            </div>
+            <div class="title-baner">
+                <h2 class="t-x18 mb-0">جهش تولید با مشارکت مردم</h2>
+            </div>
+        </div>
+
+        <div class="swiper-slide">
+            <img src="/Portals/2/Econet/Image/Skin/breadcumb/breadcumb-bg3.jpg" alt="">
+            <div class="caption">
+                <h2 class="t-x14 t-justify t-fw-400">امور مرتبط با معاونت فنی و عمرانی در یک ریل گزاری مناسب و با تلاشی
+                    مطلوب تا کنون پیش رفته است</h2>
+                <p class="t-x12 t-left t-fw-400 mb-0">علیرضا ذاکانی</p>
+                <p class="t-x12 t-left t-fw-400">شهردار تهران</p>
+            </div>
+            <div class="title-baner">
+                <h2 class="t-x18 mb-0">جهش تولید با مشارکت مردم</h2>
+            </div>
+        </div>
+
+    </div>
+    <div class="swiper-button-next">
+        <i class='bx bx-caret-left t-x60' style="color: #0c2318;"></i>
+    </div>
+    <div class="swiper-button-prev">
+        <i class='bx bx-caret-right t-x60 mr-5' style="color: #0c2318;"></i>
+    </div>
+</div>
+
+<script>
+    const swiper = new Swiper(".bannerSwiper", {
+        slidesPerView: 1,
+        loop: true,
+        speed: 3000,
+        effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        }
+    });
+</script>

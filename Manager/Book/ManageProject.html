@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="text-center" style="border-bottom: 1px solid #000">
+        <span class="fab fa-jira text-x10 text-blue-grey"></span>
+        <span class="text-bold text-center text-x10 text-dark mx-4">محتوای پروژه ها</span>
+        <span class="fab fa-jira text-x10 text-blue-grey"></span>
+    </div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th style="text-align:center;width: 20%">تصویر</th>
+                <th style="text-align:center;width: 20%">عنوان</th>
+                <th style="text-align:center;width: 10%">ویرایش</th>
+                <th style="text-align:center;width: 10%">نمایش</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td style="text-align: center;width: 30%">
+                    <img src="[URL]" style="height: 130px;">
+                </td>
+                <td style="text-align: center;width: 20%">[TITLE]</td>               
+                <td style="text-align:center;width: 10%">[EDIT]</td>
+                <td style="text-align:center;width: 10%"><a href="[VIEWURL]"><span class="fa fa-search"></span></a>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+<!-- 
+$i = 1
+Get-ChildItem *.jpg | Sort-Object Name | ForEach-Object {
+    Rename-Item $_ ("page{0}.jpg" -f $i)
+    $i++
+}
+-->
